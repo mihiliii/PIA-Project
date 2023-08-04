@@ -1,0 +1,31 @@
+.my-form {
+    border-width: 2px;
+    border-color: black;
+    max-width: 50vh;
+}
+
+.my-container {
+    min-height: 50vh;
+}
+
+hr {
+    height: 2px;
+    background-color: #000;
+    opacity: 100%;
+}
+
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form, .ng-pristine) {
+    border-left: 5px solid #a94442; /* red */
+}
+
+.submitted {
+    border-left: 5px solid #a94442; /* red */
+}
+
+.my-alert {
+    padding: 0.375rem;
+}

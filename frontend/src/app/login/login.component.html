@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <td>Username:</td>
+        <td>
+            <input type="text" name="username" placeholder="username" [(ngModel)]="username">
+        </td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td>
+            <input type="password" name="password" [(ngModel)]="password">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button (click)="login()">Login</button>
+        </td>
+        <td>
+            <button (click)="goToRegister()">Register</button>
+        </td>
+    </tr>
+</table>
