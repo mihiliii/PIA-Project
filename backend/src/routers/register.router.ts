@@ -9,6 +9,10 @@ registerRouter.route('/registerPacijent').post(
 
 registerRouter.route('/registerLekar').post(
     (request, response) => { new RegisterController().registerLekar(request, response); }
-)
+);
+
+registerRouter.route('/uploadImage').post(
+    (request, response) => { new RegisterController().uploadImage(request,response); }
+);
 
 export default registerRouter;

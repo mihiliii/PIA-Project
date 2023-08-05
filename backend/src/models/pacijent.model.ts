@@ -9,7 +9,8 @@ const pacijentSchema = new Schema({
     prezime: String,
     adresa: String,
     kontaktTelefon: String,
-    email: String
+    email: String,
+    image: String
 });
 
 export default mongoose.model('PacijentDB', pacijentSchema, 'pacijenti');
