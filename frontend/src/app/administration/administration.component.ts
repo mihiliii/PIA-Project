@@ -37,6 +37,7 @@ acceptRegisterRequests() {
         pacijenti: [],
         lekari: []
     }
+
     for (let pacijent of this.pacijentArray) {
         if (pacijent.checkbox)
             acceptedRequests.pacijenti.push(pacijent);
@@ -45,6 +46,7 @@ acceptRegisterRequests() {
         if (lekar.checkbox)
             acceptedRequests.lekari.push(lekar);
     }
+    
     this.registerService.acceptRegisterRequests(acceptedRequests).subscribe((message) => {
         console.log(message);
         this.ngOnInit();
@@ -56,6 +58,7 @@ declineRegisterRequests() {
         pacijenti: [],
         lekari: []
     }
+
     for (let pacijent of this.pacijentArray) {
         if (pacijent.checkbox)
             declinedRequests.pacijenti.push(pacijent);
@@ -64,6 +67,7 @@ declineRegisterRequests() {
         if (lekar.checkbox)
             declinedRequests.lekari.push(lekar);
     }
+
     this.registerService.declineRegisterRequests(declinedRequests).subscribe((message) => {
         console.log(message);
         this.ngOnInit();

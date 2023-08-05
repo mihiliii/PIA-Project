@@ -5,9 +5,10 @@ import { RegisterComponent } from './register/register.component';
 import { AdministrationComponent } from './administration/administration.component';
 
 const routes: Routes = [
-    {path: "", component: LoginComponent},
+    {path: "", component: LoginComponent, data: {userType: ''}},
     {path: "register", component: RegisterComponent},
-    {path: "administration", component: AdministrationComponent}
+    {path: "administration", component: AdministrationComponent},
+    {path: "menadzer", component: LoginComponent, data: {userType: 'menadzer'}}
 ];
 
 @NgModule({

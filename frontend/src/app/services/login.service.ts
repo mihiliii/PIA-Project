@@ -8,13 +8,13 @@ export class LoginService {
 
     constructor(private httpClient: HttpClient) {}
 
-    login(username, password) {
-
-        const data = {
-            username: username,
-            password: password
+    login(username, password, userType) {
+        const loginData = {
+            korisnickoIme: username,
+            lozinka: password,
+            userType: userType
         };
 
-        return this.httpClient.post('http://localhost:4000/login/login', data);
+        return this.httpClient.post('http://localhost:4000/login/login', loginData);
     }
 }

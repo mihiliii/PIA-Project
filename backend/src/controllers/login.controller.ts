@@ -1,14 +1,29 @@
 import express from 'express';
-import PacijentDB from '../models/pacijent.model';
+import pacijentDB from '../models/pacijent.model';
+import lekarDB from '../models/lekar.model';
+import menadzerDB from '../models/menadzer.model';
 
 export class LoginController {
 
-    login (request: express.Request, response: express.Response) {
+    async login (request: express.Request, response: express.Response) {
         let data = request.body;
+        console.log(data);
 
-        PacijentDB.findOne({'username': data.username, 'password': data.password}, (err, pacijent) => {
-            if (err) console.log(err);
-            else response.json(pacijent);
-        });
+        if (data.userType == 'menadzer'){
+
+            menadzerDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka}, (err, menadzer) => {
+                if (err) console.log(err);
+                else response.json(menadzer);
+            });
+        }
+        else {
+
+            let pacijent = await pacijentDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
+            let lekar = await lekarDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
+
+            if (pacijent) response.json(pacijent);
+            else if (lekar) response.json(lekar);
+            else response.json(null);
+        }
     }
 }
