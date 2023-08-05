@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
 
         }
         else if (this.radioButton == "radioLekar") {
-            let lekar: Lekar = {
+            let lekar = {
                 korisnickoIme: this.registerInterface.korisnickoIme,
                 lozinka: this.registerInterface.lozinka,
                 ime: this.registerInterface.ime,

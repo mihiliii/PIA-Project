@@ -12,7 +12,9 @@ const lekarSchema = new Schema({
     email: String,
     brojLicence: Number,
     specijalizacija: String,
-    ogranakOrdinacije: String
+    ogranakOrdinacije: String,
+    image: String,
+    status: String
 });
 
 export default mongoose.model('LekarDB', lekarSchema, 'lekari');

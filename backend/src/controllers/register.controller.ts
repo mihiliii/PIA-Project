@@ -21,7 +21,6 @@ export class RegisterController {
         let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': data.korisnickoIme}, {'email': data.email}]});
         let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': data.korisnickoIme}, {'email': data.email}]});
         
-        console.log(request.body);
         if (!pacijent && !lekar) {
             pacijentDB.create({
                 'korisnickoIme': data.korisnickoIme,
@@ -31,7 +30,8 @@ export class RegisterController {
                 'adresa': data.adresa,
                 'kontaktTelefon': data.kontaktTelefon,
                 'email': data.email,
-                'image': 'default.jpg'
+                'image': 'default.jpg',
+                'status': 'neaktivan'
             }, (err) => {
                 if (err) console.log(err);
                 else response.json({'message': 'pacijent register success!'});  
@@ -58,7 +58,8 @@ export class RegisterController {
                 'brojLicence': data.brojLicence,
                 'specijalizacija': data.specijalizacija,
                 'ogranakOrdinacije': data.ogranakOrdinacije,
-                'image': 'default.jpg'
+                'image': 'default.jpg',
+                'status': 'neaktivan'
             }, (err) => {
                 if (err) console.log(err);
                 else response.json({'message': 'lekar register success!'});
@@ -96,5 +97,60 @@ export class RegisterController {
         if (object1.korisnickoIme == object2.korisnickoIme) return {'message': 'Error: korisnickoIme already exists!'};
         else if (object1.email == object2.email) return {'message': 'Error: email already exists!'};
         else return {'message': 'Error: unknown'};
+    }
+
+    async getRegisterRequests(request, response) {
+        try {
+            let pacijenti = await pacijentDB.find({'status': 'neaktivan'});
+            let lekari = await lekarDB.find({'status': 'neaktivan'});
+
+            const responseData = {
+                pacijentArray: pacijenti,
+                lekarArray: lekari
+            }
+
+            response.json(responseData);
+        }
+        catch {
+            console.log("Error: getRegisterRequests()");
+        }
+    }
+
+    acceptRegisterRequests(request, response) {
+        let pacijenti = request.body.pacijenti;
+        let lekari = request.body.lekari;
+
+        for (let pacijent of pacijenti) {
+            pacijentDB.updateOne({'korisnickoIme': pacijent.korisnickoIme}, {$set: {'status': 'aktivan'}}, (err, pacijent) => {
+                if (err) console.log(err);
+                else console.log(pacijent);
+            });
+        }
+        for (let lekar of lekari) {
+            lekarDB.updateOne({'korisnickoIme': lekar.korisnickoIme}, {$set: {'status': 'aktivan'}}, (err, lekar) => {
+                if (err) console.log(err);
+                else console.log(lekar);
+            });
+        }
+        response.json({'message': 'ok'});
+    }
+
+    declineRegisterRequests(request, response) {
+        let pacijenti = request.body.pacijenti;
+        let lekari = request.body.lekari;
+
+        for (let pacijent of pacijenti) {
+            pacijentDB.updateOne({'korisnickoIme': pacijent.korisnickoIme}, {$set: {'status': 'neprihvacen'}}, (err, pacijent) => {
+                if (err) console.log(err);
+                else console.log(pacijent);
+            });
+        }
+        for (let lekar of lekari) {
+            lekarDB.updateOne({'korisnickoIme': lekar.korisnickoIme}, {$set: {'status': 'neprihvacen'}}, (err, lekari) => {
+                if (err) console.log(err);
+                else console.log(lekari);
+            });
+        }
+        response.json({'message': 'ok'});
     }
 }

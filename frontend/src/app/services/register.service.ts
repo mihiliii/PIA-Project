@@ -19,4 +19,17 @@ export class RegisterService {
     uploadImage(image) {
         return this.httpClient.post('http://localhost:4000/register/uploadImage', image);
     }
+
+    getRegisterRequests() {
+        return this.httpClient.get('http://localhost:4000/register/getRegisterRequests');
+    }
+
+    acceptRegisterRequests(acceptedRequests) {
+        return this.httpClient.post('http://localhost:4000/register/acceptRegisterRequests', acceptedRequests);
+    }
+
+    declineRegisterRequests(declinedRequests) {
+        return this.httpClient.post('http://localhost:4000/register/declineRegisterRequests', declinedRequests);
+    }
+
 }
