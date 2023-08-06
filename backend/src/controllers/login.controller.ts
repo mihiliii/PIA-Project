@@ -13,7 +13,7 @@ export class LoginController {
 
             menadzerDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka}, (err, menadzer) => {
                 if (err) console.log(err);
-                else response.json(menadzer);
+                else response.json({korisnickoIme: menadzer.korisnickoIme, userType: 'menadzer'});
             });
         }
         else {
@@ -21,8 +21,8 @@ export class LoginController {
             let pacijent = await pacijentDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
             let lekar = await lekarDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
 
-            if (pacijent) response.json(pacijent);
-            else if (lekar) response.json(lekar);
+            if (pacijent) response.json({korisnickoIme: pacijent.korisnickoIme, userType: 'pacijent'});
+            else if (lekar) response.json({korisnickoIme: lekar.korisnickoIme, userType: 'lekar'});
             else response.json(null);
         }
     }

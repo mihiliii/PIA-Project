@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.username, this.password, this.userType).subscribe((korisnik: any) => {
             if (korisnik != null) {
                 console.log('Uspesna prijava: ' + korisnik.korisnickoIme + ' ' + korisnik.lozinka);
+                localStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
+                localStorage.setItem('userType', korisnik.userType);
                 this.router.navigate(['register']);
             }
         });
