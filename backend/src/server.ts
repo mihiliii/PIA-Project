@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import loginRouter from './routers/login.router';
 import registerRouter from './routers/register.router';
+import homepageRouter from './routers/homepage.router';
 
 const app = express();
 
@@ -18,6 +19,8 @@ connection.once('open', () => {
 const router = express.Router();
 router.use('/login', loginRouter);
 router.use('/register', registerRouter);
+router.use('/homepage', homepageRouter);
 
 app.use('/', router);
+app.use('/images', express.static('./images'));
 app.listen(4000, () => console.log(`Express server running on port 4000`));

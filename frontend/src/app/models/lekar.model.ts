@@ -9,5 +9,6 @@ export default class Lekar {
     brojLicence: string;
     specijalizacija: string;
     ogranakOrdinacije: string;
+    image: string;
     checkbox: boolean;
 }

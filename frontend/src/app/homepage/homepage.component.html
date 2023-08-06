@@ -18,14 +18,24 @@
             Aliquam tristique leo sed velit mollis, vel lacinia mi suscipit.
         </label>
     </div>
+    <hr>
     <div class="galerija">
-
     </div>
+    <hr>
     <div class="lekari">
-
+        <table>
+            <tr *ngFor="let lekar of lekarArray">
+                <div class="my-border">
+                    {{lekar?.ime}}
+                    {{lekar?.prezime}}
+                    {{lekar?.specijalizacija}}
+                    <img class="image" src="http://localhost:4000/images/{{lekar.image}}">
+                </div>
+            </tr>
+        </table>
     </div>
+    
 </div>
-
 <footer>
     Homepage footer
 </footer>

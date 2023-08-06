@@ -5,7 +5,7 @@ import multer from 'multer';
 import path from 'path';
 
 const imageStorage = multer.diskStorage({
-    destination: './src/images',
+    destination: './images',
     filename: (req, file, callback) => {
         let korisnickoIme = req.body.korisnickoIme;
         callback(null, korisnickoIme + path.extname(file.originalname));
