@@ -9,15 +9,37 @@ import { HomepageService } from '../services/homepage.service';
 })
 export class HomepageComponent implements OnInit {
 
-    lekarArray: Lekar[];
+    lekari: Lekar[];
+    ime: string;
+    prezime: string;
+    specijalizacija: string;
 
     constructor(private homepageService: HomepageService) { }
 
     ngOnInit(): void {
-        this.homepageService.getAllLekari().subscribe((lekari: Lekar[]) => {
-            this.lekarArray = lekari;
+        this.homepageService.getLekari().subscribe((lekari: Lekar[]) => {
+            this.lekari = lekari;
+            this.homepageService.setLekari(this.lekari);
         });
+        this.ime = this.prezime = this.specijalizacija = '';
     }
 
+    sortRow(row) {
+        switch (row) {
+            case 0:
+                this.homepageService.sortByIme();
+                break;
+            case 1:
+                this.homepageService.sortByPrezime();
+                break;
+            case 2:
+                this.homepageService.sortBySpecijalizacija();
+                break;
+        }
+    }
+
+    search() {
+        this.lekari = this.homepageService.search(this.ime, this.prezime, this.specijalizacija);
+    }
 
 }

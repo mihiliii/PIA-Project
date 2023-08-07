@@ -6,11 +6,12 @@ import { AdministrationComponent } from './administration/administration.compone
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-    {path: "", component: HomepageComponent},
+    {path: "", title:'Glavna', component: HomepageComponent,},
     {path: "login", component: LoginComponent, data: {userType: ''}},
     {path: "register", component: RegisterComponent},
     {path: "administration", component: AdministrationComponent},
-    {path: "menadzer", component: LoginComponent, data: {userType: 'menadzer'}}
+    {path: "menadzer", component: LoginComponent, data: {userType: 'menadzer'}},
+    {path: "**", redirectTo: ""}
 ];
 
 @NgModule({

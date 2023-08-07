@@ -22,19 +22,45 @@
     <div class="galerija">
     </div>
     <hr>
-    <div class="lekari">
-        <table>
-            <tr *ngFor="let lekar of lekarArray">
-                <div class="my-border">
-                    {{lekar?.ime}}
-                    {{lekar?.prezime}}
-                    {{lekar?.specijalizacija}}
-                    <img class="image" src="http://localhost:4000/images/{{lekar.image}}">
-                </div>
-            </tr>
+    <div class="d-flex">
+        <table class="table thead-dark table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th (click)="sortRow(0)">Ime</th>
+                    <th (click)="sortRow(1)">Prezime</th>
+                    <th (click)="sortRow(2)">Specijalizacija</th>
+                    <th>Slika</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lekar of lekari;">
+                    <td>{{lekar?.ime}}</td>
+                    <td>{{lekar?.prezime}}</td>
+                    <td>{{lekar?.specijalizacija}}</td>
+                    <td><img class="image" src="http://localhost:4000/images/{{lekar.image}}"></td>
+                </tr>
+            </tbody>
         </table>
+        <form class="form-control">
+            <h4>Pretrazi:</h4>
+            <div>
+                <label class="form-label">Ime:</label>
+                <input class="form-control" type="text" name="ime" [(ngModel)]="ime">
+            </div>
+            <div>
+                <label class="form-label">Prezime:</label>
+                <input class="form-control" type="text" name="prezime" [(ngModel)]="prezime">
+            </div>
+            <div>
+                <label class="form-label">Specijalizacija:</label>
+                <input class="form-control" type="text" name="specijalizacija" [(ngModel)]="specijalizacija">
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-dark" (click)="search()">Pretraga</button>
+            </div>
+        </form>
     </div>
-    
 </div>
 <footer>
     Homepage footer
