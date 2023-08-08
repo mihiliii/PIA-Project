@@ -61,37 +61,6 @@
             </div>
             <!-- <div class="mx-1 error" *ngIf="submitted && registerData.email == ''">Polje mora biti popunjeno</div> -->
         </div>
-        <div class="mb-2 mt-3 d-flex justify-content-evenly">
-            <div>
-                <input type="radio" class="btn-check" name="typeUser" id="radio1" [(ngModel)]="radioButton" value="radioPacijent">
-                <label class="btn btn-outline-dark" for="radio1">Pacijent</label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="typeUser" id="radio2" [(ngModel)]="radioButton" value="radioLekar">
-                <label class="btn btn-outline-dark" for="radio2">Lekar</label>
-            </div>
-        </div>
-        <hr>
-        <div class="" *ngIf="radioButton == 'radioLekar'">
-            <div class="mb-2">
-                <label class="form-label mx-1">Broj lekarske licence:</label>
-                <input type="text" class="form-control" placeholder="Broj lekarske licence" name="brojLicence" #brojLicence="ngModel" [(ngModel)]="registerInterface.brojLicence" [required]="radioButton == 'radioLekar'">
-                <div [hidden]="brojLicence.valid || (brojLicence.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
-                <!-- <div class="mx-1 error" *ngIf="submitted && agencyData.agencyName == ''">Polje mora biti popunjeno</div> -->
-            </div>
-            <div class="mb-2">
-                <label class="form-label mx-1">Specijalizacija:</label>
-                <input type="text" class="form-control" placeholder="Specijalizacija" name="specijalizacija" #specijalizacija="ngModel" [(ngModel)]="registerInterface.specijalizacija" [required]="radioButton == 'radioLekar'">
-                <div [hidden]="specijalizacija.valid || (specijalizacija.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
-                <!-- <div class="mx-1 error" *ngIf="submitted && agencyData.country == ''">Polje mora biti popunjeno</div> -->
-            </div>
-            <div class="mb-2">
-                <label class="form-label mx-1">Ogranak ordinacije u kojem lekar radi:</label>
-                <input type="text" class="form-control" placeholder="Ogranak ordinacije u kojem lekar radi" name="ogranakOrdinacije" #ogranakOrdinacije="ngModel" [(ngModel)]="registerInterface.ogranakOrdinacije" [required]="radioButton == 'radioLekar'">
-                <div [hidden]="ogranakOrdinacije.valid || (ogranakOrdinacije.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
-                <!-- <div class="mx-1 error" *ngIf="submitted && agencyData.city == ''">Polje mora biti popunjeno</div> -->
-            </div>
-        </div>
         <div class="form-control">
             <label class="form-label">Uneti profilnu sliku:</label><br>
             <input class="my-input-file" type="file" name="slika" accept=".png, .jpg, .jpeg" (input)="fileInput($event)">

@@ -5,11 +5,14 @@
             <a class="nav-link" href="pacijent">Lekari</a>
             <a class="nav-link" href="pacijent">Pregledi</a>
             <a class="nav-link" href="pacijent">Obavestenja</a>
-            <button (click)="logout()">Odjava</button>
+            <div *ngIf="isLoggedIn()">
+                <button (click)="logout()">Odjava</button>
+            </div>
         </div>
     </nav>
 </header>
 <div>
+    <img class="image" [src]="imageUrl">
     <p>{{pacijent?.ime}}</p>
     <p>{{pacijent?.prezime}}</p>
     <p>{{pacijent?.adresa}}</p>

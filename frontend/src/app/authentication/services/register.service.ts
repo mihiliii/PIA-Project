@@ -12,10 +12,6 @@ export class RegisterService {
         return this.httpClient.post('http://localhost:4000/register/registerPacijent', pacijent);
     }
 
-    registerLekar(lekar) {
-        return this.httpClient.post('http://localhost:4000/register/registerLekar', lekar);
-    }
-
     uploadImage(image) {
         return this.httpClient.post('http://localhost:4000/register/uploadImage', image);
     }

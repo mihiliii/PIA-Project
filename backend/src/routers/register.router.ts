@@ -7,10 +7,6 @@ registerRouter.route('/registerPacijent').post(
     (request, response) => { new RegisterController().registerPacijent(request, response); }
 );
 
-registerRouter.route('/registerLekar').post(
-    (request, response) => { new RegisterController().registerLekar(request, response); }
-);
-
 registerRouter.route('/uploadImage').post(
     (request, response) => { new RegisterController().uploadImage(request,response); }
 );

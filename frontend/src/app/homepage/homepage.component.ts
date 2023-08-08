@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Lekar from '../models/lekar.model';
 import { HomepageService } from '../services/homepage.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-homepage',
@@ -14,7 +15,7 @@ export class HomepageComponent implements OnInit {
     prezime: string;
     specijalizacija: string;
 
-    constructor(private homepageService: HomepageService) { }
+    constructor(private homepageService: HomepageService, private router: Router) { }
 
     ngOnInit(): void {
         this.homepageService.getLekari().subscribe((lekari: Lekar[]) => {
@@ -40,6 +41,10 @@ export class HomepageComponent implements OnInit {
 
     search() {
         this.lekari = this.homepageService.search(this.ime, this.prezime, this.specijalizacija);
+    }
+
+    goToLogin() {
+        this.router.navigate(['login']);
     }
 
 }

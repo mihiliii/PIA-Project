@@ -6,5 +6,6 @@ export default class Pacijent {
     adresa: string;
     kontaktTelefon: string;
     email: string;
+    image: string;
     checkbox: boolean;
 }

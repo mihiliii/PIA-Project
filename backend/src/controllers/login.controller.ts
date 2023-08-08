@@ -7,7 +7,6 @@ export class LoginController {
 
     async login (request: express.Request, response: express.Response) {
         let data = request.body;
-        console.log(data);
 
         if (data.userType == 'menadzer'){
 
