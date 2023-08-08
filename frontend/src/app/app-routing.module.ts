@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ProfilComponent } from './pacijent/profil/profil.component';
 
 const routes: Routes = [
     {path: "", title:'Glavna', component: HomepageComponent,},
@@ -11,6 +12,7 @@ const routes: Routes = [
     {path: "register", component: RegisterComponent},
     {path: "administration", component: AdministrationComponent},
     {path: "menadzer", component: LoginComponent, data: {userType: 'menadzer'}},
+    {path: "pacijent", component: ProfilComponent},
     {path: "**", redirectTo: ""}
 ];
 

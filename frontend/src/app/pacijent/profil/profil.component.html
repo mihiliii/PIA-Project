@@ -1,1 +1,18 @@
-<p>profil works!</p>
+<header>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid d-flex justify-content-evenly">
+            <a class="nav-link active my-active" aria-current="page" href="pacijent">Profil</a>
+            <a class="nav-link" href="pacijent">Lekari</a>
+            <a class="nav-link" href="pacijent">Pregledi</a>
+            <a class="nav-link" href="pacijent">Obavestenja</a>
+            <button (click)="logout()">Odjava</button>
+        </div>
+    </nav>
+</header>
+<div>
+    <p>{{pacijent?.ime}}</p>
+    <p>{{pacijent?.prezime}}</p>
+    <p>{{pacijent?.adresa}}</p>
+    <p>{{pacijent?.email}}</p>
+    <p>{{pacijent?.kontaktTelefon}}</p>
+</div>
