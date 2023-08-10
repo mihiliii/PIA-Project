@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
                 localStorage.setItem('userType', korisnik.userType);
                 if (korisnik.userType == 'pacijent') {
-                    this.router.navigate(['pacijent']);
+                    this.router.navigate(['pacijent/profil']);
                 }
                 else {
                     this.router.navigate(['']);

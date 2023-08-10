@@ -24,7 +24,6 @@ export class RegisterInterface {
         this.brojLicence = '';
         this.specijalizacija = '';
         this.ogranakOrdinacije = '';
-
     }
 
 }

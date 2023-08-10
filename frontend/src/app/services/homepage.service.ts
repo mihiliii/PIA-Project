@@ -11,6 +11,7 @@ export class HomepageService {
     sortIme: boolean;
     sortPrezime: boolean;
     sortSpecijalizacija: boolean;
+    sortOgranakOrdinacije: boolean;
 
     constructor(private httpClient: HttpClient) { 
     }
@@ -21,7 +22,6 @@ export class HomepageService {
 
     setLekari(lekarArray) {
         this.lekarArray = lekarArray;
-        console.log(lekarArray);
     }
 
     sortByIme(): Lekar[] {
@@ -36,6 +36,7 @@ export class HomepageService {
         this.sortIme = !this.sortIme;
         this.sortPrezime = false;
         this.sortSpecijalizacija = false;
+        this.sortOgranakOrdinacije = false;
         return returnArray;
     }
 
@@ -51,6 +52,7 @@ export class HomepageService {
         this.sortPrezime = !this.sortPrezime;
         this.sortIme = false;
         this.sortSpecijalizacija = false;
+        this.sortOgranakOrdinacije = false;
         return returnArray;
     }
 
@@ -66,10 +68,27 @@ export class HomepageService {
         this.sortSpecijalizacija = !this.sortSpecijalizacija;
         this.sortIme = false;
         this.sortPrezime = false;
+        this.sortOgranakOrdinacije = false;
         return returnArray;
     }
 
-    search(ime, prezime, specijalizacija): Lekar[] {
+    sortByOgranak(): Lekar[] {
+        let returnArray = this.lekarArray;
+        returnArray = returnArray.sort((lekar1, lekar2) => {
+            if (lekar1.ogranakOrdinacije > lekar2.ogranakOrdinacije) return 1;
+            else if (lekar1.ogranakOrdinacije < lekar2.ogranakOrdinacije) return -1;
+            else return 0;
+        });
+        if (this.sortOgranakOrdinacije) 
+            returnArray = returnArray.reverse();
+        this.sortOgranakOrdinacije = !this.sortOgranakOrdinacije;
+        this.sortIme = false;
+        this.sortPrezime = false;
+        this.sortSpecijalizacija = false;
+        return returnArray;
+    }
+
+    search(ime, prezime, specijalizacija, ogranak): Lekar[] {
         let returnArray = this.lekarArray;
         if (ime != '')
             returnArray = returnArray.filter((lekar) => { return lekar.ime.includes(ime); });
@@ -77,6 +96,8 @@ export class HomepageService {
             returnArray = returnArray.filter((lekar) => { return lekar.prezime.includes(prezime); });
         if (specijalizacija != '')
             returnArray = returnArray.filter((lekar) => { return lekar.specijalizacija.includes(specijalizacija); });
+        if (ogranak != '')
+            returnArray = returnArray.filter((lekar) => { return lekar.specijalizacija.includes(ogranak); });
         return returnArray;
     }
 

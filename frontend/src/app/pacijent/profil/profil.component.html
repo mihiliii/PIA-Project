@@ -1,8 +1,8 @@
 <header>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid d-flex justify-content-evenly">
-            <a class="nav-link active my-active" aria-current="page" href="pacijent">Profil</a>
-            <a class="nav-link" href="pacijent">Lekari</a>
+            <a class="nav-link active my-active" aria-current="page" routerLink="/pacijent/profil">Profil</a>
+            <a class="nav-link" routerLink="/pacijent/lekari">Lekari</a>
             <a class="nav-link" href="pacijent">Pregledi</a>
             <a class="nav-link" href="pacijent">Obavestenja</a>
             <div *ngIf="isLoggedIn()">

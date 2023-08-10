@@ -1,4 +1,5 @@
 export default class Lekar {
+    _id: string;
     korisnickoIme: string;
     lozinka: string;
     ime: string;

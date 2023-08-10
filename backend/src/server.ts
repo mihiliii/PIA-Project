@@ -5,6 +5,7 @@ import loginRouter from './routers/login.router';
 import registerRouter from './routers/register.router';
 import homepageRouter from './routers/homepage.router';
 import pacijentRouter from './routers/pacijent.router';
+import lekarRouter from './routers/lekar.router';
 
 const app = express();
 
@@ -22,6 +23,7 @@ router.use('/login', loginRouter);
 router.use('/register', registerRouter);
 router.use('/homepage', homepageRouter);
 router.use('/pacijent', pacijentRouter);
+router.use('/lekar', lekarRouter);
 
 app.use('/', router);
 app.use('/images', express.static('./images'));

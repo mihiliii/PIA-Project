@@ -12,6 +12,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProfilComponent } from './pacijent/profil/profil.component';
 import { LekariComponent } from './pacijent/lekari/lekari.component';
 import { TabelaLekaraComponent } from './tabela-lekara/tabela-lekara.component';
+import { LekarComponent } from './lekar/lekar.component';
+import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { TabelaLekaraComponent } from './tabela-lekara/tabela-lekara.component';
     ProfilComponent,
     LekariComponent,
     TabelaLekaraComponent,
+    LekarComponent,
+    PreglediComponent,
   ],
   imports: [
     BrowserModule,

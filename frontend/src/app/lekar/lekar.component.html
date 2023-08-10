@@ -1,0 +1,26 @@
+<p>lekar works!</p>
+<div>
+    <img class="image" [src]="imageUrl">
+    <p>{{lekar?.ime}}</p>
+    <p>{{lekar?.prezime}}</p>
+    <p>{{lekar?.adresa}}</p>
+    <p>{{lekar?.email}}</p>
+    <p>{{lekar?.kontaktTelefon}}</p>
+</div>
+<form>
+    <div>
+        <label>Pregled:</label>
+        <select [(ngModel)]="pregledForm" name="pregledForm">
+            <option *ngFor="let pregled of pregledi" [ngValue]="pregled">{{pregled.naziv}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Datum:</label>
+        <input type="date" [(ngModel)]="datumForm" name="datumForm">
+    </div>
+    <div>
+        <label>Vreme:</label>
+        <input type="time" [(ngModel)]="vremeForm" name="vremeForm">
+    </div>
+    <button (click)="click()">Click</button>
+</form>
