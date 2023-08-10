@@ -20,20 +20,10 @@ export class ProfilComponent implements OnInit {
     }
 
     getPacijent() {
-        this.pacijentService.getPacijent('mika').subscribe((pacijent: Pacijent) => {
+        this.pacijentService.getPacijent(localStorage.getItem('korisnickoIme')).subscribe((pacijent: Pacijent) => {
             this.pacijent = pacijent;
             this.imageUrl = 'http://localhost:4000/images/' + this.pacijent.image; 
         });
-    }
-
-    isLoggedIn() {
-        if (localStorage.length === 0) return false;
-        return true;
-    }
-
-    logout() {
-        localStorage.clear();
-        this.router.navigate(['']);
     }
 
 }

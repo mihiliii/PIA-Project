@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Lekar from '../models/lekar.model';
+import Lekar from 'src/app/models/lekar.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class HomepageService {
+export class TabelaLekaraService {
 
     lekarArray: Lekar[];
     sortIme: boolean;
@@ -17,7 +17,7 @@ export class HomepageService {
     }
 
     getLekari(){
-        return this.httpClient.get('http://localhost:4000/homepage/getLekari');
+        return this.httpClient.get('http://localhost:4000/lekar/getAllLekari');
     }
 
     setLekari(lekarArray) {
@@ -100,5 +100,4 @@ export class HomepageService {
             returnArray = returnArray.filter((lekar) => { return lekar.specijalizacija.includes(ogranak); });
         return returnArray;
     }
-
 }

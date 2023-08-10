@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterService } from '../services/register.service';
-import { RegisterInterface } from '../../models/register.interface';
-import Pacijent from '../../models/pacijent.model';
-import Lekar from '../../models/lekar.model';
 import { NgForm } from '@angular/forms';
+import { RegisterInterface } from '../../models/register.interface';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -14,16 +12,14 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
     registerInterface: RegisterInterface;
-    radioButton: string;
     selectedImage: File;
     selectedImageURL: string;
     errorArray: string[];
 
-    constructor(private registerService: RegisterService, private router: Router) {
+    constructor(private authenticationSerivce: AuthenticationService, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.radioButton = 'radioPacijent';
         this.registerInterface = new RegisterInterface();
         this.selectedImage = null;
         this.selectedImageURL = '';
@@ -31,6 +27,7 @@ export class RegisterComponent implements OnInit {
     }
 
     register(form: NgForm) {
+        
         if (form.invalid || this.registerInterface.lozinka != this.registerInterface.ponovljenaLozinka)
             return;
         
@@ -44,8 +41,9 @@ export class RegisterComponent implements OnInit {
             email: this.registerInterface.email
         }
 
-        this.registerService.registerPacijent(pacijent).subscribe((response) => {
-            console.log(response['message'])
+        this.authenticationSerivce.registerPacijent(pacijent).subscribe((response) => {
+            
+            console.log(response['message']);
             if (response['message'] == 'pacijent register success!') {
                 if (this.selectedImage !== null) {
                     let formData = new FormData();
@@ -53,7 +51,7 @@ export class RegisterComponent implements OnInit {
                     formData.set('type', 'pacijent');
                     formData.append('image', this.selectedImage);
 
-                    this.registerService.uploadImage(formData).subscribe((message) => {
+                    this.authenticationSerivce.uploadImage(formData).subscribe((message) => {
                         console.log(message['message']);
                     });
                 }

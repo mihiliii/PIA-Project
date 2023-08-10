@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import Pacijent from '../../models/pacijent.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +14,31 @@ export class LoginComponent implements OnInit {
     userType: string;
     error: string;
 
-    constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { 
+    constructor(private authenticationService: AuthenticationService, private router: Router, private activatedRoute: ActivatedRoute) { 
+
         this.activatedRoute.data.subscribe(data => {
             this.userType = data['userType'];
         });
     }
 
     ngOnInit(): void {
+        this.username = this.password = this.error = '';
     }
 
     login() {
-        this.loginService.login(this.username, this.password, this.userType).subscribe((korisnik: any) => {
+
+        if (this.username == '' || this.password == '') {
+            this.error = 'Error: popunite sva polja';
+            return;
+        }
+
+        const loginData = {
+            korisnickoIme: this.username,
+            lozinka: this.password,
+            userType: this.userType
+        };
+
+        this.authenticationService.login(loginData).subscribe((korisnik: any) => {
             if (korisnik == null) {
                 this.error = 'Error: pogresno korisnicko ime ili lozinka';
             }
@@ -37,6 +49,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['pacijent/profil']);
                 }
                 else {
+                    //fali za lekara i menadzera
                     this.router.navigate(['']);
                 }
             }
@@ -44,6 +57,7 @@ export class LoginComponent implements OnInit {
     }
 
     goToRegister() {
+        
         this.router.navigate(['register']);
     }
 

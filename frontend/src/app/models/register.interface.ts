@@ -1,5 +1,5 @@
 export class RegisterInterface {
-
+    
     korisnickoIme: string;
     lozinka: string;
     ponovljenaLozinka: string;

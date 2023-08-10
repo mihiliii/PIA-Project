@@ -5,6 +5,15 @@ import zakazanoDB from '../models/zakazano.model';
 
 export class LekarController {
 
+    getAllLekari(request, response) {
+
+        lekarDB.find((err, lekari) => {
+            if (err) console.log(err);
+            else response.json(lekari);
+        });
+
+    }
+
     async getLekar(request, response) {
         let returnData = {};
         returnData['pregledi'] = [];

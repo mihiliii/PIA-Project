@@ -12,15 +12,5 @@ export class LekariComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
-    isLoggedIn() {
-        if (localStorage.length === 0) return false;
-        return true;
-    }
-
-    logout() {
-        localStorage.clear();
-        this.router.navigate(['']);
-    }
-
+    
 }

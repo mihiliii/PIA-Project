@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from '../authentication/services/register.service';
 import Pacijent from '../models/pacijent.model';
 import Lekar from '../models/lekar.model';
+import { AuthenticationService } from '../authentication/services/authentication.service';
 
 @Component({
   selector: 'app-administration',
@@ -10,7 +10,7 @@ import Lekar from '../models/lekar.model';
 })
 export class AdministrationComponent implements OnInit {
 
-  constructor(private registerService: RegisterService) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   pacijentArray: Pacijent[];
   lekarArray: Lekar[];
@@ -20,7 +20,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   getRegisterRequests() {
-    this.registerService.getRegisterRequests().subscribe((responseData: any) => {
+    this.authenticationService.getRegisterRequests().subscribe((responseData: any) => {
         this.pacijentArray = responseData.pacijentArray.map(pacijent => {
             pacijent.checkbox = false;
             return pacijent;
@@ -47,7 +47,7 @@ acceptRegisterRequests() {
             acceptedRequests.lekari.push(lekar);
     }
     
-    this.registerService.acceptRegisterRequests(acceptedRequests).subscribe((message) => {
+    this.authenticationService.acceptRegisterRequests(acceptedRequests).subscribe((message) => {
         console.log(message);
         this.ngOnInit();
     });
@@ -68,7 +68,7 @@ declineRegisterRequests() {
             declinedRequests.lekari.push(lekar);
     }
 
-    this.registerService.declineRegisterRequests(declinedRequests).subscribe((message) => {
+    this.authenticationService.declineRegisterRequests(declinedRequests).subscribe((message) => {
         console.log(message);
         this.ngOnInit();
     });

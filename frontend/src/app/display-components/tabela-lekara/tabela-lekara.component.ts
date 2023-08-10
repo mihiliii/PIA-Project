@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import Lekar from '../models/lekar.model';
-import { HomepageService } from '../services/homepage.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import Lekar from '../../models/lekar.model';
+import { Router } from '@angular/router';
+import { TabelaLekaraService } from '../services/tabela-lekara.service';
 
 @Component({
   selector: 'app-tabela-lekara',
@@ -16,13 +16,13 @@ export class TabelaLekaraComponent implements OnInit {
     specijalizacija: string;
     ogranak: string;
 
-    constructor(private homepageService: HomepageService, protected router: Router) { 
+    constructor(private tabelaService: TabelaLekaraService, protected router: Router) { 
     }
 
     ngOnInit(): void {
-        this.homepageService.getLekari().subscribe((lekari: Lekar[]) => {
+        this.tabelaService.getLekari().subscribe((lekari: Lekar[]) => {
             this.lekari = lekari;
-            this.homepageService.setLekari(this.lekari);
+            this.tabelaService.setLekari(this.lekari);
         });
         this.ime = this.prezime = this.specijalizacija = '';
     }
@@ -30,22 +30,22 @@ export class TabelaLekaraComponent implements OnInit {
     sortRow(row) {
         switch (row) {
             case 0:
-                this.homepageService.sortByIme();
+                this.tabelaService.sortByIme();
                 break;
             case 1:
-                this.homepageService.sortByPrezime();
+                this.tabelaService.sortByPrezime();
                 break;
             case 2:
-                this.homepageService.sortBySpecijalizacija();
+                this.tabelaService.sortBySpecijalizacija();
                 break;
             case 3:
-                this.homepageService.sortByOgranak();
+                this.tabelaService.sortByOgranak();
                 break;
         }
     }
 
     search() {
-        this.lekari = this.homepageService.search(this.ime, this.prezime, this.specijalizacija, this.ogranak);
+        this.lekari = this.tabelaService.search(this.ime, this.prezime, this.specijalizacija, this.ogranak);
     }
 
     
