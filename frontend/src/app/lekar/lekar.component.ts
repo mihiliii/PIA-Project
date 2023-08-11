@@ -12,40 +12,53 @@ import { Time } from '@angular/common';
 })
 export class LekarComponent implements OnInit {
 
-    id: string;
+    idLekara: string;
     lekar: Lekar;
-    pregledi: Pregled[];
-    pregledForm: Pregled;
-    datumForm: Date;
-    vremeForm: Time;
-    imageUrl: string;
+    lekarImageUrl: string;
+    pregledArray: Pregled[];
+    formInput: {
+        pregled: Pregled | string,
+        datum: Date,
+        vreme: Time
+    };
+    zakaziPregledMessage: string;
 
     constructor(private lekarService: LekarService, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
+        this.formInput = {
+            pregled: null,
+            datum: null,
+            vreme: null
+        }
         this.getLekar();
     }
 
     getLekar() {
-        this.lekarService.getLekar(this.id).subscribe((lekar: any) => {
-            this.lekar = lekar['lekar'];
-            this.pregledi = lekar['pregledi'];
-            this.imageUrl = 'http://localhost:4000/images/' + this.lekar.image; 
+        this.lekarService.getLekar(this.idLekara).subscribe((lekar: any) => {
+            this.lekar = lekar;
+            this.pregledArray = lekar.pregledi;
+            this.lekarImageUrl = 'http://localhost:4000/images/' + this.lekar.image;
         });
     }
     
-    click() {
+    zakaziPregled() {
+        if (this.formInput.pregled == null || this.formInput.datum == null || this.formInput.vreme == null){
+            this.zakaziPregledMessage = 'Error: popuniti sva polja!';
+            return;
+        }
+
         const data = {
-            pregled: this.pregledForm,
             lekar: this.lekar,
             pacijent: localStorage.getItem('_id'),
-            datum: this.datumForm,
-            vreme: this.vremeForm
+            pregled: this.formInput.pregled,
+            datum: this.formInput.datum,
+            vreme: this.formInput.vreme
         }
         
         this.lekarService.zakaziPregled(data).subscribe((response) => {
-
+            this.zakaziPregledMessage = 'Termin je ' + response['message'];
         });
     }
 

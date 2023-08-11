@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lekar of lekari;" [routerLink]="['/lekar/profil', { id: lekar._id }]">
+            <tr *ngFor="let lekar of lekarArray;" [routerLink]="['/lekar/profil', { id: lekar._id }]">
                 <td>{{lekar?.ime}}</td>
                 <td>{{lekar?.prezime}}</td>
                 <td>{{lekar?.specijalizacija}}</td>
@@ -23,19 +23,19 @@
         <h4>Pretrazi:</h4>
         <div>
             <label class="form-label">Ime:</label>
-            <input class="form-control" type="text" name="ime" [(ngModel)]="ime">
+            <input class="form-control" type="text" name="ime" [(ngModel)]="formInput.ime">
         </div>
         <div>
             <label class="form-label">Prezime:</label>
-            <input class="form-control" type="text" name="prezime" [(ngModel)]="prezime">
+            <input class="form-control" type="text" name="prezime" [(ngModel)]="formInput.prezime">
         </div>
         <div>
             <label class="form-label">Specijalizacija:</label>
-            <input class="form-control" type="text" name="specijalizacija" [(ngModel)]="specijalizacija">
+            <input class="form-control" type="text" name="specijalizacija" [(ngModel)]="formInput.specijalizacija">
         </div>
         <div *ngIf="router.url == '/pacijent/lekari'">
             <label class="form-label">Ogranak:</label>
-            <input class="form-control" type="text" name="ogranak" [(ngModel)]="ogranak">
+            <input class="form-control" type="text" name="ogranak" [(ngModel)]="formInput.ogranak">
         </div>
         <hr>
         <div>

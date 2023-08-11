@@ -2,27 +2,28 @@
     <app-navbar></app-navbar>
 </header>
 <div>
-    <img class="image" [src]="imageUrl">
+    <img class="image" [src]="lekarImageUrl">
     <p>{{lekar?.ime}}</p>
     <p>{{lekar?.prezime}}</p>
     <p>{{lekar?.adresa}}</p>
     <p>{{lekar?.email}}</p>
     <p>{{lekar?.kontaktTelefon}}</p>
 </div>
-<form>
+<form class="form-control">
     <div>
         <label>Pregled:</label>
-        <select [(ngModel)]="pregledForm" name="pregledForm">
-            <option *ngFor="let pregled of pregledi" [ngValue]="pregled">{{pregled.naziv}}</option>
+        <select [(ngModel)]="formInput.pregled" name="pregledForm">
+            <option *ngFor="let pregled of pregledArray" [ngValue]="pregled">{{pregled.naziv}}</option>
         </select>
-    </div>
+    </div><br>
     <div>
         <label>Datum:</label>
-        <input type="date" [(ngModel)]="datumForm" name="datumForm">
-    </div>
+        <input type="date" [(ngModel)]="formInput.datum" name="datumForm">
+    </div><br>
     <div>
         <label>Vreme:</label>
-        <input type="time" [(ngModel)]="vremeForm" name="vremeForm">
-    </div>
-    <button (click)="click()">Click</button>
+        <input type="time" [(ngModel)]="formInput.vreme" name="vremeForm">
+    </div><br>
+    <button (click)="zakaziPregled()">Zakazi Pregled</button>
 </form>
+{{zakaziPregledMessage}}

@@ -10,7 +10,7 @@ import { PacijentService } from '../services/pacijent.service';
 })
 export class ProfilComponent implements OnInit {
 
-    pacijent: Pacijent;
+    pacijentInfo: Pacijent;
     imageUrl: string;
 
     constructor(private pacijentService: PacijentService, private router: Router) { }
@@ -21,8 +21,8 @@ export class ProfilComponent implements OnInit {
 
     getPacijent() {
         this.pacijentService.getPacijent(localStorage.getItem('korisnickoIme')).subscribe((pacijent: Pacijent) => {
-            this.pacijent = pacijent;
-            this.imageUrl = 'http://localhost:4000/images/' + this.pacijent.image; 
+            this.pacijentInfo = pacijent;
+            this.imageUrl = 'http://localhost:4000/images/' + this.pacijentInfo.image; 
         });
     }
 

@@ -1,7 +1,6 @@
 import express from 'express';
 import lekarDB from '../models/lekar.model';
-import pregledDB from '../models/pregled.model';
-import zakazanoDB from '../models/zakazano.model';
+import terminDB from '../models/termin.model';
 
 export class LekarController {
 
@@ -15,19 +14,11 @@ export class LekarController {
     }
 
     async getLekar(request, response) {
-        let returnData = {};
-        returnData['pregledi'] = [];
-
         try {
-            let lekar = await lekarDB.findOne({'_id': request.body.id});
-            returnData['lekar'] = lekar; 
 
-            for (let id of lekar.pregledi) {
-                let pregled = await pregledDB.findOne({'_id': id});
-                returnData['pregledi'].push(pregled);
-            }
+            let lekar = await lekarDB.findById(request.body.id).populate('pregledi');
 
-            response.json(returnData);
+            response.json(lekar);
         } 
         catch (error) {
             console.log(error);
@@ -36,33 +27,33 @@ export class LekarController {
 
     async zakaziPregled(request, response) {
         const data = request.body;
-        console.log(data.pacijent);
 
         try {
-            let zakazaniPregledi = await zakazanoDB.find({'lekar': data.lekar._id, 'datum': data.datum});
+            let zakazaniTermini = await terminDB.find({'lekar': data.lekar._id, 'datum': data.datum});
             let condition = false;
 
-            for (let iter of zakazaniPregledi) {
-                let zakazanPregled = iter.vreme.split(':');
-                let pocetakZakazanogPregleda = parseInt(zakazanPregled[0], 10) * 60 + parseInt(zakazanPregled[1], 10);
-                let krajZakazanogPregleda = pocetakZakazanogPregleda + iter.trajanje;
+            for (let termin of zakazaniTermini) {
+                let zakazanPregled = termin.vreme.split(':');
+                let pocetakZakazanog = parseInt(zakazanPregled[0], 10) * 60 + parseInt(zakazanPregled[1], 10);
+                let krajZakazanog = pocetakZakazanog + termin.trajanje;
                 
-                let pregled = data.vreme.split(':');
-                let pocetakPregleda = parseInt(pregled[0], 10) * 60 + parseInt(pregled[1], 10);
-                let krajPregleda = pocetakPregleda + parseInt(data.pregled.trajanje, 10);
+                let noviPregled = data.vreme.split(':');
+                let pocetakNovog = parseInt(noviPregled[0], 10) * 60 + parseInt(noviPregled[1], 10);
+                let krajNovog = pocetakNovog + parseInt(data.pregled.trajanje, 10);
                 
                 if (
-                    !(pocetakPregleda < pocetakZakazanogPregleda && krajPregleda <= pocetakZakazanogPregleda) &&
-                    !(pocetakPregleda >= krajZakazanogPregleda && krajPregleda > krajZakazanogPregleda)
+                    !(pocetakNovog < pocetakZakazanog && krajNovog <= pocetakZakazanog) &&
+                    !(pocetakNovog >= krajZakazanog && krajNovog > krajZakazanog)
                 ) {
                     condition = true;
                     break;
                 }
             }
             
-            if (condition) response.json('zauzet termin');
+            if (condition) response.json({message: 'zauzet'});
             else {
-                zakazanoDB.create(
+
+                await terminDB.create(
                     {
                         'pregled': data.pregled._id,
                         'lekar': data.lekar._id,
@@ -70,12 +61,10 @@ export class LekarController {
                         'datum': data.datum,
                         'vreme': data.vreme,
                         'trajanje': data.pregled.trajanje
-                    }, 
-                    (err) => {
-                        if (err) console.log(err);
-                        else response.json('zakazan pregled');
                     }
                 );
+
+                response.json({message: 'zakazan'});
             }
         }
         catch (error) {

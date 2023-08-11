@@ -1,7 +1,6 @@
 import express from 'express';
 import pacijentDB from '../models/pacijent.model';
-import zakazanoDB from '../models/zakazano.model';
-import pregledDB from '../models/pregled.model';
+import terminDB from '../models/termin.model';
 
 export class PacijentController {
 
@@ -16,7 +15,7 @@ export class PacijentController {
     async getPregledi(request, response) {
         try {
             
-            let zakazaniPregledi = await zakazanoDB.find({pacijent: request.body._id}).populate('pregled');
+            let zakazaniPregledi = await terminDB.find({pacijent: request.body._id}).populate('pregled');
 
             response.json(zakazaniPregledi);
         }
@@ -26,7 +25,7 @@ export class PacijentController {
     }
 
     cancelPregled(request, response) {
-        zakazanoDB.findByIdAndDelete(request.body._id, (err) => {
+        terminDB.findByIdAndDelete(request.body._id, (err) => {
             if (err) console.log(err);
             else response.json({message: 'brisanje uspesno'});
         });

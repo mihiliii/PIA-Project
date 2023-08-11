@@ -10,21 +10,28 @@ import { TabelaLekaraService } from '../services/tabela-lekara.service';
 })
 export class TabelaLekaraComponent implements OnInit {
 
-    lekari: Lekar[];
-    ime: string;
-    prezime: string;
-    specijalizacija: string;
-    ogranak: string;
+    lekarArray: Lekar[];
+    formInput: {
+        ime: string,
+        prezime: string,
+        specijalizacija: string,
+        ogranak: string
+    };
 
     constructor(private tabelaService: TabelaLekaraService, protected router: Router) { 
     }
 
     ngOnInit(): void {
         this.tabelaService.getLekari().subscribe((lekari: Lekar[]) => {
-            this.lekari = lekari;
-            this.tabelaService.setLekari(this.lekari);
+            this.lekarArray = lekari;
+            this.tabelaService.setLekari(this.lekarArray);
         });
-        this.ime = this.prezime = this.specijalizacija = '';
+        this.formInput = {
+            ime: '',
+            prezime: '',
+            specijalizacija: '',
+            ogranak: ''
+        };
     }
 
     sortRow(row) {
@@ -45,7 +52,7 @@ export class TabelaLekaraComponent implements OnInit {
     }
 
     search() {
-        this.lekari = this.tabelaService.search(this.ime, this.prezime, this.specijalizacija, this.ogranak);
+        this.lekarArray = this.tabelaService.search(this.formInput.ime, this.formInput.prezime, this.formInput.specijalizacija, this.formInput.ogranak);
     }
 
     

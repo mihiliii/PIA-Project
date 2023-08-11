@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+import PregledDB from './pregled.model';
 
 const Schema = mongoose.Schema;
 
@@ -17,7 +18,7 @@ const lekarSchema = new Schema({
     ogranakOrdinacije: String,
     image: String,
     status: String,
-    pregledi: Array
+    pregledi: [{type: mongoose.Schema.Types.ObjectId, ref: PregledDB}]
 });
 
 export default mongoose.model('LekarDB', lekarSchema, 'lekari');
