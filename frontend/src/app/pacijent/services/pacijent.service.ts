@@ -16,4 +16,20 @@ export class PacijentService {
         return this.httpClient.post('http://localhost:4000/pacijent/getPacijent', data);
     }
 
+    getPregledi(id) {
+        const data = {
+            _id: id
+        }
+
+        return this.httpClient.post('http://localhost:4000/pacijent/getPregledi', data);
+    }
+
+    cancelPregled(id) {
+        const data = {
+            _id: id
+        };
+
+        return this.httpClient.post('http://localhost:4000/pacijent/cancelPregled', data);
+    }
+
 }

@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex justify-content-evenly" *ngIf="isLoggedIn()">
         <a class="nav-link" routerLink="/pacijent/profil">Profil</a>
         <a class="nav-link" routerLink="/pacijent/lekari">Lekari</a>
-        <a class="nav-link" href="pacijent">Pregledi</a>
+        <a class="nav-link" routerLink="/pacijent/pregledi">Pregledi</a>
         <a class="nav-link" href="pacijent">Obavestenja</a>
         <button (click)="logout()">Odjava</button>
     </div>

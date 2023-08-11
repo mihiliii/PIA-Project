@@ -4,14 +4,21 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const zakazanoSchema = new Schema({
-    lekar: ObjectId,
     pregled: {
-        naziv: String,
-        trajanje: Number,
-        cena: Number
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PregledDB'
+    },
+    lekar: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'LekarDB'
+    },
+    pacijent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PacijentDB'
     },
     datum: String,
-    vreme: String
+    vreme: String,
+    trajanje: Number
 });
 
 export default mongoose.model('ZakazanoDB', zakazanoSchema, 'zakazano');

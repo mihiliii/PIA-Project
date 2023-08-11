@@ -37,8 +37,9 @@ export class LekarComponent implements OnInit {
     
     click() {
         const data = {
-            lekar: this.lekar,
             pregled: this.pregledForm,
+            lekar: this.lekar,
+            pacijent: localStorage.getItem('_id'),
             datum: this.datumForm,
             vreme: this.vremeForm
         }

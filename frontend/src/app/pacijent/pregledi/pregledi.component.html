@@ -1,1 +1,14 @@
-<p>pregledi works!</p>
+<header>
+    <app-navbar></app-navbar>
+</header>
+<div>
+    <h2 class="d-flex justify-content-center">Zakazani pregledi: </h2>
+    <div class="container bg-info" *ngFor="let pregled of pregledArray">
+        <label>Naziv: </label> {{pregled.pregled['naziv']}} <br>
+        <label>Cena: </label> {{pregled.pregled['cena']}} <br>
+        <label>Datum: </label> {{pregled.datum}} <br>
+        <label>Vreme: </label> {{pregled.vreme}} <br>
+        <label>Trajanje: </label> {{pregled.trajanje}} <br>
+        <button (click)="cancelPregled(pregled._id)">Otkazi pregled</button>
+    </div>
+</div>

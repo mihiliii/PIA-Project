@@ -36,6 +36,7 @@ export class LekarController {
 
     async zakaziPregled(request, response) {
         const data = request.body;
+        console.log(data.pacijent);
 
         try {
             let zakazaniPregledi = await zakazanoDB.find({'lekar': data.lekar._id, 'datum': data.datum});
@@ -44,7 +45,7 @@ export class LekarController {
             for (let iter of zakazaniPregledi) {
                 let zakazanPregled = iter.vreme.split(':');
                 let pocetakZakazanogPregleda = parseInt(zakazanPregled[0], 10) * 60 + parseInt(zakazanPregled[1], 10);
-                let krajZakazanogPregleda = pocetakZakazanogPregleda + iter.pregled.trajanje;
+                let krajZakazanogPregleda = pocetakZakazanogPregleda + iter.trajanje;
                 
                 let pregled = data.vreme.split(':');
                 let pocetakPregleda = parseInt(pregled[0], 10) * 60 + parseInt(pregled[1], 10);
@@ -63,12 +64,14 @@ export class LekarController {
             else {
                 zakazanoDB.create(
                     {
+                        'pregled': data.pregled._id,
                         'lekar': data.lekar._id,
-                        'pregled': data.pregled,
+                        'pacijent': data.pacijent,
                         'datum': data.datum,
-                        'vreme': data.vreme
+                        'vreme': data.vreme,
+                        'trajanje': data.pregled.trajanje
                     }, 
-                    (err, data) => {
+                    (err) => {
                         if (err) console.log(err);
                         else response.json('zakazan pregled');
                     }

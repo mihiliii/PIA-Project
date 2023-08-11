@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
                 this.error = 'Error: pogresno korisnicko ime ili lozinka';
             }
             else {
+                localStorage.setItem('_id', korisnik._id);
                 localStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
                 localStorage.setItem('userType', korisnik.userType);
                 if (korisnik.userType == 'pacijent') {
