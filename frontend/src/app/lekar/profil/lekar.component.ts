@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import Lekar from '../models/lekar.model';
-import { LekarService } from '../pacijent/services/lekar.service';
+import Lekar from '../../models/lekar.model';
+import { LekarService } from '../services/lekar.service';
 import { ActivatedRoute } from '@angular/router';
-import Pregled from '../models/pregled.model';
+import Pregled from '../../models/pregled.model';
 import { Time } from '@angular/common';
 
 @Component({

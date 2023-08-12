@@ -12,7 +12,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProfilComponent } from './pacijent/profil/profil.component';
 import { LekariComponent } from './pacijent/lekari/lekari.component';
 import { TabelaLekaraComponent } from './display-components/tabela-lekara/tabela-lekara.component';
-import { LekarComponent } from './lekar/lekar.component';
+import { LekarComponent } from './lekar/profil/lekar.component';
 import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
 import { NavbarComponent } from './display-components/navbar/navbar.component';
 
