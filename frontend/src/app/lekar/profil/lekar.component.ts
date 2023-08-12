@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import Lekar from '../models/lekar.model';
-import { LekarService } from '../pacijent/services/lekar.service';
+import Lekar from '../../models/lekar.model';
+import { LekarService } from '../services/lekar.service';
 import { ActivatedRoute } from '@angular/router';
-import Pregled from '../models/pregled.model';
+import Pregled from '../../models/pregled.model';
 import { Time } from '@angular/common';
 
 @Component({
@@ -12,6 +12,7 @@ import { Time } from '@angular/common';
 })
 export class LekarComponent implements OnInit {
 
+    userType: string;
     idLekara: string;
     lekar: Lekar;
     lekarImageUrl: string;
@@ -26,7 +27,11 @@ export class LekarComponent implements OnInit {
     constructor(private lekarService: LekarService, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
+        this.userType = localStorage.getItem('userType');
+        if (this.userType == 'pacijent')
+            this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
+        else 
+            this.idLekara = localStorage.getItem('_id');
         this.formInput = {
             pregled: null,
             datum: null,

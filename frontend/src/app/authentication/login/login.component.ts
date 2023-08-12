@@ -49,8 +49,11 @@ export class LoginComponent implements OnInit {
                 if (korisnik.userType == 'pacijent') {
                     this.router.navigate(['pacijent/profil']);
                 }
+                else if (korisnik.userType == 'lekar'){
+                    this.router.navigate(['lekar/profil']);
+                }
                 else {
-                    //fali za lekara i menadzera
+                    //fali dopuna za menadzera
                     this.router.navigate(['']);
                 }
             }

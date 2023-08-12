@@ -9,7 +9,7 @@
     <p>{{lekar?.email}}</p>
     <p>{{lekar?.kontaktTelefon}}</p>
 </div>
-<form class="form-control">
+<form class="form-control" *ngIf="userType == 'pacijent'">
     <div>
         <label>Pregled:</label>
         <select [(ngModel)]="formInput.pregled" name="pregledForm">
