@@ -43,4 +43,18 @@ export class LekarService {
         return this.httpClient.post('http://localhost:4000/lekar/updatePregled', requestData);
     }
 
+    getZakazaniPregledi(_id) {
+        let requestData = {
+            _id: _id
+        };
+
+        return this.httpClient.post('http://localhost:4000/lekar/getAllTermini', requestData);
+    }
+
+    addNoviPregled(formInput) {
+        console.log(formInput);
+
+        return this.httpClient.post('http://localhost:4000/lekar/addNoviPregled', formInput);
+    }
+
 }

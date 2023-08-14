@@ -1,0 +1,26 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+<main>
+    <form class="form-control" #pregledForm="ngForm">
+        <h4>Dodaj novi pregled:</h4>
+        <div>
+            <p>Naziv:</p>
+            <input type="text" [(ngModel)]="formInput.naziv" name="nazivForm">
+        </div><br>
+        <div>
+            <p>Trajanje:</p>
+            <input type="text" [(ngModel)]="formInput.trajanje" name="trajanjeForm">
+        </div><br>
+        <div>
+            <p>Cena:</p>
+            <input type="text" [(ngModel)]="formInput.cena" name="cenaForm">
+        </div><br>
+        <div>
+            <p>Specijalizacija:</p>
+            <input type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacijaForm">
+        </div><br>
+        <button (click)="dodajNoviPregled(pregledForm)">Dodaj</button>
+    </form>
+    {{errorMessage}}
+</main>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PacijentService } from '../services/pacijent.service';
-import ZakazaniPregled from 'src/app/models/zakazano.model';
+import ZakazaniPregled from 'src/app/models/termin.model';
 
 @Component({
     selector: 'app-pregledi',

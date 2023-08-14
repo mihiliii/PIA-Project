@@ -9,6 +9,8 @@ import { PacijentProfilComponent } from './pacijent/pacijent-profil/pacijent-pro
 import { LekariComponent } from './pacijent/lekari/lekari.component';
 import { LekarProfilComponent } from './lekar/profil/lekar-profil.component';
 import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
+import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
+import { RaznoComponent } from './lekar/razno/razno.component';
 
 const routes: Routes = [
     {path: "", title:'Glavna', component: HomepageComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
     {path: "pacijent/lekari", component: LekariComponent},
     {path: "pacijent/pregledi", component: PreglediComponent},
     {path: "lekar/profil", component:LekarProfilComponent},
+    {path: "lekar/pregledi", component: LekarPreglediComponent},
+    {path: "lekar/razno", component: RaznoComponent},
     {path: "**", redirectTo: ""}
 ];
 

@@ -104,4 +104,25 @@ export class LekarController {
         }
     }
 
+    async getAllTermini(request, response) {
+        try {
+
+            let termini = await terminDB.find({lekar: request.body._id}).populate('pregled').populate('pacijent').sort({'datum': 1, 'vreme': 1});
+
+            response.json(termini);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    addNoviPregled(request, response) {
+        let requestData = request.body;
+        
+        pregledDB.create({'naziv': requestData.naziv, 'trajanje': requestData.trajanje, 'cena': requestData.cena, 'specijalizacija': requestData.specijalizacija}, (error) => {
+            if (error) console.log(error);
+            else response.json({message: 'addNoviPregled success'});
+        });
+    }
+
 }

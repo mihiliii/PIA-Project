@@ -15,6 +15,8 @@ import { TabelaLekaraComponent } from './display-components/tabela-lekara/tabela
 import { LekarProfilComponent } from './lekar/profil/lekar-profil.component';
 import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
 import { NavbarComponent } from './display-components/navbar/navbar.component';
+import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
+import { RaznoComponent } from './lekar/razno/razno.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NavbarComponent } from './display-components/navbar/navbar.component';
     LekarProfilComponent,
     PreglediComponent,
     NavbarComponent,
+    LekarPreglediComponent,
+    RaznoComponent,
   ],
   imports: [
     BrowserModule,

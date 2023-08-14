@@ -21,6 +21,14 @@ lekarRouter.route('/getPreglediIsteSpecijalizacije').post(
 
 lekarRouter.route('/updatePregled').post(
     (request, response) => { new LekarController().updatePregled(request, response); }
-)
+);
+
+lekarRouter.route('/getAllTermini').post(
+    (request, response) => { new LekarController().getAllTermini(request, response); }
+);
+
+lekarRouter.route('/addNoviPregled').post(
+    (request, response) => { new LekarController().addNoviPregled(request, response); } 
+);
 
 export default lekarRouter;
