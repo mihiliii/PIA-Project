@@ -9,10 +9,10 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ProfilComponent } from './pacijent/profil/profil.component';
+import { PacijentProfilComponent } from './pacijent/pacijent-profil/pacijent-profil.component';
 import { LekariComponent } from './pacijent/lekari/lekari.component';
 import { TabelaLekaraComponent } from './display-components/tabela-lekara/tabela-lekara.component';
-import { LekarComponent } from './lekar/profil/lekar.component';
+import { LekarProfilComponent } from './lekar/profil/lekar-profil.component';
 import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
 import { NavbarComponent } from './display-components/navbar/navbar.component';
 
@@ -23,10 +23,10 @@ import { NavbarComponent } from './display-components/navbar/navbar.component';
     RegisterComponent,
     AdministrationComponent,
     HomepageComponent,
-    ProfilComponent,
+    PacijentProfilComponent,
     LekariComponent,
     TabelaLekaraComponent,
-    LekarComponent,
+    LekarProfilComponent,
     PreglediComponent,
     NavbarComponent,
   ],

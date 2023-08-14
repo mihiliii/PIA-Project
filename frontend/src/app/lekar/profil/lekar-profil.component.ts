@@ -6,16 +6,17 @@ import Pregled from '../../models/pregled.model';
 import { Time } from '@angular/common';
 
 @Component({
-  selector: 'app-lekar',
-  templateUrl: './lekar.component.html',
-  styleUrls: ['./lekar.component.css']
+  selector: 'app-lekar-profil',
+  templateUrl: './lekar-profil.component.html',
+  styleUrls: ['./lekar-profil.component.css']
 })
-export class LekarComponent implements OnInit {
+export class LekarProfilComponent implements OnInit {
 
+    userType: string;
     idLekara: string;
     lekar: Lekar;
     lekarImageUrl: string;
-    pregledArray: Pregled[];
+    preglediIsteSpecijalizacije;
     formInput: {
         pregled: Pregled | string,
         datum: Date,
@@ -26,7 +27,11 @@ export class LekarComponent implements OnInit {
     constructor(private lekarService: LekarService, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
+        this.userType = localStorage.getItem('userType');
+        if (this.userType == 'pacijent')
+            this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
+        else 
+            this.idLekara = localStorage.getItem('_id');
         this.formInput = {
             pregled: null,
             datum: null,
@@ -36,9 +41,22 @@ export class LekarComponent implements OnInit {
     }
 
     getLekar() {
+
         this.lekarService.getLekar(this.idLekara).subscribe((lekar: any) => {
             this.lekar = lekar;
-            this.pregledArray = lekar.pregledi;
+
+            this.lekarService.getPreglediIsteSpecijalizacije(lekar.specijalizacija).subscribe((pregledi: Pregled[]) => {
+
+                pregledi = pregledi.map((pregled: Pregled) => {
+                    pregled['checkbox'] = this.lekar.pregledi.some((obj) => {
+                        return obj._id == pregled._id;
+                    });
+                    return pregled;
+                });
+
+                this.preglediIsteSpecijalizacije = pregledi;
+            });
+
             this.lekarImageUrl = 'http://localhost:4000/images/' + this.lekar.image;
         });
     }
@@ -59,6 +77,12 @@ export class LekarComponent implements OnInit {
         
         this.lekarService.zakaziPregled(data).subscribe((response) => {
             this.zakaziPregledMessage = 'Termin je ' + response['message'];
+        });
+    }
+
+    updatePregled() {
+        this.lekarService.updatePregled(this.lekar._id, this.preglediIsteSpecijalizacije).subscribe(() => {
+            
         });
     }
 

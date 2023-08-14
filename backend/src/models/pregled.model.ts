@@ -7,7 +7,8 @@ const pregledSchema = new Schema({
     _id: ObjectId,
     naziv: String,
     trajanje: Number,
-    cena: String
+    cena: String,
+    specijalizacija: String
 });
 
 export default mongoose.model('PregledDB', pregledSchema, 'pregledi');

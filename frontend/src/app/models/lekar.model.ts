@@ -1,3 +1,5 @@
+import Pregled from "./pregled.model";
+
 export default class Lekar {
     _id: string;
     korisnickoIme: string;
@@ -11,5 +13,7 @@ export default class Lekar {
     specijalizacija: string;
     ogranakOrdinacije: string;
     image: string;
+    status: string;
+    pregledi: [Pregled];
     checkbox: boolean;
 }

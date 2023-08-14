@@ -5,9 +5,9 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ProfilComponent } from './pacijent/profil/profil.component';
+import { PacijentProfilComponent } from './pacijent/pacijent-profil/pacijent-profil.component';
 import { LekariComponent } from './pacijent/lekari/lekari.component';
-import { LekarComponent } from './lekar/profil/lekar.component';
+import { LekarProfilComponent } from './lekar/profil/lekar-profil.component';
 import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
 
 const routes: Routes = [
@@ -16,10 +16,10 @@ const routes: Routes = [
     {path: "register", component: RegisterComponent},
     {path: "administration", component: AdministrationComponent},
     {path: "login/menadzer", component: LoginComponent, data: {userType: 'menadzer'}},
-    {path: "pacijent/profil", component: ProfilComponent},
+    {path: "pacijent/profil", component: PacijentProfilComponent},
     {path: "pacijent/lekari", component: LekariComponent},
     {path: "pacijent/pregledi", component: PreglediComponent},
-    {path: "lekar/profil", component:LekarComponent},
+    {path: "lekar/profil", component:LekarProfilComponent},
     {path: "**", redirectTo: ""}
 ];
 

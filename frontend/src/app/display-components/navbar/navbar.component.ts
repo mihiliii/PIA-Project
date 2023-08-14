@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+    userType: string;
+
     constructor(private router: Router) { }
 
     ngOnInit(): void {
+        this.userType = localStorage.getItem('userType');
     }
 
     goToLogin() {

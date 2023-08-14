@@ -20,4 +20,27 @@ export class LekarService {
         return this.httpClient.post('http://localhost:4000/lekar/zakaziPregled', data);
     }
 
+    getPreglediIsteSpecijalizacije(specijalizacija) {
+        const data = {
+            specijalizacija: specijalizacija 
+        };
+
+        return this.httpClient.post('http://localhost:4000/lekar/getPreglediIsteSpecijalizacije', data);
+    }
+
+    updatePregled(_id, pregledi) {
+        let requestData = {
+            _id: _id,
+            pregledi: []
+        }
+
+        for (let pregled of pregledi) {
+            if (pregled.checkbox === true) {
+                requestData.pregledi.push(pregled._id);
+            }
+        }
+
+        return this.httpClient.post('http://localhost:4000/lekar/updatePregled', requestData);
+    }
+
 }

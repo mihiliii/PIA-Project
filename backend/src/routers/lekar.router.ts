@@ -9,10 +9,18 @@ lekarRouter.route('/getLekar').post(
 
 lekarRouter.route('/getAllLekari').get(
     (request, response) => { new LekarController().getAllLekari(request, response); }
-)
+);
 
 lekarRouter.route('/zakaziPregled').post(
     (request, response) => { new LekarController().zakaziPregled(request, response); }
+);
+
+lekarRouter.route('/getPreglediIsteSpecijalizacije').post(
+    (request, response) => { new LekarController().getPreglediIsteSpecijalizacije(request, response); }
+);
+
+lekarRouter.route('/updatePregled').post(
+    (request, response) => { new LekarController().updatePregled(request, response); }
 )
 
 export default lekarRouter;

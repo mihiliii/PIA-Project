@@ -1,6 +1,7 @@
 import express from 'express';
 import lekarDB from '../models/lekar.model';
 import terminDB from '../models/termin.model';
+import pregledDB from '../models/pregled.model';
 
 export class LekarController {
 
@@ -65,6 +66,37 @@ export class LekarController {
                 );
 
                 response.json({message: 'zakazan'});
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getPreglediIsteSpecijalizacije(request, response) {
+        const specijalizacija = request.body.specijalizacija;
+
+        try {
+
+            let pregledi = await pregledDB.find({'specijalizacija': specijalizacija});
+
+            response.json(pregledi);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async updatePregled(request, response) {
+        try {
+
+            let document = await lekarDB.findByIdAndUpdate(request.body._id, {'pregledi': request.body.pregledi});
+
+            if (document != null){
+                response.json({message: 'Pregled update success'});
+            }
+            else {
+                response.json({message: 'Lekar not found'});
             }
         }
         catch (error) {

@@ -1,9 +1,15 @@
 <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid d-flex justify-content-evenly" *ngIf="isLoggedIn()">
+    <div class="container justify-content-around" *ngIf="userType == 'pacijent'">
         <a class="nav-link" routerLink="/pacijent/profil">Profil</a>
         <a class="nav-link" routerLink="/pacijent/lekari">Lekari</a>
         <a class="nav-link" routerLink="/pacijent/pregledi">Pregledi</a>
         <a class="nav-link" href="pacijent">Obavestenja</a>
+        <button (click)="logout()">Odjava</button>
+    </div>
+    <div class="container justify-content-around" *ngIf="userType == 'lekar'">
+        <a class="nav-link" routerLink="/lekar/profil">Profil</a>
+        <a class="nav-link" routerLink="/lekar/pregledi">Pregledi</a>
+        <a class="nav-link" routerLink="/lekar/razno">Razno</a>
         <button (click)="logout()">Odjava</button>
     </div>
     <div class="container-fluid" *ngIf="!isLoggedIn()">

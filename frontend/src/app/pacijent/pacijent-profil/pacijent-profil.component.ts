@@ -4,11 +4,11 @@ import Pacijent from 'src/app/models/pacijent.model';
 import { PacijentService } from '../services/pacijent.service';
 
 @Component({
-    selector: 'app-profil',
-    templateUrl: './profil.component.html',
-    styleUrls: ['./profil.component.css']
+    selector: 'app-pacijent-profil',
+    templateUrl: './pacijent-profil.component.html',
+    styleUrls: ['./pacijent-profil.component.css']
 })
-export class ProfilComponent implements OnInit {
+export class PacijentProfilComponent implements OnInit {
 
     pacijentInfo: Pacijent;
     imageUrl: string;
