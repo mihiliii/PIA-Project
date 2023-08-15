@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { RegisterInterface } from '../../models/register.interface';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -11,8 +10,17 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-    registerInterface: RegisterInterface;
-    selectedImage: File;
+    registerFormInput: {
+        korisnickoIme: string;
+        lozinka: string;
+        ponovljenaLozinka: string;
+        ime: string;
+        prezime: string;
+        adresa: string;
+        kontaktTelefon: string;
+        email: string;
+    }
+    selectedImageFormInput: File;
     selectedImageURL: string;
     errorArray: string[];
 
@@ -20,43 +28,50 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.registerInterface = new RegisterInterface();
-        this.selectedImage = null;
+        this.registerFormInput = {
+            korisnickoIme: '',
+            lozinka: '',
+            ponovljenaLozinka: '',
+            ime: '',
+            prezime: '',
+            adresa: '',
+            kontaktTelefon: '',
+            email: '',
+        }
+        this.selectedImageFormInput = null;
         this.selectedImageURL = '';
         this.errorArray = [];
     }
 
     register(form: NgForm) {
         
-        if (form.invalid || this.registerInterface.lozinka != this.registerInterface.ponovljenaLozinka)
+        if (form.invalid || this.registerFormInput.lozinka != this.registerFormInput.ponovljenaLozinka)
             return;
         
         let pacijent = {
-            korisnickoIme: this.registerInterface.korisnickoIme,
-            lozinka: this.registerInterface.lozinka,
-            ime: this.registerInterface.ime,
-            prezime: this.registerInterface.prezime,
-            adresa: this.registerInterface.adresa,
-            kontaktTelefon: this.registerInterface.kontaktTelefon,
-            email: this.registerInterface.email
+            korisnickoIme: this.registerFormInput.korisnickoIme,
+            lozinka: this.registerFormInput.lozinka,
+            ime: this.registerFormInput.ime,
+            prezime: this.registerFormInput.prezime,
+            adresa: this.registerFormInput.adresa,
+            kontaktTelefon: this.registerFormInput.kontaktTelefon,
+            email: this.registerFormInput.email
         }
 
         this.authenticationSerivce.registerPacijent(pacijent).subscribe((response) => {
             
             console.log(response['message']);
-            if (response['message'] == 'pacijent register success!') {
-                if (this.selectedImage !== null) {
+            if (response['message'] == 'success') {
+                if (this.selectedImageFormInput !== null) {
                     let formData = new FormData();
                     formData.set('korisnickoIme', pacijent.korisnickoIme);
                     formData.set('type', 'pacijent');
-                    formData.append('image', this.selectedImage);
+                    formData.append('image', this.selectedImageFormInput);
 
-                    this.authenticationSerivce.uploadImage(formData).subscribe((message) => {
-                        console.log(message['message']);
-                    });
+                    this.authenticationSerivce.uploadImage(formData).subscribe((response) => {});
                 }
 
-                this.router.navigate(['']);
+                this.router.navigate(['login']);
             }
             else {
                 this.errorArray.push(response['message']);
@@ -66,13 +81,13 @@ export class RegisterComponent implements OnInit {
     }
 
     fileInput(event: any) {
-        this.selectedImage = event.target.files[0];
+        this.selectedImageFormInput = event.target.files[0];
 
         const reader = new FileReader();
         reader.onload = (event: any) => {
             this.selectedImageURL = event.target.result;
         };
-        reader.readAsDataURL(this.selectedImage);
+        reader.readAsDataURL(this.selectedImageFormInput);
     }
 
 }

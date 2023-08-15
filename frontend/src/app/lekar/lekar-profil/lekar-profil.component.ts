@@ -15,7 +15,6 @@ export class LekarProfilComponent implements OnInit {
     userType: string;
     idLekara: string;
     lekar: Lekar;
-    lekarImageUrl: string;
     preglediIsteSpecijalizacije;
     formInput: {
         pregled: Pregled | string,
@@ -27,47 +26,48 @@ export class LekarProfilComponent implements OnInit {
     constructor(private lekarService: LekarService, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.lekar = null;
+
         this.userType = localStorage.getItem('userType');
-        if (this.userType == 'pacijent')
-            this.idLekara = this.activatedRoute.snapshot.paramMap.get('id');
-        else 
-            this.idLekara = localStorage.getItem('_id');
+
+        this.idLekara = this.userType == 'pacijent' ? this.activatedRoute.snapshot.paramMap.get('idLekara') : localStorage.getItem('_id');
+            
         this.formInput = {
             pregled: null,
             datum: null,
             vreme: null
         }
-        this.getLekar();
+
+        this.populateLekarProfilComponent();
     }
 
-    getLekar() {
+    populateLekarProfilComponent() {
 
-        this.lekarService.getLekar(this.idLekara).subscribe((lekar: any) => {
+        this.lekarService.getLekarById(this.idLekara).subscribe((lekar: Lekar) => {
             this.lekar = lekar;
 
             this.lekarService.getPreglediIsteSpecijalizacije(lekar.specijalizacija).subscribe((pregledi: Pregled[]) => {
-
                 pregledi = pregledi.map((pregled: Pregled) => {
                     pregled['checkbox'] = this.lekar.pregledi.some((obj) => {
                         return obj._id == pregled._id;
                     });
+
                     return pregled;
                 });
 
                 this.preglediIsteSpecijalizacije = pregledi;
             });
 
-            this.lekarImageUrl = 'http://localhost:4000/images/' + this.lekar.image;
         });
     }
     
-    zakaziPregled() {
+    addNewZakazaniPregledByPacijent() {
         if (this.formInput.pregled == null || this.formInput.datum == null || this.formInput.vreme == null){
             this.zakaziPregledMessage = 'Error: popuniti sva polja!';
             return;
         }
 
-        const data = {
+        const zakazaniPregled = {
             lekar: this.lekar,
             pacijent: localStorage.getItem('_id'),
             pregled: this.formInput.pregled,
@@ -75,13 +75,13 @@ export class LekarProfilComponent implements OnInit {
             vreme: this.formInput.vreme
         }
         
-        this.lekarService.zakaziPregled(data).subscribe((response) => {
+        this.lekarService.addNewZakazaniPregled(zakazaniPregled).subscribe((response) => {
             this.zakaziPregledMessage = 'Termin je ' + response['message'];
         });
     }
 
-    updatePregled() {
-        this.lekarService.updatePregled(this.lekar._id, this.preglediIsteSpecijalizacije).subscribe(() => {
+    updateLekarPregled() {
+        this.lekarService.updateLekarPregled(this.lekar._id, this.preglediIsteSpecijalizacije).subscribe(() => {
             
         });
     }

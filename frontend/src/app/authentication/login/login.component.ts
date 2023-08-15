@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     username: string;
     password: string;
     userType: string;
-    error: string;
+    errorMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private router: Router, private activatedRoute: ActivatedRoute) { 
 
@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.username = this.password = this.error = '';
+        this.username = this.password = this.errorMessage = '';
     }
 
     login() {
 
         if (this.username == '' || this.password == '') {
-            this.error = 'Error: popunite sva polja';
+            this.errorMessage = 'Error: popunite sva polja';
             return;
         }
 
@@ -38,18 +38,19 @@ export class LoginComponent implements OnInit {
             userType: this.userType
         };
 
-        this.authenticationService.login(loginData).subscribe((korisnik: any) => {
-            if (korisnik == null) {
-                this.error = 'Error: pogresno korisnicko ime ili lozinka';
+        this.authenticationService.login(loginData).subscribe((user: any) => {
+            if (user == null) {
+                this.errorMessage = 'Error: pogresno korisnicko ime ili lozinka';
             }
             else {
-                localStorage.setItem('_id', korisnik._id);
-                localStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
-                localStorage.setItem('userType', korisnik.userType);
-                if (korisnik.userType == 'pacijent') {
+                localStorage.setItem('_id', user._id);
+                localStorage.setItem('korisnickoIme', user.korisnickoIme);
+                localStorage.setItem('userType', user.userType);
+
+                if (user.userType == 'pacijent') {
                     this.router.navigate(['pacijent/profil']);
                 }
-                else if (korisnik.userType == 'lekar'){
+                else if (user.userType == 'lekar'){
                     this.router.navigate(['lekar/profil']);
                 }
                 else {

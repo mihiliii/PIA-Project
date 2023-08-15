@@ -1,0 +1,15 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+<div>
+    <h2 class="d-flex justify-content-center">Zakazani pregledi: </h2>
+    <div class="container bg-info" *ngFor="let zakazaniPregled of zakazaniPreglediList">
+        <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
+        <p>Cena: {{zakazaniPregled.pregled['cena']}}</p>
+        <p>Datum: {{zakazaniPregled.datum}}</p>
+        <p>Vreme: {{zakazaniPregled.vreme}}</p>
+        <p>Trajanje: {{zakazaniPregled.trajanje}}</p>
+        <p>Lekar: {{zakazaniPregled.lekar['ime']}}, {{zakazaniPregled.lekar['prezime']}} </p>
+        <button (click)="deleteZakazaniPregled(zakazaniPregled._id)">Otkazi pregled</button>
+    </div>
+</div>

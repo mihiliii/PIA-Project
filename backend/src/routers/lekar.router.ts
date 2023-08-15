@@ -3,32 +3,32 @@ import { LekarController } from '../controllers/lekar.controller';
 
 const lekarRouter = express.Router();
 
-lekarRouter.route('/getLekar').post(
-    (request, response) => { new LekarController().getLekar(request, response); }
+lekarRouter.route('/getLekarById').post(
+    (request, response) => { new LekarController().getLekarById(request, response); }
 );
 
 lekarRouter.route('/getAllLekari').get(
     (request, response) => { new LekarController().getAllLekari(request, response); }
 );
 
-lekarRouter.route('/zakaziPregled').post(
-    (request, response) => { new LekarController().zakaziPregled(request, response); }
+lekarRouter.route('/addNewZakazaniPregled').post(
+    (request, response) => { new LekarController().addNewZakazaniPregled(request, response); }
 );
 
 lekarRouter.route('/getPreglediIsteSpecijalizacije').post(
     (request, response) => { new LekarController().getPreglediIsteSpecijalizacije(request, response); }
 );
 
-lekarRouter.route('/updatePregled').post(
-    (request, response) => { new LekarController().updatePregled(request, response); }
+lekarRouter.route('/updateLekarPregled').post(
+    (request, response) => { new LekarController().updateLekarPregled(request, response); }
 );
 
-lekarRouter.route('/getAllTermini').post(
-    (request, response) => { new LekarController().getAllTermini(request, response); }
+lekarRouter.route('/getZakazaniPreglediByLekarId').post(
+    (request, response) => { new LekarController().getZakazaniPreglediByLekarId(request, response); }
 );
 
-lekarRouter.route('/addNoviPregled').post(
-    (request, response) => { new LekarController().addNoviPregled(request, response); } 
+lekarRouter.route('/addNewPregled').post(
+    (request, response) => { new LekarController().addNewPregled(request, response); } 
 );
 
 export default lekarRouter;

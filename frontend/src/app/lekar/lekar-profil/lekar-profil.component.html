@@ -1,16 +1,16 @@
 <header>
     <app-navbar></app-navbar>
 </header>
-<div>
-    <img class="image" [src]="lekarImageUrl">
-    <p>{{lekar?.ime}}</p>
-    <p>{{lekar?.prezime}}</p>
-    <p>{{lekar?.adresa}}</p>
-    <p>{{lekar?.email}}</p>
-    <p>{{lekar?.kontaktTelefon}}</p>
-    <p>{{lekar?.brojLicence}}</p>
-    <p>{{lekar?.specijalizacija}}</p>
-    <p>{{lekar?.ogranakOrdinacije}}</p>
+<div *ngIf="lekar != null">
+    <img class="image" [src]="'http://localhost:4000/images/' + this.lekar.image">
+    <p>{{lekar.ime}}</p>
+    <p>{{lekar.prezime}}</p>
+    <p>{{lekar.adresa}}</p>
+    <p>{{lekar.email}}</p>
+    <p>{{lekar.kontaktTelefon}}</p>
+    <p>{{lekar.brojLicence}}</p>
+    <p>{{lekar.specijalizacija}}</p>
+    <p>{{lekar.ogranakOrdinacije}}</p>
 </div>
 <div *ngIf="userType == 'lekar'">
     <table>
@@ -29,7 +29,7 @@
             <td><input type="checkbox" [(ngModel)]="pregled.checkbox"></td>
         </tr>
     </table>
-    <button (click)="updatePregled()">Azuriraj preglede</button>
+    <button (click)="updateLekarPregled()">Azuriraj preglede</button>
 </div>
 <form class="form-control" *ngIf="userType == 'pacijent'">
     <div>
@@ -46,6 +46,6 @@
         <label>Vreme:</label>
         <input type="time" [(ngModel)]="formInput.vreme" name="vremeForm">
     </div><br>
-    <button (click)="zakaziPregled()">Zakazi Pregled</button>
+    <button (click)="addNewZakazaniPregledByPacijent()">Zakazi Pregled</button>
 </form>
 {{zakaziPregledMessage}}

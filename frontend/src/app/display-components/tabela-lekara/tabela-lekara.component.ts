@@ -10,7 +10,7 @@ import { TabelaLekaraService } from '../services/tabela-lekara.service';
 })
 export class TabelaLekaraComponent implements OnInit {
 
-    lekarArray: Lekar[];
+    lekarList: Lekar[];
     formInput: {
         ime: string,
         prezime: string,
@@ -22,9 +22,9 @@ export class TabelaLekaraComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.tabelaService.getLekari().subscribe((lekari: Lekar[]) => {
-            this.lekarArray = lekari;
-            this.tabelaService.setLekari(this.lekarArray);
+        this.tabelaService.getAllLekari().subscribe((lekari: Lekar[]) => {
+            this.lekarList = lekari;
+            this.tabelaService.setLekari(this.lekarList);
         });
         this.formInput = {
             ime: '',
@@ -52,7 +52,7 @@ export class TabelaLekaraComponent implements OnInit {
     }
 
     search() {
-        this.lekarArray = this.tabelaService.search(this.formInput.ime, this.formInput.prezime, this.formInput.specijalizacija, this.formInput.ogranak);
+        this.lekarList = this.tabelaService.search(this.formInput.ime, this.formInput.prezime, this.formInput.specijalizacija, this.formInput.ogranak);
     }
 
     

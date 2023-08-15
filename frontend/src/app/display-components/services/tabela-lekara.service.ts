@@ -16,7 +16,8 @@ export class TabelaLekaraService {
     constructor(private httpClient: HttpClient) { 
     }
 
-    getLekari(){
+    getAllLekari(){
+        
         return this.httpClient.get('http://localhost:4000/lekar/getAllLekari');
     }
 

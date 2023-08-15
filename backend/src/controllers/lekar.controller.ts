@@ -1,23 +1,22 @@
 import express from 'express';
 import lekarDB from '../models/lekar.model';
-import terminDB from '../models/termin.model';
+import zakazaniPreglediDB from '../models/zakazaniPregled.model';
 import pregledDB from '../models/pregled.model';
 
 export class LekarController {
 
-    getAllLekari(request, response) {
+    getAllLekari(request: express.Request, response: express.Response) {
 
         lekarDB.find((err, lekari) => {
             if (err) console.log(err);
             else response.json(lekari);
         });
-
     }
 
-    async getLekar(request, response) {
+    async getLekarById(request: express.Request, response: express.Response) {
         try {
 
-            let lekar = await lekarDB.findById(request.body.id).populate('pregledi');
+            let lekar = await lekarDB.findById(request.body._id).populate('pregledi');
 
             response.json(lekar);
         } 
@@ -26,11 +25,9 @@ export class LekarController {
         }
     }
 
-    async zakaziPregled(request, response) {
-        const data = request.body;
-
+    async addNewZakazaniPregled(request: express.Request, response: express.Response) {
         try {
-            let zakazaniTermini = await terminDB.find({'lekar': data.lekar._id, 'datum': data.datum});
+            let zakazaniTermini = await zakazaniPreglediDB.find({'lekar': request.body.lekar._id, 'datum': request.body.datum});
             let condition = false;
 
             for (let termin of zakazaniTermini) {
@@ -38,9 +35,9 @@ export class LekarController {
                 let pocetakZakazanog = parseInt(zakazanPregled[0], 10) * 60 + parseInt(zakazanPregled[1], 10);
                 let krajZakazanog = pocetakZakazanog + termin.trajanje;
                 
-                let noviPregled = data.vreme.split(':');
+                let noviPregled = request.body.vreme.split(':');
                 let pocetakNovog = parseInt(noviPregled[0], 10) * 60 + parseInt(noviPregled[1], 10);
-                let krajNovog = pocetakNovog + parseInt(data.pregled.trajanje, 10);
+                let krajNovog = pocetakNovog + parseInt(request.body.pregled.trajanje, 10);
                 
                 if (
                     !(pocetakNovog < pocetakZakazanog && krajNovog <= pocetakZakazanog) &&
@@ -54,18 +51,18 @@ export class LekarController {
             if (condition) response.json({message: 'zauzet'});
             else {
 
-                await terminDB.create(
+                await zakazaniPreglediDB.create(
                     {
-                        'pregled': data.pregled._id,
-                        'lekar': data.lekar._id,
-                        'pacijent': data.pacijent,
-                        'datum': data.datum,
-                        'vreme': data.vreme,
-                        'trajanje': data.pregled.trajanje
+                        'pregled': request.body.pregled._id,
+                        'lekar': request.body.lekar._id,
+                        'pacijent': request.body.pacijent,
+                        'datum': request.body.datum,
+                        'vreme': request.body.vreme,
+                        'trajanje': request.body.pregled.trajanje
                     }
                 );
 
-                response.json({message: 'zakazan'});
+                response.json({message: 'uspesno zakazan'});
             }
         }
         catch (error) {
@@ -73,12 +70,10 @@ export class LekarController {
         }
     }
 
-    async getPreglediIsteSpecijalizacije(request, response) {
-        const specijalizacija = request.body.specijalizacija;
-
+    async getPreglediIsteSpecijalizacije(request: express.Request, response: express.Response) {
         try {
 
-            let pregledi = await pregledDB.find({'specijalizacija': specijalizacija});
+            let pregledi = await pregledDB.find({'specijalizacija': request.body.specijalizacija});
 
             response.json(pregledi);
         }
@@ -87,7 +82,7 @@ export class LekarController {
         }
     }
 
-    async updatePregled(request, response) {
+    async updateLekarPregled(request: express.Request, response: express.Response) {
         try {
 
             let document = await lekarDB.findByIdAndUpdate(request.body._id, {'pregledi': request.body.pregledi});
@@ -104,10 +99,10 @@ export class LekarController {
         }
     }
 
-    async getAllTermini(request, response) {
+    async getZakazaniPreglediByLekarId(request: express.Request, response: express.Response) {
         try {
 
-            let termini = await terminDB.find({lekar: request.body._id}).populate('pregled').populate('pacijent').sort({'datum': 1, 'vreme': 1});
+            let termini = await zakazaniPreglediDB.find({lekar: request.body._id}).populate('pregled').populate('pacijent').sort({'datum': 1, 'vreme': 1});
 
             response.json(termini);
         }
@@ -116,10 +111,9 @@ export class LekarController {
         }
     }
 
-    addNoviPregled(request, response) {
-        let requestData = request.body;
+    addNewPregled(request: express.Request, response: express.Response) {
         
-        pregledDB.create({'naziv': requestData.naziv, 'trajanje': requestData.trajanje, 'cena': requestData.cena, 'specijalizacija': requestData.specijalizacija}, (error) => {
+        pregledDB.create({'naziv': request.body.naziv, 'trajanje': request.body.trajanje, 'cena': request.body.cena, 'specijalizacija': request.body.specijalizacija}, (error) => {
             if (error) console.log(error);
             else response.json({message: 'addNoviPregled success'});
         });

@@ -11,18 +11,16 @@ import { PacijentService } from '../services/pacijent.service';
 export class PacijentProfilComponent implements OnInit {
 
     pacijentInfo: Pacijent;
-    imageUrl: string;
 
     constructor(private pacijentService: PacijentService, private router: Router) { }
 
     ngOnInit(): void {
-        this.getPacijent();
+        this.populatePacijentProfilComponent();
     }
 
-    getPacijent() {
-        this.pacijentService.getPacijent(localStorage.getItem('korisnickoIme')).subscribe((pacijent: Pacijent) => {
+    populatePacijentProfilComponent() {
+        this.pacijentService.getPacijentById(localStorage.getItem('_id')).subscribe((pacijent: Pacijent) => {
             this.pacijentInfo = pacijent;
-            this.imageUrl = 'http://localhost:4000/images/' + this.pacijentInfo.image; 
         });
     }
 

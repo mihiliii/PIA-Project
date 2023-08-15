@@ -8,28 +8,28 @@ export class PacijentService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getPacijent(korisnickoIme) {
-        const data = {
-            korisnickoIme: korisnickoIme
+    getPacijentById(pacijentId) {
+        const requestData = {
+            _id: pacijentId
         };
 
-        return this.httpClient.post('http://localhost:4000/pacijent/getPacijent', data);
+        return this.httpClient.post('http://localhost:4000/pacijent/getPacijentById', requestData);
     }
 
-    getPregledi(id) {
-        const data = {
-            _id: id
+    getZakazaniPreglediListByPacijentId(pacijentId) {
+        const requestData = {
+            pacijent: pacijentId
         }
 
-        return this.httpClient.post('http://localhost:4000/pacijent/getPregledi', data);
+        return this.httpClient.post('http://localhost:4000/pacijent/getZakazaniPreglediListByPacijentId', requestData);
     }
 
-    cancelPregled(id) {
-        const data = {
-            _id: id
+    deleteZakazaniPregled(pregledId) {
+        const requestData = {
+            _id: pregledId
         };
 
-        return this.httpClient.post('http://localhost:4000/pacijent/cancelPregled', data);
+        return this.httpClient.post('http://localhost:4000/pacijent/deleteZakazaniPregled', requestData);
     }
 
 }

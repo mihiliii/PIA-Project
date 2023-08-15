@@ -23,13 +23,13 @@ export class RaznoComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    dodajNoviPregled(pregledForm) {
+    addNewPregled(pregledForm) {
         if (pregledForm.invalid) {
             this.errorMessage = 'Error';
             return;
         }
 
-        this.lekarService.addNoviPregled(this.formInput).subscribe((message) => {
+        this.lekarService.addNewPregled(this.formInput).subscribe((message) => {
             this.errorMessage = message['message'];
         });
     }

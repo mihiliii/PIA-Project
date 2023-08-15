@@ -6,7 +6,7 @@
         <hr>
         <div class="mb-2">
             <label class="form-label mx-1">Korisnicko ime:</label>
-            <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerInterface.korisnickoIme" required>
+            <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerFormInput.korisnickoIme" required>
             <div [hidden]="(korisnickoIme.pristine && !registerForm.submitted) || errorArray.length === 0" class="alert alert-danger my-alert">
                 <label *ngIf="korisnickoIme.invalid">Polje mora biti popunjeno!</label>
                 <label *ngIf="errorArray.includes('Error: korisnickoIme already exists!')">Korisnicko ime vec postoji!</label>
@@ -15,46 +15,46 @@
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Lozinka:</label>
-            <input type="password" class="form-control" placeholder="Lozinka" name="lozinka" #lozinka="ngModel" [(ngModel)]="registerInterface.lozinka" required>
+            <input type="password" class="form-control" placeholder="Lozinka" name="lozinka" #lozinka="ngModel" [(ngModel)]="registerFormInput.lozinka" required>
             <div [hidden]="lozinka.valid || (lozinka.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
             <!-- <div class="mx-1 error" *ngIf="submitted && registerData.password== ''">Polje mora biti popunjeno</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Ponoviti lozinku:</label>
-            <input type="password" class="form-control" placeholder="Lozinka" name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerInterface.ponovljenaLozinka" required>
+            <input type="password" class="form-control" placeholder="Lozinka" name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerFormInput.ponovljenaLozinka" required>
             <div [hidden]="(ponovljenaLozinka.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">
                 <label *ngIf="ponovljenaLozinka.invalid">Polje mora biti popunjeno!</label>
-                <label *ngIf="registerInterface.lozinka != registerInterface.ponovljenaLozinka">Lozinke se ne podudaraju</label>
+                <label *ngIf="registerFormInput.lozinka != registerFormInput.ponovljenaLozinka">Lozinke se ne podudaraju</label>
             </div>
             <!-- <div class="mx-1 error" *ngIf="repeatPassword.touched && registerData.repeatPassword != registerData.password">Lozinke se ne podudaraju</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Ime:</label>
-            <input type="text" class="form-control" placeholder="Ime" name="ime" #ime="ngModel" [(ngModel)]="registerInterface.ime" required>
+            <input type="text" class="form-control" placeholder="Ime" name="ime" #ime="ngModel" [(ngModel)]="registerFormInput.ime" required>
             <div [hidden]="ime.valid || (ime.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
             <!-- <div class="mx-1 error" *ngIf="repeatPassword.touched && registerData.repeatPassword != registerData.password">Lozinke se ne podudaraju</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Prezime:</label>
-            <input type="text" class="form-control" placeholder="Prezime" name="prezime" #prezime="ngModel" [(ngModel)]="registerInterface.prezime" required>
+            <input type="text" class="form-control" placeholder="Prezime" name="prezime" #prezime="ngModel" [(ngModel)]="registerFormInput.prezime" required>
             <div [hidden]="prezime.valid || (prezime.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
             <!-- <div class="mx-1 error" *ngIf="repeatPassword.touched && registerData.repeatPassword != registerData.password">Lozinke se ne podudaraju</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Adresa:</label>
-            <input type="text" class="form-control" placeholder="Adresa" name="adresa" #adresa="ngModel" [(ngModel)]="registerInterface.adresa" required>
+            <input type="text" class="form-control" placeholder="Adresa" name="adresa" #adresa="ngModel" [(ngModel)]="registerFormInput.adresa" required>
             <div [hidden]="adresa.valid || (adresa.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
             <!-- <div class="mx-1 error" *ngIf="submitted && registerData.contact == ''">Polje mora biti popunjeno</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Kontakt telefon:</label>
-            <input type="text" class="form-control" placeholder="+3816********" name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerInterface.kontaktTelefon" required>
+            <input type="text" class="form-control" placeholder="+3816********" name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerFormInput.kontaktTelefon" required>
             <div [hidden]="kontaktTelefon.valid || (kontaktTelefon.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
             <!-- <div class="mx-1 error" *ngIf="submitted && registerData.contact == ''">Polje mora biti popunjeno</div> -->
         </div>
         <div class="mb-2">
             <label class="form-label mx-1">Email adresa:</label>
-            <input type="text" class="form-control" placeholder="name@example.com" name="email" #email="ngModel" [(ngModel)]="registerInterface.email" required>
+            <input type="text" class="form-control" placeholder="name@example.com" name="email" #email="ngModel" [(ngModel)]="registerFormInput.email" required>
             <div [hidden]="(email.pristine && !registerForm.submitted) || errorArray.length === 0" class="alert alert-danger my-alert">
                 <label *ngIf="email.invalid">Polje mora biti popunjeno!</label>
                 <label *ngIf="errorArray.includes('Error: email already exists!')">Email vec postoji</label>
@@ -65,7 +65,7 @@
             <label class="form-label">Uneti profilnu sliku:</label><br>
             <input class="my-input-file" type="file" name="slika" accept=".png, .jpg, .jpeg" (input)="fileInput($event)">
         </div>
-        <div class="d-flex justify-content-center form-control" *ngIf="selectedImage !== null">
+        <div class="d-flex justify-content-center form-control" *ngIf="selectedImageFormInput !== null">
             <img class="image" [src]="selectedImageURL">
         </div>
         <div class="mb-2 mt-3 d-flex justify-content-end">

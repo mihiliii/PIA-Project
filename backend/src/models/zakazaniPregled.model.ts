@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const terminSchema = new Schema({
+const zakazaniPregledSchema = new Schema({
     pregled: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PregledDB'
@@ -21,4 +21,4 @@ const terminSchema = new Schema({
     trajanje: Number
 });
 
-export default mongoose.model('TerminiDB', terminSchema, 'termini');
+export default mongoose.model('zakazaniPreglediDB', zakazaniPregledSchema, 'zakazaniPregledi');

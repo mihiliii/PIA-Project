@@ -10,10 +10,10 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AdministrationComponent } from './administration/administration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PacijentProfilComponent } from './pacijent/pacijent-profil/pacijent-profil.component';
-import { LekariComponent } from './pacijent/lekari/lekari.component';
+import { PacijentLekariComponent } from './pacijent/pacijent-lekari/pacijent-lekari.component';
 import { TabelaLekaraComponent } from './display-components/tabela-lekara/tabela-lekara.component';
-import { LekarProfilComponent } from './lekar/profil/lekar-profil.component';
-import { PreglediComponent } from './pacijent/pregledi/pregledi.component';
+import { LekarProfilComponent } from './lekar/lekar-profil/lekar-profil.component';
+import { PacijentPreglediComponent } from './pacijent/pacijent-pregledi/pacijent-pregledi.component';
 import { NavbarComponent } from './display-components/navbar/navbar.component';
 import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
 import { RaznoComponent } from './lekar/razno/razno.component';
@@ -26,10 +26,10 @@ import { RaznoComponent } from './lekar/razno/razno.component';
     AdministrationComponent,
     HomepageComponent,
     PacijentProfilComponent,
-    LekariComponent,
+    PacijentLekariComponent,
     TabelaLekaraComponent,
     LekarProfilComponent,
-    PreglediComponent,
+    PacijentPreglediComponent,
     NavbarComponent,
     LekarPreglediComponent,
     RaznoComponent,

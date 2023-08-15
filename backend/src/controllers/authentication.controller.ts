@@ -39,36 +39,37 @@ export class AuthenticationController {
         }
     }
 
-    async registerPacijent(request: any, response: express.Response) {
-        let data = request.body;
+    async registerPacijent(request: express.Request, response: express.Response) {
+        let requestData = request.body;
 
-        let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': data.korisnickoIme}, {'email': data.email}]});
-        let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': data.korisnickoIme}, {'email': data.email}]});
+        let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': requestData.korisnickoIme}, {'email': requestData.email}]});
+        let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': requestData.korisnickoIme}, {'email': requestData.email}]});
         
         if (!pacijent && !lekar) {
+
             pacijentDB.create({
-                'korisnickoIme': data.korisnickoIme,
-                'lozinka': data.lozinka,
-                'ime': data.ime,
-                'prezime': data.prezime,
-                'adresa': data.adresa,
-                'kontaktTelefon': data.kontaktTelefon,
-                'email': data.email,
+                'korisnickoIme': requestData.korisnickoIme,
+                'lozinka': requestData.lozinka,
+                'ime': requestData.ime,
+                'prezime': requestData.prezime,
+                'adresa': requestData.adresa,
+                'kontaktTelefon': requestData.kontaktTelefon,
+                'email': requestData.email,
                 'image': 'default.jpg',
                 'status': 'neaktivan'
             }, (err) => {
                 if (err) console.log(err);
-                else response.json({'message': 'pacijent register success!'});  
+                else response.json({'message': 'success'});  
             });
         }
-        else if (pacijent != null) response.json(this.registerError(pacijent, data));
-        else if (lekar != null) response.json(this.registerError(lekar, data));
+        else if (pacijent != null) response.json(this.registerError(pacijent, requestData));
+        else if (lekar != null) response.json(this.registerError(lekar, requestData));
     }
 
     uploadImage(request, response) {
         
         upload(request, response, (err) => {
-            if (err) console.log('Error: uploadImage');
+            if (err) console.log('Error: image upload failed!');
             else {
                 let type = request.body.type;
 
@@ -76,14 +77,14 @@ export class AuthenticationController {
                     pacijentDB.findOneAndUpdate({'korisnickoIme': request.body.korisnickoIme},
                         {'image': request.body.korisnickoIme + path.extname(request.file.originalname)}, (err) => {
                             if (err) console.log(err);
-                            else response.json({'message': 'image upload success!'});
+                            else response.json({'message': 'success'});
                     });
                 }
                 if (type == 'lekar') {
                     lekarDB.findOneAndUpdate({'korisnickoIme': request.body.korisnickoIme},
                         {'image': request.body.korisnickoIme + path.extname(request.file.originalname)}, (err) => {
                             if (err) console.log(err);
-                            else response.json({'message': 'image upload success!'});
+                            else response.json({'message': 'success'});
                     });
                 }
             }
@@ -96,7 +97,7 @@ export class AuthenticationController {
         else return {'message': 'Error: unknown'};
     }
 
-    async getRegisterRequests(request, response) {
+    async getRegisterRequests(request: express.Request, response: express.Response) {
         try {
             let pacijenti = await pacijentDB.find({'status': 'neaktivan'});
             let lekari = await lekarDB.find({'status': 'neaktivan'});
@@ -113,7 +114,7 @@ export class AuthenticationController {
         }
     }
 
-    acceptRegisterRequests(request, response) {
+    acceptRegisterRequests(request: express.Request, response: express.Response) {
         let pacijenti = request.body.pacijenti;
         let lekari = request.body.lekari;
 
@@ -132,7 +133,7 @@ export class AuthenticationController {
         response.json({'message': 'ok'});
     }
 
-    declineRegisterRequests(request, response) {
+    declineRegisterRequests(request: express.Request, response: express.Response) {
         let pacijenti = request.body.pacijenti;
         let lekari = request.body.lekari;
 

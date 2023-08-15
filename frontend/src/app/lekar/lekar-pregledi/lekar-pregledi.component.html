@@ -1,10 +1,10 @@
 <header>
     <app-navbar></app-navbar>
 </header>
-<div class="d-flex flex-column" *ngFor="let zakazaniPregled of zakazaniPregledArray;">
-    <p>Naziv: {{zakazaniPregled.pregled.naziv}}</p>
-    <p>Ime pacijenta: {{zakazaniPregled.pacijent.ime}}</p>
-    <p>Prezime pacijenta: {{zakazaniPregled.pacijent.prezime}}</p>
+<div class="d-flex flex-column" *ngFor="let zakazaniPregled of zakazaniPreglediList;">
+    <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
+    <p>Ime pacijenta: {{zakazaniPregled.pacijent['ime']}}</p>
+    <p>Prezime pacijenta: {{zakazaniPregled.pacijent['prezime']}}</p>
     <p>Datum: {{zakazaniPregled.datum}}</p>
     <p>Vreme: {{zakazaniPregled.vreme}}</p>
 </div>

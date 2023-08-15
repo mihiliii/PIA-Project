@@ -8,16 +8,17 @@ export class LekarService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getLekar(id) {
-        const data = {
-            id: id
+    getLekarById(_id) {
+        const requestData = {
+            _id: _id
         };
 
-        return this.httpClient.post('http://localhost:4000/lekar/getLekar', data);
+        return this.httpClient.post('http://localhost:4000/lekar/getLekarById', requestData);
     }
 
-    zakaziPregled(data) {
-        return this.httpClient.post('http://localhost:4000/lekar/zakaziPregled', data);
+    addNewZakazaniPregled(requestData) {
+        
+        return this.httpClient.post('http://localhost:4000/lekar/addNewZakazaniPregled', requestData);
     }
 
     getPreglediIsteSpecijalizacije(specijalizacija) {
@@ -28,7 +29,7 @@ export class LekarService {
         return this.httpClient.post('http://localhost:4000/lekar/getPreglediIsteSpecijalizacije', data);
     }
 
-    updatePregled(_id, pregledi) {
+    updateLekarPregled(_id, pregledi) {
         let requestData = {
             _id: _id,
             pregledi: []
@@ -40,21 +41,20 @@ export class LekarService {
             }
         }
 
-        return this.httpClient.post('http://localhost:4000/lekar/updatePregled', requestData);
+        return this.httpClient.post('http://localhost:4000/lekar/updateLekarPregled', requestData);
     }
 
-    getZakazaniPregledi(_id) {
+    getZakazaniPreglediByLekarId(_id) {
         let requestData = {
             _id: _id
         };
 
-        return this.httpClient.post('http://localhost:4000/lekar/getAllTermini', requestData);
+        return this.httpClient.post('http://localhost:4000/lekar/getZakazaniPreglediByLekarId', requestData);
     }
 
-    addNoviPregled(formInput) {
-        console.log(formInput);
+    addNewPregled(formInput) {
 
-        return this.httpClient.post('http://localhost:4000/lekar/addNoviPregled', formInput);
+        return this.httpClient.post('http://localhost:4000/lekar/addNewPregled', formInput);
     }
 
 }

@@ -1,11 +1,11 @@
 <header>
     <app-navbar></app-navbar>
 </header>
-<div>
-    <img class="image" [src]="imageUrl">
-    <p>{{pacijentInfo?.ime}}</p>
-    <p>{{pacijentInfo?.prezime}}</p>
-    <p>{{pacijentInfo?.adresa}}</p>
-    <p>{{pacijentInfo?.email}}</p>
-    <p>{{pacijentInfo?.kontaktTelefon}}</p>
+<div *ngIf="pacijentInfo != null">
+    <img class="image" [src]="'http://localhost:4000/images/' + this.pacijentInfo.image">
+    <p>{{pacijentInfo.ime}}</p>
+    <p>{{pacijentInfo.prezime}}</p>
+    <p>{{pacijentInfo.adresa}}</p>
+    <p>{{pacijentInfo.email}}</p>
+    <p>{{pacijentInfo.kontaktTelefon}}</p>
 </div>

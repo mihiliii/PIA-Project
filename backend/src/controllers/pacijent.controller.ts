@@ -1,33 +1,34 @@
 import express from 'express';
 import pacijentDB from '../models/pacijent.model';
-import terminDB from '../models/termin.model';
+import zakazaniPreglediDB from '../models/zakazaniPregled.model';
 
 export class PacijentController {
 
-    getPacijent(request: express.Request, response) {
+    getPacijentById(request: express.Request, response: express.Response) {
         
-        pacijentDB.findOne({'korisnickoIme': request.body.korisnickoIme}, (err, pacijent) => {
+        pacijentDB.findOne({'_id': request.body._id}, (err, pacijent) => {
             if (err) console.log(err);
             else response.json(pacijent);
         });
     }
 
-    async getPregledi(request, response) {
+    async getZakazaniPreglediListByPacijentId(request: express.Request, response: express.Response) {
         try {
             
-            let zakazaniPregledi = await terminDB.find({pacijent: request.body._id}).populate('pregled');
+            let zakazaniPreglediList = await zakazaniPreglediDB.find({pacijent: request.body.pacijent}).populate('pregled').populate('lekar');
 
-            response.json(zakazaniPregledi);
+            response.json(zakazaniPreglediList);
         }
         catch (err) {
             console.log(err);
         }   
     }
 
-    cancelPregled(request, response) {
-        terminDB.findByIdAndDelete(request.body._id, (err) => {
+    deleteZakazaniPregled(request: express.Request, response: express.Response) {
+        
+        zakazaniPreglediDB.findByIdAndDelete(request.body._id, (err) => {
             if (err) console.log(err);
-            else response.json({message: 'brisanje uspesno'});
+            else response.json({message: 'success'});
         });
     }
 }

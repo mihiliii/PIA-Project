@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import ZakazaniPregled from 'src/app/models/termin.model';
+import ZakazaniPregled from 'src/app/models/zakazaniPregled.model';
 import { LekarService } from '../services/lekar.service';
 
 @Component({
@@ -9,18 +9,17 @@ import { LekarService } from '../services/lekar.service';
 })
 export class LekarPreglediComponent implements OnInit {
 
-    zakazaniPregledArray: ZakazaniPregled[];
+    zakazaniPreglediList: ZakazaniPregled[];
 
     constructor(private lekarService: LekarService) { }
 
     ngOnInit(): void {
-        this.getZakazaniPregledi();
+        this.populateLekarPreglediComponent();
     }
 
-    getZakazaniPregledi() {
-        this.lekarService.getZakazaniPregledi(localStorage.getItem('_id')).subscribe((zakazaniPregledi: [any]) => {
-            this.zakazaniPregledArray = zakazaniPregledi.slice(0, 3);;
-            console.log(this.zakazaniPregledArray);
+    populateLekarPreglediComponent() {
+        this.lekarService.getZakazaniPreglediByLekarId(localStorage.getItem('_id')).subscribe((zakazaniPregledi: ZakazaniPregled[]) => {
+            this.zakazaniPreglediList = zakazaniPregledi.slice(0, 3);;
         })
     }
 
