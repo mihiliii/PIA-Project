@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['lekar/profil']);
                 }
                 else {
+                    //fali dopuna za menadzera
                     this.router.navigate(['']);
                 }
             }

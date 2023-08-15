@@ -1,25 +1,29 @@
 {{userType}}
-
-<table>
-    <tr>
-        <td>Username:</td>
-        <td>
-            <input type="text" name="username" placeholder="username" [(ngModel)]="username">
-        </td>
-    </tr>
-    <tr>
-        <td>Password:</td>
-        <td>
-            <input type="password" name="password" [(ngModel)]="password">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button (click)="login()">Prijava</button>
-        </td>
-        <td>
-            <button (click)="goToRegister()">Registracija</button>
-        </td>
-    </tr>
-</table>
+<div class="background">
+    <div class="my-container">
+        <div class="login-header">
+        </div>
+        <div class="my-container-login">
+            <img class="image-login" src="../../../assets/login-picture1.jpg">
+            <div class="my-table">
+                <div class="form-information">
+                    <div>
+                        <h6>Username:</h6>
+                        <input class="username-input" type="text" name="username" placeholder="Username" [(ngModel)]="username">
+                    </div>
+                    <div>
+                        <h6>Password:</h6>
+                        <input class="password-input" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+                    </div>
+                    <div>
+                        <div class="register-login-container">
+                            <button class="login-btn" (click)="login()">Prijava</button>
+                            <button class="register-btn" (click)="goToRegister()">Registracija</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{errorMessage}}

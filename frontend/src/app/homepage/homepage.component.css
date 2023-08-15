@@ -1,0 +1,38 @@
+.homepage-information {
+    background-color: rgb(251, 251, 251);
+    padding: 4%;
+    border-radius: 40px;
+    border-color: rgb(0, 196, 160);
+    border-width: 2px;
+    border-style: solid;
+    margin-top: -200px;
+}
+
+.homepage-header {
+    height: 500px;
+    background-color: rgb(0, 196, 160);
+    background-image: url('../../assets/homepage-header.jpg');
+    background-size: cover;
+    border-bottom: 2px solid rgb(0, 196, 160);
+}
+
+.homepage-description {
+    color: rgb(0, 196, 160);
+    text-shadow: 1px 1px 2px black;
+    margin-top: -25px;
+}
+
+.homepage-table {
+    background-color: rgb(251, 251, 251);
+    padding: 2%;
+    border-radius: 40px;
+    border-color: rgb(0, 196, 160);
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.homepage-text {
+
+}
