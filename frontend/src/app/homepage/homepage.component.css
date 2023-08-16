@@ -1,8 +1,8 @@
 .homepage-information {
-    background-color: rgb(251, 251, 251);
+    background-color: rgb(240, 240, 240);
     padding: 4%;
     border-radius: 40px;
-    border-color: rgb(0, 196, 160);
+    border-color: rgb(69, 69, 75);;
     border-width: 2px;
     border-style: solid;
     margin-top: -200px;
@@ -10,10 +10,10 @@
 
 .homepage-header {
     height: 500px;
-    background-color: rgb(0, 196, 160);
+    background-color: rgb(0, 196, 148);
     background-image: url('../../assets/homepage-header.jpg');
     background-size: cover;
-    border-bottom: 2px solid rgb(0, 196, 160);
+    border-bottom: 2px solid rgb(69, 69, 75);
 }
 
 .homepage-description {
@@ -23,16 +23,12 @@
 }
 
 .homepage-table {
-    background-color: rgb(251, 251, 251);
+    background-color: rgb(240, 240, 240);
     padding: 2%;
     border-radius: 40px;
-    border-color: rgb(0, 196, 160);
+    border-color: rgb(69, 69, 75);
     border-width: 2px;
     border-style: solid;
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.homepage-text {
-
 }

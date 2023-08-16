@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LekarService } from '../services/lekar.service';
+import { LekarService } from '../../services/lekar/lekar.service';
 
 @Component({
   selector: 'app-razno',

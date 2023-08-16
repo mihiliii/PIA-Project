@@ -19,17 +19,5 @@ export class AuthenticationService {
     uploadImage(image) {
         return this.httpClient.post('http://localhost:4000/authentication/uploadImage', image);
     }
-
-    getRegisterRequests() {
-        return this.httpClient.get('http://localhost:4000/authentication/getRegisterRequests');
-    }
-
-    acceptRegisterRequests(acceptedRequests) {
-        return this.httpClient.post('http://localhost:4000/authentication/acceptRegisterRequests', acceptedRequests);
-    }
-
-    declineRegisterRequests(declinedRequests) {
-        return this.httpClient.post('http://localhost:4000/authentication/declineRegisterRequests', declinedRequests);
-    }
     
 }

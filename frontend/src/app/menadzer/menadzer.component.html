@@ -1,0 +1,61 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+<main>
+    <h2>Zahtevi za registraciju:</h2>
+    <div *ngIf="registerRequestsList != undefined">
+        <div *ngIf="registerRequestsList.length != 0 else praznaTabela">
+            <table>
+                <tr>
+                    <th>Korisnicko ime:</th>
+                    <th>Ime:</th>
+                    <th>Prezime:</th>
+                    <th>Adresa:</th>
+                    <th>Kontakt telefon:</th>
+                    <th>Email:</th>
+                </tr>
+                <tr *ngFor="let pacijent of registerRequestsList">
+                    <td>{{pacijent.korisnickoIme}}</td>
+                    <td>{{pacijent.ime}}</td>
+                    <td>{{pacijent.prezime}}</td>
+                    <td>{{pacijent.adresa}}</td>
+                    <td>{{pacijent.kontaktTelefon}}</td>
+                    <td>{{pacijent.email}}</td>
+                    <td><input type="checkbox" [(ngModel)]="pacijent['checkbox']"></td>
+                </tr>
+            </table>
+            <button (click)="acceptRegisterRequests()">Accept</button>
+            <button (click)="declineRegisterRequests()">Decline</button>
+        </div>
+        <ng-template #praznaTabela>
+            <p>Trenutno nema novih zahteva za registraciju pacijenata...</p>
+        </ng-template>
+    </div>
+    <h2>Lista pacijenata:</h2>
+    <div>
+        <table class="my-table">
+            <tr class="my-table">
+                <th class="my-table">Korisnicko ime:</th>
+                <th class="my-table">Ime:</th>
+                <th class="my-table">Prezime:</th>
+                <th class="my-table">Adresa:</th>
+                <th class="my-table">Kontakt telefon:</th>
+                <th class="my-table">Email:</th>
+                <th class="my-table">Akcije:</th>
+            </tr>
+            <tr *ngFor="let pacijent of pacijentList" class="my-table">
+                <td class="my-table">{{pacijent.korisnickoIme}}</td>
+                <td class="my-table">{{pacijent.ime}}</td>
+                <td class="my-table">{{pacijent.prezime}}</td>
+                <td class="my-table">{{pacijent.adresa}}</td>
+                <td class="my-table">{{pacijent.kontaktTelefon}}</td>
+                <td class="my-table">{{pacijent.email}}</td>
+                <td class="my-table">
+                    <button (click)="deleteUser(pacijent._id, 'pacijent')">Izbrisi korisnika</button>
+                    <button (click)="openUserEditComponent(pacijent, 'pacijent')">Azuriraj korisnika</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <app-user-edit></app-user-edit>
+</main>

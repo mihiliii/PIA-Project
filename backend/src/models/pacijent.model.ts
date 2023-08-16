@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const pacijentSchema = new Schema({
-    _id: ObjectId,
+    // _id: ObjectId,
     korisnickoIme: String,
     lozinka: String,
     ime: String,

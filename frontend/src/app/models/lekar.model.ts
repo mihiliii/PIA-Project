@@ -15,5 +15,4 @@ export default class Lekar {
     image: string;
     status: string;
     pregledi: [Pregled];
-    checkbox: boolean;
 }

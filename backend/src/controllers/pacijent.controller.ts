@@ -4,6 +4,14 @@ import zakazaniPreglediDB from '../models/zakazaniPregled.model';
 
 export class PacijentController {
 
+    getAllPacijenti(request, response) {
+
+        pacijentDB.find((err, pacijenti) => {
+            if (err) console.log(err);
+            else response.json(pacijenti);
+        });
+    }
+
     getPacijentById(request: express.Request, response: express.Response) {
         
         pacijentDB.findOne({'_id': request.body._id}, (err, pacijent) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Lekar from '../../models/lekar.model';
 import { Router } from '@angular/router';
-import { TabelaLekaraService } from '../services/tabela-lekara.service';
+import { TabelaLekaraService } from '../../services/display-components/tabela-lekara.service';
 
 @Component({
   selector: 'app-tabela-lekara',

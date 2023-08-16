@@ -3,6 +3,10 @@ import { PacijentController } from '../controllers/pacijent.controller';
 
 const pacijentRouter = express.Router();
 
+pacijentRouter.route('/getAllPacijenti').get(
+    (request, response) => { new PacijentController().getAllPacijenti(request, response); }
+);
+
 pacijentRouter.route('/getPacijentById').post(
     (request, response) => { new PacijentController().getPacijentById(request, response); }
 );

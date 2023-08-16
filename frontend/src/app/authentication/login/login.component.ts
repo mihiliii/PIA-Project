@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         };
 
         this.authenticationService.login(loginData).subscribe((user: any) => {
+            
             if (user == null) {
                 this.errorMessage = 'Error: pogresno korisnicko ime ili lozinka';
             }
@@ -54,8 +55,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['lekar/profil']);
                 }
                 else {
-                    //fali dopuna za menadzera
-                    this.router.navigate(['']);
+                    this.router.navigate(['menadzer']);
                 }
             }
         });

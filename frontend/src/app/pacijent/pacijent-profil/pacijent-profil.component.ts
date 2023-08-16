@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Pacijent from 'src/app/models/pacijent.model';
-import { PacijentService } from '../services/pacijent.service';
+import { PacijentService } from '../../services/pacijent/pacijent.service';
 
 @Component({
     selector: 'app-pacijent-profil',

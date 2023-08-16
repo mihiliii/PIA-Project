@@ -15,16 +15,4 @@ authenticationRouter.route('/uploadImage').post(
     (request, response) => { new AuthenticationController().uploadImage(request,response); }
 );
 
-authenticationRouter.route('/getRegisterRequests').get(
-    (request, response) => { new AuthenticationController().getRegisterRequests(request,response); }
-);
-
-authenticationRouter.route('/acceptRegisterRequests').post(
-    (request, response) => { new AuthenticationController().acceptRegisterRequests(request,response); }
-);
-
-authenticationRouter.route('/declineRegisterRequests').post(
-    (request, response) => { new AuthenticationController().declineRegisterRequests(request,response); }
-);
-
 export default authenticationRouter;

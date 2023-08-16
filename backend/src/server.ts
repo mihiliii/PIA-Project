@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import pacijentRouter from './routers/pacijent.router';
 import lekarRouter from './routers/lekar.router';
 import authenticationRouter from './routers/authentication.router';
+import menadzerRouter from './routers/menadzer.router';
 
 const app = express();
 
@@ -20,6 +21,7 @@ const router = express.Router();
 router.use('/authentication', authenticationRouter);
 router.use('/pacijent', pacijentRouter);
 router.use('/lekar', lekarRouter);
+router.use('/menadzer', menadzerRouter);
 
 app.use('/', router);
 app.use('/images', express.static('./images'));

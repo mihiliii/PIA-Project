@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary">
+<nav class="navbar temp">
     <div class="container justify-content-around" *ngIf="userType == 'pacijent'">
         <a class="nav-link" routerLink="/pacijent/profil">Profil</a>
         <a class="nav-link" routerLink="/pacijent/lekari">Lekari</a>
@@ -10,6 +10,9 @@
         <a class="nav-link" routerLink="/lekar/profil">Profil</a>
         <a class="nav-link" routerLink="/lekar/pregledi">Pregledi</a>
         <a class="nav-link" routerLink="/lekar/razno">Razno</a>
+        <button (click)="logout()">Odjava</button>
+    </div>
+    <div *ngIf="userType == 'menadzer'">
         <button (click)="logout()">Odjava</button>
     </div>
     <div class="container-fluid" *ngIf="!isLoggedIn()">

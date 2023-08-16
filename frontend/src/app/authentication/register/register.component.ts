@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     selectedImageURL: string;
     errorArray: string[];
 
-    constructor(private authenticationSerivce: AuthenticationService, private router: Router) {
+    constructor(private authenticationService: AuthenticationService, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
             email: this.registerFormInput.email
         }
 
-        this.authenticationSerivce.registerPacijent(pacijent).subscribe((response) => {
+        this.authenticationService.registerPacijent(pacijent).subscribe((response) => {
             
             console.log(response['message']);
             if (response['message'] == 'success') {
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
                     formData.set('type', 'pacijent');
                     formData.append('image', this.selectedImageFormInput);
 
-                    this.authenticationSerivce.uploadImage(formData).subscribe((response) => {});
+                    this.authenticationService.uploadImage(formData).subscribe((response) => {});
                 }
 
                 this.router.navigate(['login']);

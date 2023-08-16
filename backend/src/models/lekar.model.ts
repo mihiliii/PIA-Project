@@ -5,7 +5,7 @@ import PregledDB from './pregled.model';
 const Schema = mongoose.Schema;
 
 const lekarSchema = new Schema({
-    _id: ObjectId,
+    // _id: ObjectId,
     korisnickoIme: String,
     lozinka: String,
     ime: String,
