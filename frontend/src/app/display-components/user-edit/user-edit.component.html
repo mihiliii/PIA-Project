@@ -28,9 +28,23 @@
             <label>Email</label>
             <input type="text" [(ngModel)]="formInput.email" name="email">
         </div>
+        <div *ngIf="userType == 'lekar'">
+            <div>
+                <label>Broj licence</label>
+                <input type="text" [(ngModel)]="lekarFormInput.brojLicence" name="brojLicence">
+            </div>
+            <div>
+                <label>Specijalizacija</label>
+                <input type="text" [(ngModel)]="lekarFormInput.specijalizacija" name="specijalizacija">
+            </div>
+            <div>
+                <label>Ogranak ordinacije</label>
+                <input type="text" [(ngModel)]="lekarFormInput.ogranakOrdinacije" name="ogranakOrdinacije">
+            </div>
+        </div>
         <div>
             <button (click)="saveChanges(userEditForm)">Sacuvaj</button>
             <button (click)="discardChanges()">Odbaci</button>
         </div>
-    </form>    
+    </form>
 </div>

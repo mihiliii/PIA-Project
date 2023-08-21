@@ -9,6 +9,7 @@ export class PacijentService {
     constructor(private httpClient: HttpClient) {}
 
     getAllPacijenti() {
+        
         return this.httpClient.get('http://localhost:4000/pacijent/getAllPacijenti');
     }
 

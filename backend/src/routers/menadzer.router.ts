@@ -23,4 +23,12 @@ menadzerRouter.route('/updateUser').post(
     (request, response) => { new MenadzerController().updateUser(request, response); }
 );
 
+menadzerRouter.route('/addNewLekar').post(
+    (request, response) => { new MenadzerController().addNewLekar(request, response); }
+);
+
+menadzerRouter.route('/getAllPregledi').get(
+    (request, response) => { new MenadzerController().getAllPregledi(request, response); }
+);
+
 export default menadzerRouter;

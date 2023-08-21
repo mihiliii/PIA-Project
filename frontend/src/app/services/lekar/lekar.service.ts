@@ -16,6 +16,11 @@ export class LekarService {
         return this.httpClient.post('http://localhost:4000/lekar/getLekarById', requestData);
     }
 
+    getAllLekari() {
+
+        return this.httpClient.get('http://localhost:4000/lekar/getAllLekari');
+    }
+
     addNewZakazaniPregled(requestData) {
         
         return this.httpClient.post('http://localhost:4000/lekar/addNewZakazaniPregled', requestData);

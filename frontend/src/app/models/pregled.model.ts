@@ -4,4 +4,5 @@ export default class Pregled {
     specijalizacija: string;
     trajanje: number;
     cena: number;
+    status: string;
 }

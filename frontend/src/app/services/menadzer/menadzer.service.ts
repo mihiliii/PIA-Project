@@ -32,4 +32,14 @@ export class MenadzerService {
         
         return this.httpClient.post('http://localhost:4000/menadzer/updateUser', requestData);
     }
+
+    addNewLekar(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/addNewLekar', requestData);
+    }
+
+    getAllPregledi() {
+        
+        return this.httpClient.get('http://localhost:4000/menadzer/getAllPregledi');
+    }
 }

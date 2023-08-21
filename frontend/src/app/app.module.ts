@@ -16,8 +16,9 @@ import { PacijentPreglediComponent } from './pacijent/pacijent-pregledi/pacijent
 import { NavbarComponent } from './display-components/navbar/navbar.component';
 import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
 import { RaznoComponent } from './lekar/razno/razno.component';
-import { MenadzerComponent } from './menadzer/menadzer.component';
+import { MenadzerHomepageComponent } from './menadzer/menadzer-homepage/menadzer-homepage.component';
 import { UserEditComponent } from './display-components/user-edit/user-edit.component';
+import { NewLekarComponent } from './menadzer/components/new-lekar/new-lekar.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,9 @@ import { UserEditComponent } from './display-components/user-edit/user-edit.comp
     NavbarComponent,
     LekarPreglediComponent,
     RaznoComponent,
-    MenadzerComponent,
+    MenadzerHomepageComponent,
     UserEditComponent,
+    NewLekarComponent,
   ],
   imports: [
     BrowserModule,

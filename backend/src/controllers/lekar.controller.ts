@@ -113,10 +113,17 @@ export class LekarController {
 
     addNewPregled(request: express.Request, response: express.Response) {
         
-        pregledDB.create({'naziv': request.body.naziv, 'trajanje': request.body.trajanje, 'cena': request.body.cena, 'specijalizacija': request.body.specijalizacija}, (error) => {
-            if (error) console.log(error);
-            else response.json({message: 'addNoviPregled success'});
-        });
+        pregledDB.create({
+                'naziv': request.body.naziv,
+                'trajanje': request.body.trajanje,
+                'cena': request.body.cena,
+                'specijalizacija': request.body.specijalizacija,
+                'status': 'neaktivan'
+            }, 
+            (error) => {
+                if (error) console.log(error);
+                else response.json({message: 'addNoviPregled success'});
+            });
     }
 
 }

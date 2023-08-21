@@ -10,14 +10,14 @@ import { LekarProfilComponent } from './lekar/lekar-profil/lekar-profil.componen
 import { PacijentPreglediComponent } from './pacijent/pacijent-pregledi/pacijent-pregledi.component';
 import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
 import { RaznoComponent } from './lekar/razno/razno.component';
-import { MenadzerComponent } from './menadzer/menadzer.component';
+import { MenadzerHomepageComponent } from './menadzer/menadzer-homepage/menadzer-homepage.component';
 import { UserEditComponent } from './display-components/user-edit/user-edit.component';
 
 const routes: Routes = [
     {path: "", title:'Glavna', component: HomepageComponent},
     {path: "login", component: LoginComponent, data: {userType: ''}},
     {path: "register", component: RegisterComponent},
-    {path: "menadzer", component: MenadzerComponent},
+    {path: "menadzer", component: MenadzerHomepageComponent},
     {path: "login/menadzer", component: LoginComponent, data: {userType: 'menadzer'}},
     {path: "pacijent/profil", component: PacijentProfilComponent},
     {path: "pacijent/lekari", component: PacijentLekariComponent},

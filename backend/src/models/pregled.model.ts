@@ -8,7 +8,8 @@ const pregledSchema = new Schema({
     naziv: String,
     trajanje: Number,
     cena: String,
-    specijalizacija: String
+    specijalizacija: String,
+    status: String
 });
 
 export default mongoose.model('PregledDB', pregledSchema, 'pregledi');

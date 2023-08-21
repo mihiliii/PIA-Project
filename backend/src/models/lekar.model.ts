@@ -17,7 +17,6 @@ const lekarSchema = new Schema({
     specijalizacija: String,
     ogranakOrdinacije: String,
     image: String,
-    status: String,
     pregledi: [{type: mongoose.Schema.Types.ObjectId, ref: PregledDB}]
 });
 
