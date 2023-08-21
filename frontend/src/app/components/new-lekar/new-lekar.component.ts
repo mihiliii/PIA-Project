@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenadzerService } from '../../../services/menadzer/menadzer.service';
+import { MenadzerService } from '../../services/menadzer/menadzer.service';
 
 @Component({
   selector: 'app-new-lekar',

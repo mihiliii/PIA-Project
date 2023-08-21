@@ -5,20 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { PacijentProfilComponent } from './pacijent/pacijent-profil/pacijent-profil.component';
-import { PacijentLekariComponent } from './pacijent/pacijent-lekari/pacijent-lekari.component';
-import { TabelaLekaraComponent } from './display-components/tabela-lekara/tabela-lekara.component';
-import { LekarProfilComponent } from './lekar/lekar-profil/lekar-profil.component';
-import { PacijentPreglediComponent } from './pacijent/pacijent-pregledi/pacijent-pregledi.component';
-import { NavbarComponent } from './display-components/navbar/navbar.component';
-import { LekarPreglediComponent } from './lekar/lekar-pregledi/lekar-pregledi.component';
-import { RaznoComponent } from './lekar/razno/razno.component';
-import { MenadzerHomepageComponent } from './menadzer/menadzer-homepage/menadzer-homepage.component';
-import { UserEditComponent } from './display-components/user-edit/user-edit.component';
-import { NewLekarComponent } from './menadzer/components/new-lekar/new-lekar.component';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { RegisterComponent } from './pages/authentication/register/register.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { PacijentProfilComponent } from './pages/pacijent/pacijent-profil/pacijent-profil.component';
+import { PacijentLekariComponent } from './pages/pacijent/pacijent-lekari/pacijent-lekari.component';
+import { TabelaLekaraComponent } from './components/tabela-lekara/tabela-lekara.component';
+import { LekarProfilComponent } from './pages/lekar/lekar-profil/lekar-profil.component';
+import { PacijentPreglediComponent } from './pages/pacijent/pacijent-pregledi/pacijent-pregledi.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LekarPreglediComponent } from './pages/lekar/lekar-pregledi/lekar-pregledi.component';
+import { RaznoComponent } from './pages/lekar/razno/razno.component';
+import { MenadzerHomepageComponent } from './pages/menadzer/menadzer-homepage/menadzer-homepage.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { NewLekarComponent } from './components/new-lekar/new-lekar.component';
 
 @NgModule({
   declarations: [

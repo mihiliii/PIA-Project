@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PacijentService } from '../../services/pacijent/pacijent.service';
+import { PacijentService } from '../../../services/pacijent/pacijent.service';
 import ZakazaniPregled from 'src/app/models/zakazaniPregled.model';
 
 @Component({

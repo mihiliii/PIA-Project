@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import Pacijent from '../../models/pacijent.model';
-import Lekar from '../../models/lekar.model';
-import { MenadzerService } from '../../services/menadzer/menadzer.service';
-import { PacijentService } from '../../services/pacijent/pacijent.service';
-import { UserEditComponent } from '../../display-components/user-edit/user-edit.component';
-import { LekarService } from '../../services/lekar/lekar.service';
-import { NewLekarComponent } from '../components/new-lekar/new-lekar.component';
-import Pregled from '../../models/pregled.model';
+import Pacijent from '../../../models/pacijent.model';
+import Lekar from '../../../models/lekar.model';
+import { MenadzerService } from '../../../services/menadzer/menadzer.service';
+import { PacijentService } from '../../../services/pacijent/pacijent.service';
+import { UserEditComponent } from '../../../components/user-edit/user-edit.component';
+import { LekarService } from '../../../services/lekar/lekar.service';
+import { NewLekarComponent } from '../../../components/new-lekar/new-lekar.component';
+import Pregled from '../../../models/pregled.model';
 
 @Component({
   selector: 'app-menadzer-homepage',
