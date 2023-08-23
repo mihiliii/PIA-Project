@@ -1,0 +1,45 @@
+.main-component {
+    min-height: 100%;
+    background-image: url("../../../../assets/3156743.jpg");
+    background-size: cover;
+}
+
+main {
+    height: 100%;
+}
+
+.my-container {
+    width: 900px;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    padding: 2%;
+    border-radius: 40px;
+    border-color: rgb(69, 69, 75);;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.info-container {
+    padding: 24px;
+}
+
+.image {
+    min-width: 100px;
+    min-height: 100px;
+    border: 2px dashed black;
+}
+
+p {
+    font-size: 24px;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}

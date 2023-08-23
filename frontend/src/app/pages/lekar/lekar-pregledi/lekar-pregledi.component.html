@@ -1,10 +1,24 @@
-<header>
-    <app-navbar></app-navbar>
-</header>
-<div class="d-flex flex-column" *ngFor="let zakazaniPregled of zakazaniPreglediList;">
-    <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
-    <p>Ime pacijenta: {{zakazaniPregled.pacijent['ime']}}</p>
-    <p>Prezime pacijenta: {{zakazaniPregled.pacijent['prezime']}}</p>
-    <p>Datum: {{zakazaniPregled.datum}}</p>
-    <p>Vreme: {{zakazaniPregled.vreme}}</p>
-</div>
+<main>
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="main-component container d-flex flex-column">
+        <div class="pregled-container">
+            <h1 class="d-flex justify-content-center header">Zakazani pregledi: </h1>
+            <div class="pregled-container-inner" *ngFor="let zakazaniPregled of zakazaniPreglediList">
+                <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
+                <p>Ime pacijenta: {{zakazaniPregled.pacijent['ime']}}</p>
+                <p>Prezime pacijenta: {{zakazaniPregled.pacijent['prezime']}}</p>
+                <p>Datum: {{zakazaniPregled.datum}}</p>
+                <p>Vreme: {{zakazaniPregled.vreme}}</p>
+                <p>Trajanje: {{zakazaniPregled.trajanje}} minuta</p>
+            </div>
+            <div *ngIf="zakazaniPreglediList?.length == 0">
+                <h4>Nema zakazanih pregleda</h4>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</main>

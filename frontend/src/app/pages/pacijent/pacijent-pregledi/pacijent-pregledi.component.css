@@ -1,0 +1,49 @@
+.main-component {
+    min-height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+.header {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 2px black;
+    display: flex;
+    justify-content: center;
+}
+
+.pregled-container {
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    padding: 2%;
+    border-radius: 40px;
+    border-color: rgb(69, 69, 75);;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+p {
+    font-size: 24px;
+}
+
+.pregled-container-inner {
+    background-color: rgb(240, 240, 240);
+    padding: 4%;
+    border-color: rgb(120, 190, 60);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}

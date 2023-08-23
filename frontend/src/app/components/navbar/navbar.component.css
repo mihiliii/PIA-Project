@@ -1,7 +1,13 @@
-.my-active {
-    font-size: 24px;
+.my-navbar {
+    background-color: rgb(69, 69, 75);
+    height: 54px;
 }
 
-.temp {
-    background-color: rgb(69, 69, 75);
+.button {
+    box-shadow: 1px 1px 1px rgb(69, 69, 75);
+    padding: 4px 8px;
+}
+
+.navbar-link {
+    color: white;
 }

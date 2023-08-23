@@ -1,28 +1,23 @@
-{{userType}}
-<div class="background">
-    <div class="my-container">
-        <div class="login-header">
-        </div>
-        <div class="my-container-login">
-            <img class="image-login" src="../../../assets/login-picture1.jpg">
-            <div class="my-table">
-                <div class="form-information">
-                    <div>
-                        <h6>Username:</h6>
-                        <input class="username-input" type="text" name="username" placeholder="Username" [(ngModel)]="username">
-                    </div>
-                    <div>
-                        <h6>Password:</h6>
-                        <input class="password-input" type="password" name="password" placeholder="Password" [(ngModel)]="password">
-                    </div>
-                    <div>
-                        <div class="register-login-container">
-                            <button class="login-btn" (click)="login()">Prijava</button>
-                            <button class="register-btn" (click)="goToRegister()">Registracija</button>
-                        </div>
+<div class="my-container">
+    <div class="my-container-login">
+        <img class="image-login" src="../../../assets/login-picture.jpg">
+        <div class="my-form">
+            <form class="form-information">
+                <div>
+                    <label class="form-label">Username:</label>
+                    <input class="form-control" type="text" name="username" placeholder="Username" [(ngModel)]="username">
+                </div>
+                <div>
+                    <p class="form-label">Password:</p>
+                    <input class="form-control" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+                </div>
+                <div>
+                    <div class="register-login-container">
+                        <button class="btn btn-light button" (click)="login()">Prijavi se</button>
+                        <button class="btn btn-light button" (click)="goToRegister()">Registracija</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

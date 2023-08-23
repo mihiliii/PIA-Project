@@ -53,7 +53,7 @@ export class UserEditComponent implements OnInit {
             kontaktTelefon: this.user.kontaktTelefon,
             email: this.user.email,
         }
-        if (this.userType = 'lekar') {
+        if (this.userType == 'lekar') {
             let user = this.user as Lekar;
             this.lekarFormInput = {
                 brojLicence: user.brojLicence,
@@ -131,6 +131,7 @@ export class UserEditComponent implements OnInit {
         this.user = null;
         this.userType = null;
         this.showComponent = false;
+        this.parentNgOnInit.emit({showUserEdit: false});
     }
 
 }

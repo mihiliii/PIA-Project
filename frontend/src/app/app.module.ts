@@ -19,6 +19,7 @@ import { RaznoComponent } from './pages/lekar/razno/razno.component';
 import { MenadzerHomepageComponent } from './pages/menadzer/menadzer-homepage/menadzer-homepage.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewLekarComponent } from './components/new-lekar/new-lekar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NewLekarComponent } from './components/new-lekar/new-lekar.component';
     MenadzerHomepageComponent,
     UserEditComponent,
     NewLekarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

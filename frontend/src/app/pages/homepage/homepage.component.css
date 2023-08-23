@@ -5,30 +5,40 @@
     border-color: rgb(69, 69, 75);;
     border-width: 2px;
     border-style: solid;
-    margin-top: -200px;
 }
 
 .homepage-header {
-    height: 500px;
-    background-color: rgb(0, 196, 148);
+    height: 780px;
+    background-color: rgb(120, 190, 60);
     background-image: url('../../../assets/homepage-header.jpg');
     background-size: cover;
-    border-bottom: 2px solid rgb(69, 69, 75);
 }
 
 .homepage-description {
-    color: rgb(0, 196, 160);
+    color: rgb(120, 190, 60);
     text-shadow: 1px 1px 2px black;
-    margin-top: -25px;
+    display: flex;
+    justify-content: center;
 }
 
 .homepage-table {
     background-color: rgb(240, 240, 240);
-    padding: 2%;
+    padding: 4%;
     border-radius: 40px;
     border-color: rgb(69, 69, 75);
     border-width: 2px;
     border-style: solid;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.homepage-container {
+    background-color: rgba(120, 190, 60, 0.75);
+    padding: 4%;
+    border-radius: 40px;
+    border-color: rgb(69, 69, 75);
+    border-width: 2px;
+    border-style: solid;
+    margin-top: -600px;
+    margin-bottom: 50px;
 }

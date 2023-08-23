@@ -1,19 +1,12 @@
-body, html {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.my-table {
-    width: 340px;
-    height: 280px;
-    background-color: #fff;
+.my-form {
+    width: 400px;
+    height: 320px;
+    background-color: rgba(240, 240, 240, 0.2);
     padding: 24px;
     border-radius: 24px;
     border-style: solid;
     border-width: 2px;
-    border-color: rgb(0, 196, 148);
-    background: #ffffff;
+    border-color: rgb(69, 69, 75);
     margin-top: -125px;
     display: flex;
     align-items: center;
@@ -39,43 +32,24 @@ body, html {
     padding: 0 16px;
 }
 
-.username-input {
-    height: 32px;
-    background: #fff;
-    border: 1px solid #d2daee;
-    border-radius: 8px;
-    padding: 0 16px;
-}
-
-.login-header {
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
 .my-container {
     width: 100%;
     height: 100%;
-    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(0, 196, 148);
-}
-
-.my-container-login {
-    margin-top: -75px;
+    min-height: 100vh;
+    background-image: url("../../../../assets/peakpx.jpg");
+    background-size: cover;
 }
 
 .image-login {
     border-radius: 50%;
-    width: 128px;
-    height: 128px;
+    width: 150px;
+    height: 150px;
     position: relative;
-    bottom: 80px;
-    left: 100px;
+    bottom: 75px;
+    left: 124px;
 }
 
 .login-title {
@@ -94,16 +68,7 @@ body, html {
     gap: 24px;
 }
 
-.login-btn,
-.register-btn {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
-    background-color: #f5efef;
-    color: black;
-    box-shadow: 0px 4px 8px #d2daee;
-    transition: ease-in 0.3s;
-    cursor: pointer;
-    width: 100%;
+.button {
+    box-shadow: 1px 1px 1px rgb(69, 69, 75);
 }
 

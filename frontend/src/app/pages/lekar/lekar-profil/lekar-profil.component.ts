@@ -30,7 +30,7 @@ export class LekarProfilComponent implements OnInit {
 
         this.userType = localStorage.getItem('userType');
 
-        this.idLekara = this.userType == 'pacijent' ? this.activatedRoute.snapshot.paramMap.get('idLekara') : localStorage.getItem('_id');
+        this.idLekara = this.userType != 'lekar' ? this.activatedRoute.snapshot.paramMap.get('idLekara') : localStorage.getItem('_id');
             
         this.formInput = {
             pregled: null,

@@ -1,50 +1,57 @@
 <div *ngIf="showComponent">
-    <form #userEditForm="ngForm">
-        <div>
-            <label>KorisnickoIme</label>
-            <input type="text" [(ngModel)]="formInput.korisnickoIme" name="korisnickoIme">
+    <div class="row temp">
+        <div class="col">
+            <form #userEditForm="ngForm" class="form-control form">
+                <div class="">
+                    <label class="form-label">Korisnicko ime</label>
+                    <input class="form-control form-input" type="text" [(ngModel)]="formInput.korisnickoIme" name="korisnickoIme">
+                </div>
+                <div>
+                    <label class="form-label">Lozinka</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.lozinka" name="lozinka">
+                </div>
+                <div>
+                    <label class="form-label">Ime</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.ime" name="ime">
+                </div>
+                <div>
+                    <label class="form-label">Prezime</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.prezime" name="prezime">
+                </div>
+                <div>
+                    <label class="form-label">Adresa</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.adresa" name="adresa">
+                </div>
+                <div>
+                    <label class="form-label">Kontakt Telefon</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.kontaktTelefon" name="kontaktTelefon">
+                </div>
+                <div>
+                    <label class="form-label">Email</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.email" name="email">
+                </div>
+                <div *ngIf="userType == 'lekar'">
+                    <div>
+                        <label>Broj licence</label>
+                        <input class="form-control" type="text" [(ngModel)]="lekarFormInput.brojLicence" name="brojLicence">
+                    </div>
+                    <div>
+                        <label>Specijalizacija</label>
+                        <input class="form-control" type="text" [(ngModel)]="lekarFormInput.specijalizacija" name="specijalizacija">
+                    </div>
+                    <div>
+                        <label>Ogranak ordinacije</label>
+                        <input class="form-control" type="text" [(ngModel)]="lekarFormInput.ogranakOrdinacije" name="ogranakOrdinacije">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <button class="btn button" (click)="saveChanges(userEditForm)">Sacuvaj</button>
+                    <button class="btn button" (click)="discardChanges()">Odbaci</button>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Lozinka</label>
-            <input type="text" [(ngModel)]="formInput.lozinka" name="lozinka">
+        <div class="col d-flex justify-content-center">
+            <img class="image" [src]="'http://localhost:4000/images/' + this.user.image">
         </div>
-        <div>
-            <label>Ime</label>
-            <input type="text" [(ngModel)]="formInput.ime" name="ime">
-        </div>
-        <div>
-            <label>Prezime</label>
-            <input type="text" [(ngModel)]="formInput.prezime" name="prezime">
-        </div>
-        <div>
-            <label>Adresa</label>
-            <input type="text" [(ngModel)]="formInput.adresa" name="adresa">
-        </div>
-        <div>
-            <label>Kontakt Telefon</label>
-            <input type="text" [(ngModel)]="formInput.kontaktTelefon" name="kontaktTelefon">
-        </div>
-        <div>
-            <label>Email</label>
-            <input type="text" [(ngModel)]="formInput.email" name="email">
-        </div>
-        <div *ngIf="userType == 'lekar'">
-            <div>
-                <label>Broj licence</label>
-                <input type="text" [(ngModel)]="lekarFormInput.brojLicence" name="brojLicence">
-            </div>
-            <div>
-                <label>Specijalizacija</label>
-                <input type="text" [(ngModel)]="lekarFormInput.specijalizacija" name="specijalizacija">
-            </div>
-            <div>
-                <label>Ogranak ordinacije</label>
-                <input type="text" [(ngModel)]="lekarFormInput.ogranakOrdinacije" name="ogranakOrdinacije">
-            </div>
-        </div>
-        <div>
-            <button (click)="saveChanges(userEditForm)">Sacuvaj</button>
-            <button (click)="discardChanges()">Odbaci</button>
-        </div>
-    </form>
+    </div>
 </div>

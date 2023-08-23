@@ -1,15 +1,27 @@
-<header>
-    <app-navbar></app-navbar>
-</header>
-<div>
-    <h2 class="d-flex justify-content-center">Zakazani pregledi: </h2>
-    <div class="container bg-info" *ngFor="let zakazaniPregled of zakazaniPreglediList">
-        <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
-        <p>Cena: {{zakazaniPregled.pregled['cena']}}</p>
-        <p>Datum: {{zakazaniPregled.datum}}</p>
-        <p>Vreme: {{zakazaniPregled.vreme}}</p>
-        <p>Trajanje: {{zakazaniPregled.trajanje}}</p>
-        <p>Lekar: {{zakazaniPregled.lekar['ime']}}, {{zakazaniPregled.lekar['prezime']}} </p>
-        <button (click)="deleteZakazaniPregled(zakazaniPregled._id)">Otkazi pregled</button>
+<main>
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="main-component container d-flex flex-column">
+        <div class="pregled-container">
+            <h1 class="d-flex justify-content-center header">Zakazani pregledi: </h1>
+            <div class="pregled-container-inner" *ngFor="let zakazaniPregled of zakazaniPreglediList">
+                <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
+                <p>Cena: {{zakazaniPregled.pregled['cena']}}</p>
+                <p>Datum: {{zakazaniPregled.datum}}</p>
+                <p>Vreme: {{zakazaniPregled.vreme}}</p>
+                <p>Trajanje: {{zakazaniPregled.trajanje}} minuta</p>
+                <p>Lekar: {{zakazaniPregled.lekar['ime']}} {{zakazaniPregled.lekar['prezime']}} </p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn button" (click)="deleteZakazaniPregled(zakazaniPregled._id)">Otkazi pregled</button>
+                </div>
+            </div>
+            <div *ngIf="zakazaniPreglediList?.length == 0">
+                <h4>Nema zakazanih pregleda</h4>
+            </div>
+        </div>
     </div>
-</div>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</main>

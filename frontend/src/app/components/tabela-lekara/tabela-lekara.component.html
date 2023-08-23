@@ -1,45 +1,42 @@
-<div class="d-flex">
-    <table class="table table-hover thead-dark table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th (click)="sortRow(0)">Ime</th>
-                <th (click)="sortRow(1)">Prezime</th>
-                <th (click)="sortRow(2)">Specijalizacija</th>
-                <th (click)="sortRow(3)" [hidden]="router.url != '/pacijent/lekari'">Ogranak</th>
-                <th>Slika</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let lekar of lekarList;" [routerLink]="['/lekar/profil', { idLekara: lekar._id }]">
-                <td>{{lekar?.ime}}</td>
-                <td>{{lekar?.prezime}}</td>
-                <td>{{lekar?.specijalizacija}}</td>
-                <td [hidden]="router.url != '/pacijent/lekari'">{{lekar?.ogranakOrdinacije}}</td>
-                <td><img class="image" src="http://localhost:4000/images/{{lekar.image}}"></td>
-            </tr>
-        </tbody>
-    </table>
-    <form class="form-control">
-        <h4>Pretrazi:</h4>
-        <div>
-            <label class="form-label">Ime:</label>
-            <input class="form-control" type="text" name="ime" [(ngModel)]="formInput.ime">
-        </div>
-        <div>
-            <label class="form-label">Prezime:</label>
-            <input class="form-control" type="text" name="prezime" [(ngModel)]="formInput.prezime">
-        </div>
-        <div>
-            <label class="form-label">Specijalizacija:</label>
-            <input class="form-control" type="text" name="specijalizacija" [(ngModel)]="formInput.specijalizacija">
-        </div>
-        <div *ngIf="router.url == '/pacijent/lekari'">
-            <label class="form-label">Ogranak:</label>
-            <input class="form-control" type="text" name="ogranak" [(ngModel)]="formInput.ogranak">
-        </div>
-        <hr>
-        <div>
-            <button class="btn btn-dark" (click)="search()">Pretraga</button>
-        </div>
-    </form>
-</div>
+<table class="table table-hover table-striped table-border overflow-scroll">
+    <thead>
+        <tr>
+            <th class="table-th text-center" (click)="sortRow(0)">Ime</th>
+            <th class="table-th text-center" (click)="sortRow(1)">Prezime</th>
+            <th class="table-th text-center" (click)="sortRow(2)">Specijalizacija</th>
+            <th class="table-th text-center" (click)="sortRow(3)" [hidden]="router.url != '/pacijent/lekari'">Ogranak</th>
+            <th class="table-th text-center" >Slika</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lekar of lekarList;" [routerLink]="['/lekar/profil', { idLekara: lekar._id }]">
+            <td class="text-center align-middle">{{lekar?.ime}}</td>
+            <td class="text-center align-middle">{{lekar?.prezime}}</td>
+            <td class="text-center align-middle">{{lekar?.specijalizacija}}</td>
+            <td class="text-center align-middle" [hidden]="router.url != '/pacijent/lekari'">{{lekar?.ogranakOrdinacije}}</td>
+            <td class="text-center align-middle"><img class="image" src="http://localhost:4000/images/{{lekar.image}}"></td>
+        </tr>
+    </tbody>
+</table>
+<form class="form-control">
+    <h4 class="title">Pretraga lekara:</h4>
+    <div>
+        <label class="form-label">Ime:</label>
+        <input class="form-control" type="text" name="ime" [(ngModel)]="formInput.ime">
+    </div>
+    <div>
+        <label class="form-label">Prezime:</label>
+        <input class="form-control" type="text" name="prezime" [(ngModel)]="formInput.prezime">
+    </div>
+    <div>
+        <label class="form-label">Specijalizacija:</label>
+        <input class="form-control" type="text" name="specijalizacija" [(ngModel)]="formInput.specijalizacija">
+    </div>
+    <div *ngIf="router.url == '/pacijent/lekari'">
+        <label class="form-label">Ogranak:</label>
+        <input class="form-control" type="text" name="ogranak" [(ngModel)]="formInput.ogranak">
+    </div>
+    <div>
+        <button class="btn button" (click)="search()">Pretraga</button>
+    </div>
+</form>

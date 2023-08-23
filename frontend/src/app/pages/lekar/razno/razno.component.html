@@ -1,26 +1,33 @@
-<header>
-    <app-navbar></app-navbar>
-</header>
 <main>
-    <form class="form-control" #pregledForm="ngForm">
-        <h4>Dodaj novi pregled:</h4>
-        <div>
-            <p>Naziv:</p>
-            <input type="text" [(ngModel)]="formInput.naziv" name="nazivForm">
-        </div><br>
-        <div>
-            <p>Trajanje:</p>
-            <input type="text" [(ngModel)]="formInput.trajanje" name="trajanjeForm">
-        </div><br>
-        <div>
-            <p>Cena:</p>
-            <input type="text" [(ngModel)]="formInput.cena" name="cenaForm">
-        </div><br>
-        <div>
-            <p>Specijalizacija:</p>
-            <input type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacijaForm">
-        </div><br>
-        <button (click)="addNewPregled(pregledForm)">Dodaj</button>
-    </form>
-    {{errorMessage}}
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="main-component d-flex justify-content-center align-items-center">
+        <div class="my-container">
+            <h1 class="header">Dodaj novi pregled:</h1>
+            <form class="form-control form" #pregledForm="ngForm">
+                <div>
+                    <label class="form-label">Naziv:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.naziv" name="nazivForm">
+                </div><br>
+                <div>
+                    <label class="form-label">Trajanje:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.trajanje" name="trajanjeForm">
+                </div><br>
+                <div>
+                    <label class="form-label">Cena:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.cena" name="cenaForm">
+                </div><br>
+                <div>
+                    <label class="form-label">Specijalizacija:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacijaForm">
+                </div><br>
+                <button class="btn button" (click)="addNewPregled(pregledForm)">Dodaj pregled</button>
+            </form>
+            {{errorMessage}}
+        </div>
+    </div>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
 </main>

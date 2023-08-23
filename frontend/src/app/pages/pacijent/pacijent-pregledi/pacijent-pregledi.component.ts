@@ -29,7 +29,7 @@ export class PacijentPreglediComponent implements OnInit {
                     return pregled1.datum > pregled2.datum ? 1 : -1;
                 }
             });
-
+            
         });
     }
 

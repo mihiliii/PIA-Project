@@ -1,11 +1,28 @@
-<header>
-    <app-navbar></app-navbar>
-</header>
-<div *ngIf="pacijentInfo != null">
-    <img class="image" [src]="'http://localhost:4000/images/' + this.pacijentInfo.image">
-    <p>{{pacijentInfo.ime}}</p>
-    <p>{{pacijentInfo.prezime}}</p>
-    <p>{{pacijentInfo.adresa}}</p>
-    <p>{{pacijentInfo.email}}</p>
-    <p>{{pacijentInfo.kontaktTelefon}}</p>
-</div>
+<main>
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="main-component d-flex align-items-center justify-content-center">
+        <div class="container my-container">
+            <div class="row" *ngIf="pacijentInfo != null && showUserEdit === false">
+                <div class="col image-container">
+                    <img class="image" [src]="'http://localhost:4000/images/' + this.pacijentInfo.image">
+                </div>
+                <div class="col info-container">
+                    <p>Ime: {{pacijentInfo.ime}}</p>
+                    <p>Prezime: {{pacijentInfo.prezime}}</p>
+                    <p>Adresa: {{pacijentInfo.adresa}}</p>
+                    <p>Email: {{pacijentInfo.email}}</p>
+                    <p>Telefon: {{pacijentInfo.kontaktTelefon}}</p>
+                    <button class="btn button" (click)="openUserEditComponent(pacijentInfo, 'pacijent')">Azuriraj</button>
+                </div>
+            </div>
+            <div>
+                <app-user-edit (parentNgOnInit)="populatePacijentProfilComponent($event)"></app-user-edit>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</main>

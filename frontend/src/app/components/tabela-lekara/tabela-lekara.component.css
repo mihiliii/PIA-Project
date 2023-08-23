@@ -1,9 +1,28 @@
 .image {
-    max-width: 100px;
-    max-height: 100px;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border: 0.1px dashed rgb(69, 69, 75);
 }
 
-.my-border {
-    border-width: 2px;
-    border-style: dotted;
+.table-th {
+    background-color: rgb(69, 69, 75);
+    color: white;
+}
+
+.table-td {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}
+
+.title {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 15px;
 }

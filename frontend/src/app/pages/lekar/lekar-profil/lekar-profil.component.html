@@ -1,51 +1,65 @@
-<header>
-    <app-navbar></app-navbar>
-</header>
-<div *ngIf="lekar != null">
-    <img class="image" [src]="'http://localhost:4000/images/' + this.lekar.image">
-    <p>{{lekar.ime}}</p>
-    <p>{{lekar.prezime}}</p>
-    <p>{{lekar.adresa}}</p>
-    <p>{{lekar.email}}</p>
-    <p>{{lekar.kontaktTelefon}}</p>
-    <p>{{lekar.brojLicence}}</p>
-    <p>{{lekar.specijalizacija}}</p>
-    <p>{{lekar.ogranakOrdinacije}}</p>
-</div>
-<div *ngIf="userType == 'lekar'">
-    <table>
-        <tr>
-            <th>Naziv:</th>
-            <th>Trajanje:</th>
-            <th>Cena:</th>
-            <th>Specijalizacija:</th>
-            <th>Checkbox:</th>
-        </tr>
-        <tr *ngFor="let pregled of preglediIsteSpecijalizacije">
-            <td>{{pregled.naziv}}</td>
-            <td>{{pregled.trajanje}}</td>
-            <td>{{pregled.cena}}</td>
-            <td>{{pregled.specijalizacija}}</td>
-            <td><input type="checkbox" [(ngModel)]="pregled.checkbox"></td>
-        </tr>
-    </table>
-    <button (click)="updateLekarPregled()">Azuriraj preglede</button>
-</div>
-<form class="form-control" *ngIf="userType == 'pacijent'">
-    <div>
-        <label>Pregled:</label>
-        <select [(ngModel)]="formInput.pregled" name="pregledForm">
-            <option *ngFor="let pregled of lekar?.pregledi" [ngValue]="pregled">{{pregled.naziv}}</option>
-        </select>
-    </div><br>
-    <div>
-        <label>Datum:</label>
-        <input type="date" [(ngModel)]="formInput.datum" name="datumForm">
-    </div><br>
-    <div>
-        <label>Vreme:</label>
-        <input type="time" [(ngModel)]="formInput.vreme" name="vremeForm">
-    </div><br>
-    <button (click)="addNewZakazaniPregledByPacijent()">Zakazi Pregled</button>
-</form>
-{{zakaziPregledMessage}}
+<main>  
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="main-component d-flex justify-content-center align-items-center">
+        <div class="my-container">
+            <div class="row">
+                <div *ngIf="lekar != null" class="col">
+                    <p>Ime: {{lekar.ime}}</p>
+                    <p>Prezime: {{lekar.prezime}}</p>
+                    <p>Adresa: {{lekar.adresa}}</p>
+                    <p>Email: {{lekar.email}}</p>
+                    <p>Kontakt: {{lekar.kontaktTelefon}}</p>
+                    <p>Broj licence: {{lekar.brojLicence}}</p>
+                    <p>Specijalizacija: {{lekar.specijalizacija}}</p>
+                    <p>Ogranak ordinacije: {{lekar.ogranakOrdinacije}}</p>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <img class="image" [src]="'http://localhost:4000/images/' + this.lekar.image">
+                </div>
+                <form class="col form-control" *ngIf="userType == 'pacijent'">
+                    <div>
+                        <label>Pregled:</label>
+                        <select [(ngModel)]="formInput.pregled" name="pregledForm">
+                            <option *ngFor="let pregled of lekar?.pregledi" [ngValue]="pregled">{{pregled.naziv}}</option>
+                        </select>
+                    </div><br>
+                    <div>
+                        <label>Datum:</label>
+                        <input type="date" [(ngModel)]="formInput.datum" name="datumForm">
+                    </div><br>
+                    <div>
+                        <label>Vreme:</label>
+                        <input type="time" [(ngModel)]="formInput.vreme" name="vremeForm">
+                    </div><br>
+                    <button class="btn button" (click)="addNewZakazaniPregledByPacijent()">Zakazi Pregled</button>
+                    {{zakaziPregledMessage}}
+                </form>
+            </div>
+            <table class="table table-bordered my-table">
+                <thead>
+                    <tr>
+                        <th class="table-th text-center">Naziv</th>
+                        <th class="table-th text-center">Trajanje</th>
+                        <th class="table-th text-center">Cena</th>
+                        <th class="table-th text-center">Drzi pregled</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let pregled of preglediIsteSpecijalizacije">
+                    <td class="text-center"><label class="table-text">{{pregled.naziv}}</label></td>
+                    <td class="text-center"><label class="table-text">{{pregled.trajanje}}</label></td>
+                    <td class="text-center"><label class="table-text">{{pregled.cena}}</label></td>
+                    <td class="text-center"><input type="checkbox" [(ngModel)]="pregled.checkbox"></td>
+                </tr>
+            </table>
+            <div class="col d-flex justify-content-center align-items-center flex-column" *ngIf="userType == 'lekar'">
+                <button (click)="updateLekarPregled()">Azuriraj preglede</button>
+            </div>
+        </div>
+        
+    </div>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</main>

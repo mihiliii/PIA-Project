@@ -1,0 +1,19 @@
+.form-label {
+    font-size: 24px;
+}
+
+.form {
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+}
+
+.image {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}
