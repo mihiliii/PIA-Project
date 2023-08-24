@@ -98,6 +98,22 @@ export class RegisterComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (event: any) => {
             this.selectedImageURL = event.target.result;
+
+            let image = new Image();
+            image.src = this.selectedImageURL;
+
+            image.onload = () => {
+                if (image.height < 100 || image.width < 100 || image.height > 300 || image.width > 300) {
+                    this.errorArray.push('Error: slika mora imati dimenzije izmedju 100x100 i 300x300');
+                    this.selectedImageFormInput = null;
+                    this.selectedImageURL = '';
+                }
+                else {
+                    this.errorArray = this.errorArray.filter((error) => {
+                        error != 'Error: slika mora imati dimenzije izmedju 100x100 i 300x300';
+                    });
+                }
+            };
         };
         reader.readAsDataURL(this.selectedImageFormInput);
     }

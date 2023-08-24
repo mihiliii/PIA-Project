@@ -1,64 +1,68 @@
-<div class="my-container">
-    <div class="my-form-container">
-        <form class="form-control my-form" #registerForm="ngForm" (submit)="register(registerForm)">
-            <div class="d-flex justify-content-center">
-                <h2>Registracija</h2>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Korisnicko ime:</label>
-                <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" 
-                name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerFormInput.korisnickoIme" required>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Lozinka:</label>
-                <input type="password" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Lozinka" 
-                name="lozinka" #lozinka="ngModel" [(ngModel)]="registerFormInput.lozinka" required>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Ponoviti lozinku:</label>
-                <input type="password" class="form-control" placeholder="Lozinka" [class.submitted]="registerForm.submitted" 
-                name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerFormInput.ponovljenaLozinka" required>
-            </div>
-            <div class="row">
-                <div class="form-component col">
-                    <label class="my-form-label">Ime:</label>
-                    <input type="text" class="form-control" placeholder="Ime" [class.submitted]="registerForm.submitted" 
-                    name="ime" #ime="ngModel" [(ngModel)]="registerFormInput.ime" required>
+<main>
+    <div class="my-container">
+        <div class="my-form-container">
+            <form class="form-control my-form" #registerForm="ngForm" (submit)="register(registerForm)">
+                <div class="d-flex justify-content-center">
+                    <h2>Registracija</h2>
                 </div>
-                <div class="form-component col">
-                    <label class="my-form-label">Prezime:</label>
-                    <input type="text" class="form-control" placeholder="Prezime" [class.submitted]="registerForm.submitted" 
-                    name="prezime" #prezime="ngModel" [(ngModel)]="registerFormInput.prezime" required>
+                <div class="form-component">
+                    <label class="my-form-label">Korisnicko ime:</label>
+                    <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" 
+                    name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerFormInput.korisnickoIme" required>
                 </div>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Adresa:</label>
-                <input type="text" class="form-control" placeholder="Adresa" [class.submitted]="registerForm.submitted" 
-                name="adresa" #adresa="ngModel" [(ngModel)]="registerFormInput.adresa" required>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Kontakt telefon:</label>
-                <input type="text" class="form-control" placeholder="+3816********" [class.submitted]="registerForm.submitted" 
-                name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerFormInput.kontaktTelefon" required>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Email adresa:</label>
-                <input type="text" class="form-control" placeholder="name@example.com" [class.submitted]="registerForm.submitted" 
-                name="email" #email="ngModel" [(ngModel)]="registerFormInput.email" required>
-            </div>
-            <label class="my-form-label">Uneti profilnu sliku:</label>
-            <div  class="form-control">
-                <input class="my-input-file" type="file" name="slika" accept=".png, .jpg, .jpeg" (input)="fileInput($event)">
-            </div>
-            <div class="d-flex justify-content-center form-control" *ngIf="selectedImageFormInput !== null">
-                <img class="image" [src]="selectedImageURL">
-            </div>
-            <div *ngIf="errorArray.length != 0" class="alert alert-danger my-alert">
-                <p *ngFor="let message of errorArray">{{message}}</p>
-            </div>
-            <div class="mb-2 mt-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-light button">Registruj se</button>
-            </div>
-        </form>
-    </div> 
-</div>
+                <div class="form-component">
+                    <label class="my-form-label">Lozinka:</label>
+                    <input type="password" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Lozinka" 
+                    name="lozinka" #lozinka="ngModel" [(ngModel)]="registerFormInput.lozinka" required>
+                </div>
+                <div class="form-component">
+                    <label class="my-form-label">Ponoviti lozinku:</label>
+                    <input type="password" class="form-control" placeholder="Lozinka" [class.submitted]="registerForm.submitted" 
+                    name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerFormInput.ponovljenaLozinka" required>
+                </div>
+                <div class="row">
+                    <div class="form-component col">
+                        <label class="my-form-label">Ime:</label>
+                        <input type="text" class="form-control" placeholder="Ime" [class.submitted]="registerForm.submitted" 
+                        name="ime" #ime="ngModel" [(ngModel)]="registerFormInput.ime" required>
+                    </div>
+                    <div class="form-component col">
+                        <label class="my-form-label">Prezime:</label>
+                        <input type="text" class="form-control" placeholder="Prezime" [class.submitted]="registerForm.submitted" 
+                        name="prezime" #prezime="ngModel" [(ngModel)]="registerFormInput.prezime" required>
+                    </div>
+                </div>
+                <div class="form-component">
+                    <label class="my-form-label">Adresa:</label>
+                    <input type="text" class="form-control" placeholder="Adresa" [class.submitted]="registerForm.submitted" 
+                    name="adresa" #adresa="ngModel" [(ngModel)]="registerFormInput.adresa" required>
+                </div>
+                <div class="form-component">
+                    <label class="my-form-label">Kontakt telefon:</label>
+                    <input type="text" class="form-control" placeholder="+3816********" [class.submitted]="registerForm.submitted" 
+                    name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerFormInput.kontaktTelefon" required>
+                </div>
+                <div class="form-component">
+                    <label class="my-form-label">Email adresa:</label>
+                    <input type="text" class="form-control" placeholder="name@example.com" [class.submitted]="registerForm.submitted" 
+                    name="email" #email="ngModel" [(ngModel)]="registerFormInput.email" required>
+                </div>
+                <label class="my-form-label">Uneti profilnu sliku:</label>
+                <div  class="form-control">
+                    <input class="my-input-file" type="file" name="slika" accept=".png, .jpg, .jpeg" (input)="fileInput($event)">
+                </div>
+                <div class="d-flex justify-content-center image-container">
+                    <div class="form-image-input" *ngIf="selectedImageFormInput !== null">
+                        <img class="image" [src]="selectedImageURL">
+                    </div>
+                </div>
+                <div *ngIf="errorArray.length != 0" class="alert alert-danger my-alert">
+                    <p *ngFor="let message of errorArray">{{message}}</p>
+                </div>
+                <div class="mb-2 mt-4 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-light button">Registruj se</button>
+                </div>
+            </form>
+        </div> 
+    </div>
+</main>
