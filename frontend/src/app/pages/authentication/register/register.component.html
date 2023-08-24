@@ -6,52 +6,45 @@
             </div>
             <div class="form-component">
                 <label class="my-form-label">Korisnicko ime:</label>
-                <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerFormInput.korisnickoIme" required>
-                <div [hidden]="(korisnickoIme.pristine && !registerForm.submitted) || errorArray.length === 0" class="alert alert-danger my-alert">
-                    <label *ngIf="korisnickoIme.invalid">Polje mora biti popunjeno!</label>
-                    <label *ngIf="errorArray.includes('Error: korisnickoIme already exists!')">Korisnicko ime vec postoji!</label>
-                </div>
+                <input type="text" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Korisnicko ime" 
+                name="korisnickoIme" #korisnickoIme="ngModel" [(ngModel)]="registerFormInput.korisnickoIme" required>
             </div>
             <div class="form-component">
                 <label class="my-form-label">Lozinka:</label>
-                <input type="password" class="form-control" placeholder="Lozinka" name="lozinka" #lozinka="ngModel" [(ngModel)]="registerFormInput.lozinka" required>
-                <div [hidden]="lozinka.valid || (lozinka.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
+                <input type="password" class="form-control" [class.submitted]="registerForm.submitted" placeholder="Lozinka" 
+                name="lozinka" #lozinka="ngModel" [(ngModel)]="registerFormInput.lozinka" required>
             </div>
             <div class="form-component">
                 <label class="my-form-label">Ponoviti lozinku:</label>
-                <input type="password" class="form-control" placeholder="Lozinka" name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerFormInput.ponovljenaLozinka" required>
-                <div [hidden]="(ponovljenaLozinka.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">
-                    <label *ngIf="ponovljenaLozinka.invalid">Polje mora biti popunjeno!</label>
-                    <label *ngIf="registerFormInput.lozinka != registerFormInput.ponovljenaLozinka">Lozinke se ne podudaraju</label>
+                <input type="password" class="form-control" placeholder="Lozinka" [class.submitted]="registerForm.submitted" 
+                name="ponovljenaLozinka" #ponovljenaLozinka="ngModel" [(ngModel)]="registerFormInput.ponovljenaLozinka" required>
+            </div>
+            <div class="row">
+                <div class="form-component col">
+                    <label class="my-form-label">Ime:</label>
+                    <input type="text" class="form-control" placeholder="Ime" [class.submitted]="registerForm.submitted" 
+                    name="ime" #ime="ngModel" [(ngModel)]="registerFormInput.ime" required>
                 </div>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Ime:</label>
-                <input type="text" class="form-control" placeholder="Ime" name="ime" #ime="ngModel" [(ngModel)]="registerFormInput.ime" required>
-                <div [hidden]="ime.valid || (ime.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
-            </div>
-            <div class="form-component">
-                <label class="my-form-label">Prezime:</label>
-                <input type="text" class="form-control" placeholder="Prezime" name="prezime" #prezime="ngModel" [(ngModel)]="registerFormInput.prezime" required>
-                <div [hidden]="prezime.valid || (prezime.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
+                <div class="form-component col">
+                    <label class="my-form-label">Prezime:</label>
+                    <input type="text" class="form-control" placeholder="Prezime" [class.submitted]="registerForm.submitted" 
+                    name="prezime" #prezime="ngModel" [(ngModel)]="registerFormInput.prezime" required>
+                </div>
             </div>
             <div class="form-component">
                 <label class="my-form-label">Adresa:</label>
-                <input type="text" class="form-control" placeholder="Adresa" name="adresa" #adresa="ngModel" [(ngModel)]="registerFormInput.adresa" required>
-                <div [hidden]="adresa.valid || (adresa.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
+                <input type="text" class="form-control" placeholder="Adresa" [class.submitted]="registerForm.submitted" 
+                name="adresa" #adresa="ngModel" [(ngModel)]="registerFormInput.adresa" required>
             </div>
             <div class="form-component">
                 <label class="my-form-label">Kontakt telefon:</label>
-                <input type="text" class="form-control" placeholder="+3816********" name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerFormInput.kontaktTelefon" required>
-                <div [hidden]="kontaktTelefon.valid || (kontaktTelefon.pristine && !registerForm.submitted)" class="alert alert-danger my-alert">Polje mora biti popunjeno!</div>
+                <input type="text" class="form-control" placeholder="+3816********" [class.submitted]="registerForm.submitted" 
+                name="kontaktTelefon" #kontaktTelefon="ngModel" [(ngModel)]="registerFormInput.kontaktTelefon" required>
             </div>
             <div class="form-component">
                 <label class="my-form-label">Email adresa:</label>
-                <input type="text" class="form-control" placeholder="name@example.com" name="email" #email="ngModel" [(ngModel)]="registerFormInput.email" required>
-                <div [hidden]="(email.pristine && !registerForm.submitted) || errorArray.length === 0" class="alert alert-danger my-alert">
-                    <label *ngIf="email.invalid">Polje mora biti popunjeno!</label>
-                    <label *ngIf="errorArray.includes('Error: email already exists!')">Email vec postoji</label>
-                </div>
+                <input type="text" class="form-control" placeholder="name@example.com" [class.submitted]="registerForm.submitted" 
+                name="email" #email="ngModel" [(ngModel)]="registerFormInput.email" required>
             </div>
             <label class="my-form-label">Uneti profilnu sliku:</label>
             <div  class="form-control">
@@ -59,6 +52,9 @@
             </div>
             <div class="d-flex justify-content-center form-control" *ngIf="selectedImageFormInput !== null">
                 <img class="image" [src]="selectedImageURL">
+            </div>
+            <div *ngIf="errorArray.length != 0" class="alert alert-danger my-alert">
+                <p *ngFor="let message of errorArray">{{message}}</p>
             </div>
             <div class="mb-2 mt-4 d-flex justify-content-end">
                 <button type="submit" class="btn btn-light button">Registruj se</button>

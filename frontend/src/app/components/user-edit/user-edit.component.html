@@ -6,10 +6,10 @@
                     <label class="form-label">Korisnicko ime</label>
                     <input class="form-control form-input" type="text" [(ngModel)]="formInput.korisnickoIme" name="korisnickoIme">
                 </div>
-                <div>
+                <!-- <div *ngIf="userType == 'menadzer'">
                     <label class="form-label">Lozinka</label>
                     <input class="form-control" type="text" [(ngModel)]="formInput.lozinka" name="lozinka">
-                </div>
+                </div> -->
                 <div>
                     <label class="form-label">Ime</label>
                     <input class="form-control" type="text" [(ngModel)]="formInput.ime" name="ime">
@@ -50,8 +50,13 @@
                 </div>
             </form>
         </div>
-        <div class="col d-flex justify-content-center">
-            <img class="image" [src]="'http://localhost:4000/images/' + this.user.image">
+        <div class="col d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-center">
+                <img class="image" [src]="'http://localhost:4000/images/' + this.user.image">
+            </div>
+            <div class="alert alert-danger my-alert" *ngIf="errorMessage != ''">
+                <h6>{{errorMessage}}</h6>
+            </div>
         </div>
     </div>
 </div>

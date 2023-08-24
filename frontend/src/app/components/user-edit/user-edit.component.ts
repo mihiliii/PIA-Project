@@ -16,7 +16,6 @@ export class UserEditComponent implements OnInit {
     userType: string;
     formInput: {
         korisnickoIme: string;
-        lozinka: string;
         ime: string;
         prezime: string;
         adresa: string;
@@ -30,6 +29,7 @@ export class UserEditComponent implements OnInit {
         ogranakOrdinacije: string;
     }
     showComponent = false;
+    errorMessage: string;
     @Output() parentNgOnInit: EventEmitter<any> = new EventEmitter();
     // selectedImageFormInput: File;
     // selectedImageURL: string;
@@ -44,9 +44,9 @@ export class UserEditComponent implements OnInit {
         this.user = user;
         this.userType = userType;
         this.showComponent = true;
+        this.errorMessage = '';
         this.formInput = {
             korisnickoIme: this.user.korisnickoIme,
-            lozinka: this.user.lozinka,
             ime: this.user.ime,
             prezime: this.user.prezime,
             adresa: this.user.adresa,
@@ -79,7 +79,6 @@ export class UserEditComponent implements OnInit {
                 userType: 'pacijent',
                 _id: this.user._id,
                 korisnickoIme: this.formInput.korisnickoIme,
-                lozinka: this.formInput.lozinka,
                 ime: this.formInput.ime,
                 prezime: this.formInput.prezime,
                 adresa: this.formInput.adresa,
@@ -92,7 +91,6 @@ export class UserEditComponent implements OnInit {
                 userType: 'lekar',
                 _id: this.user._id,
                 korisnickoIme: this.formInput.korisnickoIme,
-                lozinka: this.formInput.lozinka,
                 ime: this.formInput.ime,
                 prezime: this.formInput.prezime,
                 adresa: this.formInput.adresa,
@@ -107,8 +105,12 @@ export class UserEditComponent implements OnInit {
         this.menadzerService.updateUser(user).subscribe((response) => {
             
             console.log(response['message']);
-            this.parentNgOnInit.emit({showUserEdit: false});
-            this.discardChanges();
+            if (response['message'] != 'success') {
+                this.errorMessage = response['message'];
+            }
+            else {
+                this.discardChanges();
+            }
             // if (response['message'] == 'success') {
             //     // if (this.selectedImageFormInput !== null) {
             //     //     let formData = new FormData();

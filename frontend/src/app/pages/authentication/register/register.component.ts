@@ -44,9 +44,21 @@ export class RegisterComponent implements OnInit {
     }
 
     register(form: NgForm) {
-        
-        if (form.invalid || this.registerFormInput.lozinka != this.registerFormInput.ponovljenaLozinka)
+        this.errorArray = [];
+        let regex = /^(?!.*(.)\1)(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!_])[A-Za-z].{7,13}$/;
+
+        if (form.invalid){
+            this.errorArray.push('Error: popunite sva polja prilikom registracije.');
+        }
+        if (this.registerFormInput.lozinka != this.registerFormInput.ponovljenaLozinka) {
+            this.errorArray.push('Error: lozinke moraju da se podudaraju.');
+        }
+        if (!this.registerFormInput.lozinka.match(regex)) {
+            this.errorArray.push('Error: lozinka ne ispunjava navedeni uslov.');
+        }
+        if (this.errorArray.length != 0) {
             return;
+        }
         
         let pacijent = {
             korisnickoIme: this.registerFormInput.korisnickoIme,
@@ -60,8 +72,8 @@ export class RegisterComponent implements OnInit {
 
         this.authenticationService.registerPacijent(pacijent).subscribe((response) => {
             
-            console.log(response['message']);
             if (response['message'] == 'success') {
+
                 if (this.selectedImageFormInput !== null) {
                     let formData = new FormData();
                     formData.set('korisnickoIme', pacijent.korisnickoIme);

@@ -72,3 +72,8 @@
     box-shadow: 1px 1px 1px rgb(69, 69, 75);
 }
 
+.my-alert {
+    margin: 0px;
+    margin-top: 4px;
+    padding: 6px;
+}

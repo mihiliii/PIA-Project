@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     login() {
 
         if (this.username == '' || this.password == '') {
-            this.errorMessage = 'Error: popunite sva polja';
+            this.errorMessage = 'Error: popunite sva polja prilikom prijave.';
             return;
         }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(loginData).subscribe((user: any) => {
             
             if (user == null) {
-                this.errorMessage = 'Error: pogresno korisnicko ime ili lozinka';
+                this.errorMessage = 'Error: pogresno korisnicko ime ili lozinka.';
             }
             else {
                 localStorage.setItem('_id', user._id);

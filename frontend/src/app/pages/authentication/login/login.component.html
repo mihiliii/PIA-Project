@@ -11,6 +11,9 @@
                     <p class="form-label">Password:</p>
                     <input class="form-control" type="password" name="password" placeholder="Password" [(ngModel)]="password">
                 </div>
+                <div *ngIf="errorMessage != ''" class="alert alert-danger my-alert">
+                    <span>{{errorMessage}}</span>
+                </div>
                 <div>
                     <div class="register-login-container">
                         <button class="btn btn-light button" (click)="login()">Prijavi se</button>
@@ -21,4 +24,3 @@
         </div>
     </div>
 </div>
-{{errorMessage}}

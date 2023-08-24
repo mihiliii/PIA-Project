@@ -1,9 +1,9 @@
 <nav class="navbar my-navbar">
-    <div class="container justify-content-around" *ngIf="userType == 'pacijent'">
-        <a class="nav-link navbar-link" routerLink="/pacijent/profil">Profil</a>
-        <a class="nav-link navbar-link" routerLink="/pacijent/lekari">Lekari</a>
-        <a class="nav-link navbar-link" routerLink="/pacijent/pregledi">Pregledi</a>
-        <a class="nav-link navbar-link">Obavestenja</a>
+    <div class="container justify-content-end" *ngIf="userType == 'pacijent'">
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/profil'" routerLink="/pacijent/profil"><i class="gg-profile"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/lekari'" routerLink="/pacijent/lekari"><i class="gg-user-list"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/pregledi'" routerLink="/pacijent/pregledi"><i class="gg-calendar"></i></a>
+        <a class="nav-link navbar-link"><i class="gg-bell"></i></a>
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
     <div class="container justify-content-around" *ngIf="userType == 'lekar'">

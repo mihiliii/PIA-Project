@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
     userType: string;
 
-    constructor(private router: Router) { }
+    constructor(protected router: Router) { }
 
     ngOnInit(): void {
         this.userType = localStorage.getItem('userType');

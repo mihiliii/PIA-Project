@@ -13,8 +13,8 @@ export class MenadzerController {
 
             response.json(responseData);
         }
-        catch {
-            console.log("Error: getRegisterRequests()");
+        catch (err) {
+            console.log(err);
         }
     }
 
@@ -93,120 +93,137 @@ export class MenadzerController {
 
     async updateUser(request: express.Request, response: express.Response) {
 
-        if (request.body.userType == 'pacijent') {
+        try {
+            let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
+            let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
 
-            pacijentDB.findByIdAndUpdate(request.body._id, {
-                'korisnickoIme': request.body.korisnickoIme,
-                'lozinka': request.body.lozinka,
-                'ime': request.body.ime,
-                'prezime': request.body.prezime,
-                'adresa': request.body.adresa,
-                'kontaktTelefon': request.body.kontaktTelefon,
-                'email': request.body.email,
-            }, (err, oldPacijent) => {
-                if (err) console.log(err);
-                else if (oldPacijent != null) {
-                    
-                    if (oldPacijent.korisnickoIme != request.body.korisnickoIme && oldPacijent.image != 'default.jpg'){
-
-                        let filename = request.body.korisnickoIme + '.' + oldPacijent.image.split('.').pop();
-
-                        fs.rename('./images/' + oldPacijent.image, './images/' + filename, (err) => {
-                            if (err) {
-                                console.log('Error occured while trying to change file name');
-                            }
-                            else {
-                                
-                                pacijentDB.findByIdAndUpdate(request.body._id, {'image': filename}, (err) => {
-                                    if (err) console.log(err)
-                                    else response.json({'message': 'success'});
-                                });
-                            }
-                        });
+            if (pacijent != null || lekar != null) {
+                response.json(this.registerError(pacijent, request.body));
+                return;
+            }
+    
+            if (request.body.userType == 'pacijent') {
+    
+                pacijentDB.findByIdAndUpdate(request.body._id, {
+                    'korisnickoIme': request.body.korisnickoIme,
+                    'ime': request.body.ime,
+                    'prezime': request.body.prezime,
+                    'adresa': request.body.adresa,
+                    'kontaktTelefon': request.body.kontaktTelefon,
+                    'email': request.body.email,
+                }, (err, oldPacijent) => {
+                    if (err) console.log(err);
+                    else if (oldPacijent != null) {
+                        
+                        if (oldPacijent.korisnickoIme != request.body.korisnickoIme && oldPacijent.image != 'default.jpg'){
+    
+                            let filename = request.body.korisnickoIme + '.' + oldPacijent.image.split('.').pop();
+    
+                            fs.rename('./images/' + oldPacijent.image, './images/' + filename, (err) => {
+                                if (err) {
+                                    console.log('Error occured while trying to change file name');
+                                }
+                                else {
+                                    
+                                    pacijentDB.findByIdAndUpdate(request.body._id, {'image': filename}, (err) => {
+                                        if (err) console.log(err)
+                                        else response.json({'message': 'success'});
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            response.json({'message': 'success'});
+                        }
                     }
-                    else {
-                        response.json({'message': 'success'});
+                });
+    
+            }
+    
+            else if (request.body.userType == 'lekar') {
+    
+                lekarDB.findByIdAndUpdate(request.body._id, {
+                    'korisnickoIme': request.body.korisnickoIme,
+                    'ime': request.body.ime,
+                    'prezime': request.body.prezime,
+                    'adresa': request.body.adresa,
+                    'kontaktTelefon': request.body.kontaktTelefon,
+                    'email': request.body.email,
+                    'brojLicence': request.body.brojLicence,
+                    'specijalizacija': request.body.specijalizacija,
+                    'ogranakOrdinacije': request.body.ogranakOrdinacije
+                }, (err, oldLekar) => {
+                    if (err) console.log(err);
+                    else if (oldLekar != null) {
+                        
+                        if (oldLekar.korisnickoIme != request.body.korisnickoIme && oldLekar.image != 'default.jpg'){
+    
+                            let filename = request.body.korisnickoIme + '.' + oldLekar.image.split('.').pop();
+    
+                            fs.rename('./images/' + oldLekar.image, './images/' + filename, (err) => {
+                                if (err) {
+                                    console.log('Error occured while trying to change file name');
+                                }
+                                else {
+                                    
+                                    lekarDB.findByIdAndUpdate(request.body._id, {'image': filename}, (err) => {
+                                        if (err) console.log(err)
+                                        else response.json({'message': 'success'});
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            response.json({'message': 'success'});
+                        }
                     }
-                }
-            });
-
+                });
+            }
         }
-
-        else if (request.body.userType == 'lekar') {
-
-            lekarDB.findByIdAndUpdate(request.body._id, {
-                'korisnickoIme': request.body.korisnickoIme,
-                'lozinka': request.body.lozinka,
-                'ime': request.body.ime,
-                'prezime': request.body.prezime,
-                'adresa': request.body.adresa,
-                'kontaktTelefon': request.body.kontaktTelefon,
-                'email': request.body.email,
-                'brojLicence': request.body.brojLicence,
-                'specijalizacija': request.body.specijalizacija,
-                'ogranakOrdinacije': request.body.ogranakOrdinacije
-            }, (err, oldLekar) => {
-                if (err) console.log(err);
-                else if (oldLekar != null) {
-                    
-                    if (oldLekar.korisnickoIme != request.body.korisnickoIme && oldLekar.image != 'default.jpg'){
-
-                        let filename = request.body.korisnickoIme + '.' + oldLekar.image.split('.').pop();
-
-                        fs.rename('./images/' + oldLekar.image, './images/' + filename, (err) => {
-                            if (err) {
-                                console.log('Error occured while trying to change file name');
-                            }
-                            else {
-                                
-                                lekarDB.findByIdAndUpdate(request.body._id, {'image': filename}, (err) => {
-                                    if (err) console.log(err)
-                                    else response.json({'message': 'success'});
-                                });
-                            }
-                        });
-                    }
-                    else {
-                        response.json({'message': 'success'});
-                    }
-                }
-            });
+        catch (err) {
+            console.log(err);
         }
+        
     }
 
     async addNewLekar(request: express.Request, response: express.Response) {
 
-        let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
-        let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
-        
-        if (!pacijent && !lekar) {
-
-            lekarDB.create({
-                'korisnickoIme': request.body.korisnickoIme,
-                'lozinka': request.body.lozinka,
-                'ime': request.body.ime,
-                'prezime': request.body.prezime,
-                'adresa': request.body.adresa,
-                'kontaktTelefon': request.body.kontaktTelefon,
-                'email': request.body.email,
-                'brojLicence': request.body.brojLicence,
-                'specijalizacija': request.body.specijalizacija,
-                'ogranakOrdinacije': request.body.ogranakOrdinacije,
-                'image': 'default.jpg',
-                'pregledi': []
-            }, (err) => {
-                if (err) console.log(err);
-                else response.json({'message': 'success'});  
-            });
+        try {
+            let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
+            let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
+            
+            if (!pacijent && !lekar) {
+    
+                lekarDB.create({
+                    'korisnickoIme': request.body.korisnickoIme,
+                    'lozinka': request.body.lozinka,
+                    'ime': request.body.ime,
+                    'prezime': request.body.prezime,
+                    'adresa': request.body.adresa,
+                    'kontaktTelefon': request.body.kontaktTelefon,
+                    'email': request.body.email,
+                    'brojLicence': request.body.brojLicence,
+                    'specijalizacija': request.body.specijalizacija,
+                    'ogranakOrdinacije': request.body.ogranakOrdinacije,
+                    'image': 'default.jpg',
+                    'pregledi': []
+                }, (err) => {
+                    if (err) console.log(err);
+                    else response.json({'message': 'success'});  
+                });
+            }
+            else if (pacijent != null) response.json(this.registerError(pacijent, request.body));
+            else if (lekar != null) response.json(this.registerError(lekar, request.body));
         }
-        else if (pacijent != null) response.json(this.registerError(pacijent, request.body));
-        else if (lekar != null) response.json(this.registerError(lekar, request.body));
+        catch (err) {
+            console.log(err);
+        }
     }
     
     registerError(object1, object2) {
-        if (object1.korisnickoIme == object2.korisnickoIme) return {'message': 'Error: korisnickoIme already exists!'};
-        else if (object1.email == object2.email) return {'message': 'Error: email already exists!'};
-        else return {'message': 'Error: unknown'};
+        if (object1.korisnickoIme == object2.korisnickoIme) return {'message': 'Error: korisnicko ime vec postoji.'};
+        else if (object1.email == object2.email) return {'message': 'Error: email adresa vec postoji.'};
+        else return {'message': 'Error: nepoznata greska, pokusajte ponovo.'};
     }
 
     getAllPregledi(request, response) {
@@ -216,5 +233,39 @@ export class MenadzerController {
             else response.json(pregledi);
         })
     }
+
+    updateUserPassword(request, response) {
+        
+        if (request.body.userType == 'pacijent') {
+
+            pacijentDB.findById(request.body._id, (err, pacijent) => {
+                if (err) console.log(err);
+                else if (pacijent.lozinka == request.body.staraLozinka) {
+
+                    pacijentDB.findByIdAndUpdate(request.body._id, {'lozinka': request.body.novaLozinka}, (err, pacijent) => {
+                        if (err) console.log(err);
+                        else response.json({'message': 'success'});
+                    });
+                }
+                else response.json({'message': 'Error: stara lozinka se ne podudara.'});
+            });
+
+        }
+        else {
+
+            lekarDB.findById(request.body._id, (err, lekar) => {
+                if (err) console.log(err);
+                else if (lekar.lozinka == request.body.staraLozinka) {
+
+                    lekarDB.findByIdAndUpdate(request.body._id, {'lozinka': request.body.novaLozinka}, (err, lekar) => {
+                        if (err) console.log(err);
+                        else response.json({'message': 'success'});
+                    });
+                }
+                else response.json({'message': 'Error: stara lozinka se ne podudara.'});
+            });
+        }
+    }
+    
 
 }

@@ -92,9 +92,9 @@ export class AuthenticationController {
     }
 
     registerError(object1, object2) {
-        if (object1.korisnickoIme == object2.korisnickoIme) return {'message': 'Error: korisnickoIme already exists!'};
-        else if (object1.email == object2.email) return {'message': 'Error: email already exists!'};
-        else return {'message': 'Error: unknown'};
+        if (object1.korisnickoIme == object2.korisnickoIme) return {'message': 'Error: korisnicko ime vec postoji.'};
+        else if (object1.email == object2.email) return {'message': 'Error: email adresa vec postoji.'};
+        else return {'message': 'Error: nepoznata greska, pokusajte ponovo.'};
     }
 
 }

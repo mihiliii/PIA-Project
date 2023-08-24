@@ -6,8 +6,24 @@
 .button {
     box-shadow: 1px 1px 1px rgb(69, 69, 75);
     padding: 4px 8px;
+    margin-left: 60px;
 }
 
 .navbar-link {
     color: white;
+    margin-right: 16px;
+    width: 54px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-link {
+    color:rgb(120, 190, 60);
+}
+
+.icons {
+    height: 30px;
+    width: 30px;
 }

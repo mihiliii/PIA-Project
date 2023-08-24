@@ -9,7 +9,7 @@ main {
 }
 
 .my-container {
-    width: 900px;
+    width: 780px;
     height: 100%;
     background-color: rgb(240, 240, 240);
     padding: 2%;
@@ -17,6 +17,8 @@ main {
     border-color: rgb(69, 69, 75);;
     border-width: 2px;
     border-style: solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .image-container {
@@ -42,4 +44,9 @@ p {
     background-color: rgb(69, 69, 75);
     color: white;
     margin-top: 20px;
+}
+
+.span {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 1px black;
 }

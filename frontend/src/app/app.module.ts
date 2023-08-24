@@ -20,6 +20,7 @@ import { MenadzerHomepageComponent } from './pages/menadzer/menadzer-homepage/me
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewLekarComponent } from './components/new-lekar/new-lekar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FooterComponent } from './components/footer/footer.component';
     UserEditComponent,
     NewLekarComponent,
     FooterComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

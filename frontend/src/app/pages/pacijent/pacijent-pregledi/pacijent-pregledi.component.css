@@ -47,3 +47,8 @@ p {
     color: white;
     margin-top: 20px;
 }
+
+.span {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 1px black;
+}

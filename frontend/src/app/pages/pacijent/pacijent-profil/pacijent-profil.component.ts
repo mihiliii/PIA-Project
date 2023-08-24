@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Pacijent from 'src/app/models/pacijent.model';
 import { PacijentService } from '../../../services/pacijent/pacijent.service';
 import { UserEditComponent } from 'src/app/components/user-edit/user-edit.component';
+import { PasswordResetComponent } from 'src/app/components/password-reset/password-reset.component';
 
 @Component({
     selector: 'app-pacijent-profil',
@@ -13,7 +14,9 @@ export class PacijentProfilComponent implements OnInit {
 
     pacijentInfo: Pacijent;
     showUserEdit: boolean;
+    showPasswordEdit: boolean;
     @ViewChild(UserEditComponent) userEditComponent: UserEditComponent;
+    @ViewChild(PasswordResetComponent) passwordResetComponent: PasswordResetComponent;
 
     constructor(private pacijentService: PacijentService, private router: Router) { }
 
@@ -22,8 +25,8 @@ export class PacijentProfilComponent implements OnInit {
     }
 
     populatePacijentProfilComponent(event: any) {
-        console.log('ludnica');
         this.showUserEdit = false;
+        this.showPasswordEdit = false;
         this.pacijentService.getPacijentById(localStorage.getItem('_id')).subscribe((pacijent: Pacijent) => {
             this.pacijentInfo = pacijent;
         });
@@ -32,6 +35,11 @@ export class PacijentProfilComponent implements OnInit {
     openUserEditComponent(userToEdit: Pacijent, userTypeToEdit: string) {
         this.showUserEdit = true;
         this.userEditComponent.populateUserEditComponent(userToEdit, userTypeToEdit);
+    }
+
+    openPasswordEdit() {
+        this.showPasswordEdit = true;
+        this.passwordResetComponent.populatePasswordResetComponent();
     }
 
 }

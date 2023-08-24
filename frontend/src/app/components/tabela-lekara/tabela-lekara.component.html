@@ -10,10 +10,10 @@
     </thead>
     <tbody>
         <tr *ngFor="let lekar of lekarList;" [routerLink]="['/lekar/profil', { idLekara: lekar._id }]">
-            <td class="text-center align-middle">{{lekar?.ime}}</td>
-            <td class="text-center align-middle">{{lekar?.prezime}}</td>
-            <td class="text-center align-middle">{{lekar?.specijalizacija}}</td>
-            <td class="text-center align-middle" [hidden]="router.url != '/pacijent/lekari'">{{lekar?.ogranakOrdinacije}}</td>
+            <td class="text-center align-middle table-text">{{lekar?.ime}}</td>
+            <td class="text-center align-middle table-text">{{lekar?.prezime}}</td>
+            <td class="text-center align-middle table-text">{{lekar?.specijalizacija}}</td>
+            <td class="text-center align-middle table-text" [hidden]="router.url != '/pacijent/lekari'">{{lekar?.ogranakOrdinacije}}</td>
             <td class="text-center align-middle"><img class="image" src="http://localhost:4000/images/{{lekar.image}}"></td>
         </tr>
     </tbody>
