@@ -26,13 +26,12 @@ export class UserEditComponent implements OnInit {
     lekarFormInput: {
         brojLicence: string;
         specijalizacija: string;
-        ogranakOrdinacije: string;
     }
     showComponent = false;
-    errorMessage: string;
+    errorArray: string[];
     @Output() parentNgOnInit: EventEmitter<any> = new EventEmitter();
-    // selectedImageFormInput: File;
-    // selectedImageURL: string;
+    selectedImageFormInput: File;
+    selectedImageURL: string;
 
     constructor(private menadzerService: MenadzerService, private authenticationService: AuthenticationService, private router: Router) {
     }
@@ -44,7 +43,7 @@ export class UserEditComponent implements OnInit {
         this.user = user;
         this.userType = userType;
         this.showComponent = true;
-        this.errorMessage = '';
+        this.errorArray = [];
         this.formInput = {
             korisnickoIme: this.user.korisnickoIme,
             ime: this.user.ime,
@@ -57,12 +56,11 @@ export class UserEditComponent implements OnInit {
             let user = this.user as Lekar;
             this.lekarFormInput = {
                 brojLicence: user.brojLicence,
-                specijalizacija: user.specijalizacija,
-                ogranakOrdinacije: user.ogranakOrdinacije
+                specijalizacija: user.specijalizacija
             }
         }
-        // this.selectedImageFormInput = null;
-        // this.selectedImageURL = '';
+        this.selectedImageFormInput = null;
+        this.selectedImageURL = '';
     }
 
     saveChanges(form) {
@@ -83,7 +81,9 @@ export class UserEditComponent implements OnInit {
                 prezime: this.formInput.prezime,
                 adresa: this.formInput.adresa,
                 kontaktTelefon: this.formInput.kontaktTelefon,
-                email: this.formInput.email
+                email: this.formInput.email,
+                oldKorisnickoIme: this.user.korisnickoIme,
+                oldEmail: this.user.email
             }
         }
         else {
@@ -95,38 +95,57 @@ export class UserEditComponent implements OnInit {
                 prezime: this.formInput.prezime,
                 adresa: this.formInput.adresa,
                 kontaktTelefon: this.formInput.kontaktTelefon,
-                email: this.formInput.email,
                 brojLicence: this.lekarFormInput.brojLicence,
                 specijalizacija: this.lekarFormInput.specijalizacija,
-                ogranakOrdinacije: this.lekarFormInput.ogranakOrdinacije
+                oldKorisnickoIme: this.user.korisnickoIme,
+                oldEmail: this.user.email
             }
         }
 
         this.menadzerService.updateUser(user).subscribe((response) => {
-            
-            console.log(response['message']);
             if (response['message'] != 'success') {
-                this.errorMessage = response['message'];
+                this.errorArray.push(response['message']);
             }
             else {
+                console.log(this.selectedImageFormInput);
+                if (this.selectedImageFormInput !== null) {
+                    let formData = new FormData();
+                    formData.set('korisnickoIme', this.user.korisnickoIme);
+                    formData.set('type', this.userType);
+                    formData.append('image', this.selectedImageFormInput);
+
+                    this.authenticationService.uploadImage(formData).subscribe((response) => {});
+                }
                 this.discardChanges();
             }
-            // if (response['message'] == 'success') {
-            //     // if (this.selectedImageFormInput !== null) {
-            //     //     let formData = new FormData();
-            //     //     formData.set('korisnickoIme', pacijent.korisnickoIme);
-            //     //     formData.set('type', 'pacijent');
-            //     //     formData.append('image', this.selectedImageFormInput);
-
-            //     //     this.authenticationService.uploadImage(formData).subscribe((response) => {});
-            //     // }
-
-            // }
-            // else {
-            //     this.errorArray.push(response['message']);
-            // }
         });
 
+    }
+
+    fileInput(event: any) {
+        this.selectedImageFormInput = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = (event: any) => {
+            this.selectedImageURL = event.target.result;
+
+            let image = new Image();
+            image.src = this.selectedImageURL;
+
+            image.onload = () => {
+                if (image.height < 100 || image.width < 100 || image.height > 300 || image.width > 300) {
+                    this.errorArray.push('Error: slika mora imati dimenzije izmedju 100x100 i 300x300');
+                    this.selectedImageFormInput = null;
+                    this.selectedImageURL = '';
+                }
+                else {
+                    this.errorArray = this.errorArray.filter((error) => {
+                        error != 'Error: slika mora imati dimenzije izmedju 100x100 i 300x300';
+                    });
+                }
+            };
+        };
+        reader.readAsDataURL(this.selectedImageFormInput);
     }
 
     discardChanges() {

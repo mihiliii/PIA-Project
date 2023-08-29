@@ -19,6 +19,10 @@ export class MenadzerHomepageComponent implements OnInit {
     pacijentList: Pacijent[];
     lekarList: Lekar[];
     pregledList: Pregled[];
+    showUserEdit: boolean;
+    showNewLekar: boolean;
+    imeSpecijalizacijeInput: string;
+    errorSpecijalizacija: string;
     @ViewChild(UserEditComponent) userEditComponent: UserEditComponent;
     @ViewChild(NewLekarComponent) newLekarComponent: NewLekarComponent;
 
@@ -29,6 +33,11 @@ export class MenadzerHomepageComponent implements OnInit {
     }
 
     populateMenadzerComponent(event: any) {
+
+        this.showNewLekar = false;
+        this.showUserEdit = false;
+        this.imeSpecijalizacijeInput = '';
+        this.errorSpecijalizacija = '';
 
         this.menadzerService.getRegisterRequests().subscribe((responseData: Pacijent[]) => {
 
@@ -99,18 +108,58 @@ export class MenadzerHomepageComponent implements OnInit {
             userType: userType
         };
 
-        // this.menadzerService.deleteUser(requestData).subscribe((responseData) => {
-        //     console.log(responseData['message']);
-        //     this.ngOnInit();
-        // });
+        this.menadzerService.deleteUser(requestData).subscribe((responseData) => {
+            console.log(responseData['message']);
+            this.ngOnInit();
+        });
     }
 
     openUserEditComponent(userToEdit, userTypeToEdit) {
+        this.showUserEdit = true;
+        this.showNewLekar = false;
         this.userEditComponent.populateUserEditComponent(userToEdit, userTypeToEdit);
     }
 
     openNewLekarComponent() {
+        this.showNewLekar = true;
+        this.showUserEdit = false;
         this.newLekarComponent.populateNewLekarComponent();
+    }
+
+    acceptPregledi() {
+        let array = this.pregledList.filter((pregled) => {
+            return pregled['checkbox'];
+        });
+
+        const data = {
+            array: array
+        }
+        
+        this.menadzerService.acceptPregledi(data).subscribe((response) => {
+            console.log(response['message']);
+            this.ngOnInit();
+        });
+    }
+
+    declinePregledi() {
+        let array = this.pregledList.filter((pregled) => {
+            return pregled['checkbox'];
+        });
+
+        const data = {
+            array: array
+        }
+        
+        this.menadzerService.declinePregledi(data).subscribe((response) => {
+            console.log(response['message']);
+            this.ngOnInit();
+        });
+    }
+
+    addNewSpecijalizacija(form) {
+        if (form.invalid) {
+            this.errorSpecijalizacija = 'Error: unesite ime specijalizacije';
+        }
     }
 
 }

@@ -2,120 +2,158 @@
     <app-navbar></app-navbar>
 </header>
 <main>
-    <h2>Zahtevi za registraciju:</h2>
-    <div *ngIf="registerRequestsList != undefined">
-        <div *ngIf="registerRequestsList.length != 0 else praznaTabela">
-            <table>
-                <tr>
-                    <th>Korisnicko ime:</th>
-                    <th>Ime:</th>
-                    <th>Prezime:</th>
-                    <th>Adresa:</th>
-                    <th>Kontakt telefon:</th>
-                    <th>Email:</th>
-                </tr>
-                <tr *ngFor="let pacijent of registerRequestsList">
-                    <td>{{pacijent.korisnickoIme}}</td>
-                    <td>{{pacijent.ime}}</td>
-                    <td>{{pacijent.prezime}}</td>
-                    <td>{{pacijent.adresa}}</td>
-                    <td>{{pacijent.kontaktTelefon}}</td>
-                    <td>{{pacijent.email}}</td>
-                    <td><input type="checkbox" [(ngModel)]="pacijent['checkbox']"></td>
-                </tr>
-            </table>
-            <button (click)="acceptRegisterRequests()">Accept</button>
-            <button (click)="declineRegisterRequests()">Decline</button>
+    <div class="container main-container">
+        <div class="inner-container" *ngIf="registerRequestsList != undefined">
+            <h2>Zahtevi za registraciju:</h2>
+            <div *ngIf="registerRequestsList.length != 0 else praznaTabelaZaRegistraciju" class="table-responsive">
+                <table class="table table-hover table-striped table-border">
+                    <thead>
+                        <tr>
+                            <th>Korisnicko ime:</th>
+                            <th>Ime:</th>
+                            <th>Prezime:</th>
+                            <th>Adresa:</th>
+                            <th>Kontakt telefon:</th>
+                            <th>Email:</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let pacijent of registerRequestsList">
+                        <td>{{pacijent.korisnickoIme}}</td>
+                        <td>{{pacijent.ime}}</td>
+                        <td>{{pacijent.prezime}}</td>
+                        <td>{{pacijent.adresa}}</td>
+                        <td>{{pacijent.kontaktTelefon}}</td>
+                        <td>{{pacijent.email}}</td>
+                        <td><input type="checkbox" [(ngModel)]="pacijent['checkbox']"></td>
+                    </tr>
+                </table>
+                <button (click)="acceptRegisterRequests()">Accept</button>
+                <button (click)="declineRegisterRequests()">Decline</button>
+            </div>
+            <ng-template #praznaTabelaZaRegistraciju>
+                <p>Trenutno nema novih zahteva za registraciju pacijenata...</p>
+            </ng-template>
         </div>
-        <ng-template #praznaTabela>
-            <p>Trenutno nema novih zahteva za registraciju pacijenata...</p>
-        </ng-template>
-    </div>
-    <h2>Lista pacijenata:</h2>
-    <div>
-        <table class="my-table">
-            <tr class="my-table">
-                <th class="my-table">Korisnicko ime:</th>
-                <th class="my-table">Ime:</th>
-                <th class="my-table">Prezime:</th>
-                <th class="my-table">Adresa:</th>
-                <th class="my-table">Kontakt telefon:</th>
-                <th class="my-table">Email:</th>
-                <th class="my-table">Akcije:</th>
-            </tr>
-            <tr *ngFor="let pacijent of pacijentList" class="my-table">
-                <td class="my-table">{{pacijent.korisnickoIme}}</td>
-                <td class="my-table">{{pacijent.ime}}</td>
-                <td class="my-table">{{pacijent.prezime}}</td>
-                <td class="my-table">{{pacijent.adresa}}</td>
-                <td class="my-table">{{pacijent.kontaktTelefon}}</td>
-                <td class="my-table">{{pacijent.email}}</td>
-                <td class="my-table">
-                    <button (click)="deleteUser(pacijent._id, 'pacijent')">Izbrisi korisnika</button>
-                    <button (click)="openUserEditComponent(pacijent, 'pacijent')">Azuriraj korisnika</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <h2>Lista lekara:</h2>
-    <div>
-        <table class="my-table">
-            <tr class="my-table">
-                <th class="my-table">Korisnicko ime:</th>
-                <th class="my-table">Ime:</th>
-                <th class="my-table">Prezime:</th>
-                <th class="my-table">Adresa:</th>
-                <th class="my-table">Kontakt telefon:</th>
-                <th class="my-table">Email:</th>
-                <th class="my-table">Broj licence:</th>
-                <th class="my-table">Specijalizacija:</th>
-                <th class="my-table">Ogranak ordinacije:</th>
-                <th class="my-table">Akcije:</th>
-            </tr>
-            <tr *ngFor="let lekar of lekarList" class="my-table">
-                <td class="my-table">{{lekar.korisnickoIme}}</td>
-                <td class="my-table">{{lekar.ime}}</td>
-                <td class="my-table">{{lekar.prezime}}</td>
-                <td class="my-table">{{lekar.adresa}}</td>
-                <td class="my-table">{{lekar.kontaktTelefon}}</td>
-                <td class="my-table">{{lekar.email}}</td>
-                <td class="my-table">{{lekar.brojLicence}}</td>
-                <td class="my-table">{{lekar.specijalizacija}}</td>
-                <td class="my-table">{{lekar.ogranakOrdinacije}}</td>
-                <td class="my-table">
-                    <button (click)="deleteUser(lekar._id, 'lekar')">Izbrisi korisnika</button>
-                    <button (click)="openUserEditComponent(lekar, 'lekar')">Azuriraj korisnika</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <app-user-edit (parentNgOnInit)="populateMenadzerComponent($event)"></app-user-edit>
-    <h2>Dodaj novog lekara:</h2>
-    <button (click)="openNewLekarComponent()">Click</button>
-    <app-new-lekar></app-new-lekar>
-    <h2>Zahtevi za vrste pregleda:</h2>
-    <div *ngIf="pregledList != undefined">
-        <div *ngIf="pregledList.length != 0 else praznaTabela">
-            <table>
-                <tr>
-                    <th>Naziv:</th>
-                    <th>Trajanje:</th>
-                    <th>Cena:</th>
-                    <th>Specijalizacija:</th>
-                </tr>
-                <tr *ngFor="let pregled of pregledList">
-                    <td>{{pregled.naziv}}</td>
-                    <td>{{pregled.trajanje}}</td>
-                    <td>{{pregled.cena}}</td>
-                    <td>{{pregled.specijalizacija}}</td>
-                    <td><input type="checkbox" [(ngModel)]="pregled['checkbox']"></td>
-                </tr>
-            </table>
-            <button (click)="acceptRegisterRequests()">Accept</button>
-            <button (click)="declineRegisterRequests()">Decline</button>
+        <div class="inner-container" *ngIf="pacijentList != undefined">
+            <h2>Lista pacijenata:</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-border">
+                    <thead>
+                        <tr>
+                            <th class="my-table">Korisnicko ime:</th>
+                            <th class="my-table">Ime:</th>
+                            <th class="my-table">Prezime:</th>
+                            <th class="my-table">Adresa:</th>
+                            <th class="my-table">Kontakt telefon:</th>
+                            <th class="my-table">Email:</th>
+                            <th class="my-table">Akcije:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pacijent of pacijentList">
+                            <td class="my-table">{{pacijent.korisnickoIme}}</td>
+                            <td class="my-table">{{pacijent.ime}}</td>
+                            <td class="my-table">{{pacijent.prezime}}</td>
+                            <td class="my-table">{{pacijent.adresa}}</td>
+                            <td class="my-table">{{pacijent.kontaktTelefon}}</td>
+                            <td class="my-table">{{pacijent.email}}</td>
+                            <td class="my-table">
+                                <button (click)="deleteUser(pacijent._id, 'pacijent')">Izbrisi korisnika</button>
+                                <button (click)="openUserEditComponent(pacijent, 'pacijent')">Azuriraj korisnika</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <ng-template #praznaTabela>
-            <p>Trenutno nema novih zahteva za registraciju pacijenata...</p>
-        </ng-template>
+        <div class="inner-container" *ngIf="lekarList != undefined">
+            <h2>Lista lekara:</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-border">
+                    <thead>
+                        <tr>
+                            <th class="my-table">Korisnicko ime:</th>
+                            <th class="my-table">Ime:</th>
+                            <th class="my-table">Prezime:</th>
+                            <th class="my-table">Adresa:</th>
+                            <th class="my-table">Kontakt telefon:</th>
+                            <th class="my-table">Email:</th>
+                            <th class="my-table">Broj licence:</th>
+                            <th class="my-table">Specijalizacija:</th>
+                            <th class="my-table">Ogranak:</th>
+                            <th class="my-table">Akcije:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lekar of lekarList">
+                            <td class="my-table">{{lekar.korisnickoIme}}</td>
+                            <td class="my-table">{{lekar.ime}}</td>
+                            <td class="my-table">{{lekar.prezime}}</td>
+                            <td class="my-table">{{lekar.adresa}}</td>
+                            <td class="my-table">{{lekar.kontaktTelefon}}</td>
+                            <td class="my-table">{{lekar.email}}</td>
+                            <td class="my-table">{{lekar.brojLicence}}</td>
+                            <td class="my-table">{{lekar.specijalizacija}}</td>
+                            <td class="my-table">{{lekar.ogranakOrdinacije}}</td>
+                            <td class="my-table">
+                                <button (click)="deleteUser(lekar._id, 'lekar')">Izbrisi korisnika</button>
+                                <button (click)="openUserEditComponent(lekar, 'lekar')">Azuriraj korisnika</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="my-table row-button">
+                                <div>
+                                    <button class="button" (click)="openNewLekarComponent()">Dodaj novog lekara</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="inner-container" [hidden]="!showUserEdit">
+            <app-user-edit (parentNgOnInit)="populateMenadzerComponent($event)"></app-user-edit>
+        </div>
+        <div class="inner-container" [hidden]="!showNewLekar">
+            <app-new-lekar></app-new-lekar>
+        </div>
+        <div class="inner-container" *ngIf="pregledList != undefined">
+            <h2>Zahtevi za novu vrstu pregleda:</h2>
+            <div class="table-responsive" *ngIf="pregledList.length != 0 else praznaTabelaZaVrstePregleda">
+                <table class="table table-hover table-striped table-border">
+                    <thead>
+                        <tr>
+                            <th class="my-table">Naziv:</th>
+                            <th class="my-table">Trajanje:</th>
+                            <th class="my-table">Cena:</th>
+                            <th class="my-table">Specijalizacija:</th>
+                            <th class="my-table">Izaberi:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pregled of pregledList">
+                            <td class="my-table">{{pregled.naziv}}</td>
+                            <td class="my-table">{{pregled.trajanje}}</td>
+                            <td class="my-table">{{pregled.cena}}</td>
+                            <td class="my-table">{{pregled.specijalizacija}}</td>
+                            <td class="my-table"><input type="checkbox" [(ngModel)]="pregled['checkbox']"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="acceptPregledi()">Prihvati</button>
+                <button (click)="declinePregledi()">Odbij</button>
+            </div>
+            <ng-template #praznaTabelaZaVrstePregleda>
+                <p>Trenutno nema novih zahteva za novu vrstu pregleda...</p>
+            </ng-template>
+        </div>
+        <div class="inner-container">
+            <h2>Dodaj novu specijalizaciju:</h2>
+            <form #specijalizacijaForm="ngForm">
+                <label class="form-label">Ime specijalizacije:</label>
+                <input class="form-control mb-3" type="text" [(ngModel)]="imeSpecijalizacijeInput" name="imeSpecijalizacijeInput" required>
+                <button (click)="addNewSpecijalizacija(specijalizacijaForm)">Dodaj novu specijalizaciju</button>
+            </form>
+        </div>
     </div>
 </main>

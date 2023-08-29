@@ -35,4 +35,12 @@ menadzerRouter.route('/updateUserPassword').post(
     (request, response) => { new MenadzerController().updateUserPassword(request, response); }
 );
 
+menadzerRouter.route('/acceptPregledi').post(
+    (request, response) => { new MenadzerController().acceptPregledi(request, response); }
+);
+
+menadzerRouter.route('/declinePregledi').post(
+    (request, response) => { new MenadzerController().declinePregledi(request, response); }
+);
+
 export default menadzerRouter;

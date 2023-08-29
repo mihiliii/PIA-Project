@@ -1,46 +1,75 @@
-<form #newLekarForm="ngForm" *ngIf="showComponent">
-    <div>
-        <label>KorisnickoIme</label>
-        <input type="text" [(ngModel)]="formInput.korisnickoIme" name="korisnickoIme">
+<div *ngIf="showComponent">
+    <h2>Dodaj novog lekara:</h2>
+    <form #newLekarForm="ngForm" class="my-form row gap-5">
+        <div class="col">
+            <div>
+                <label class="form-label">KorisnickoIme:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.korisnickoIme" name="korisnickoIme" required>
+            </div>
+            <div>
+                <label class="form-label">Lozinka:</label>
+                <input class="form-control" type="password" [(ngModel)]="formInput.lozinka" name="lozinka" required>
+            </div>
+            <div>
+                <label class="form-label">Ponovi lozinku:</label>
+                <input class="form-control" type="password" [(ngModel)]="formInput.ponovljenaLozinka" name="ponovljenaLozinka" required>
+            </div>
+            <div class="row">
+                <div class="col"> 
+                    <label class="form-label">Ime</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.ime" name="ime" required>
+                </div>
+                <div class="col">
+                    <label class="form-label">Prezime</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.prezime" name="prezime" required>
+                </div>
+            </div>
+            <div>
+                <label class="form-label">Adresa:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.adresa" name="adresa" required>
+            </div>
+            <div>
+                <label class="form-label">Kontakt Telefon:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.kontaktTelefon" name="kontaktTelefon" required>
+            </div>
+            <div>
+                <label class="form-label">Email:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.email" name="email" required>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Broj licence:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.brojLicence" name="brojLicence" required>
+                </div>
+                <div class="col">
+                    <label class="form-label">Specijalizacija:</label>
+                    <input class="form-control" type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacija" required>
+                </div>
+            </div>
+            <div>
+                <label class="form-label">Ogranak ordinacije:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.ogranakOrdinacije" name="ogranakOrdinacije" required>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <div class="form-image-input" *ngIf="selectedImageFormInput === null">
+                    <img class="image" [src]="'http://localhost:4000/images/default.jpg'">
+                </div>
+                <div class="form-image-input" *ngIf="selectedImageFormInput !== null">
+                    <img class="image" [src]="selectedImageURL">
+                </div>
+                <div class="form-control my-input-file mt-5">
+                    <input class="my-input-file" type="file" name="slika" accept=".png, .jpg, .jpeg" (input)="fileInput($event)">
+                </div>
+                <div class="alert alert-danger my-alert" *ngIf="errorArray.length != 0">
+                    <p *ngFor="let message of errorArray">{{message}}</p>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="d-flex justify-content-evenly">
+        <button class="btn button" (click)="addNewLekar(newLekarForm)">Sacuvaj</button>
+        <button class="btn button" (click)="discardForm()">Odbaci</button>
     </div>
-    <div>
-        <label>Lozinka</label>
-        <input type="text" [(ngModel)]="formInput.lozinka" name="lozinka">
-    </div>
-    <div>
-        <label>Ime</label>
-        <input type="text" [(ngModel)]="formInput.ime" name="ime">
-    </div>
-    <div>
-        <label>Prezime</label>
-        <input type="text" [(ngModel)]="formInput.prezime" name="prezime">
-    </div>
-    <div>
-        <label>Adresa</label>
-        <input type="text" [(ngModel)]="formInput.adresa" name="adresa">
-    </div>
-    <div>
-        <label>Kontakt Telefon</label>
-        <input type="text" [(ngModel)]="formInput.kontaktTelefon" name="kontaktTelefon">
-    </div>
-    <div>
-        <label>Email</label>
-        <input type="text" [(ngModel)]="formInput.email" name="email">
-    </div>
-    <div>
-        <label>Broj licence</label>
-        <input type="text" [(ngModel)]="formInput.brojLicence" name="brojLicence">
-    </div>
-    <div>
-        <label>Specijalizacija</label>
-        <input type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacija">
-    </div>
-    <div>
-        <label>Ogranak ordinacije</label>
-        <input type="text" [(ngModel)]="formInput.ogranakOrdinacije" name="ogranakOrdinacije">
-    </div>
-    <div>
-        <button (click)="addNewLekar()">Sacuvaj</button>
-        <button (click)="discardForm()">Odbaci</button>
-    </div>
-</form>
+</div>

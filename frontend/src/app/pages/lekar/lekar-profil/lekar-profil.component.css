@@ -8,14 +8,16 @@ main {
 }
 
 .my-container {
-    width: 900px;
+    width: 780px;
     height: 100%;
     background-color: rgb(240, 240, 240);
-    padding: 2%;
+    padding: 3%;
     border-radius: 40px;
     border-color: rgb(69, 69, 75);;
     border-width: 2px;
     border-style: solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .image {
@@ -45,6 +47,29 @@ p {
     background: none;
     font-size: 18px;
     font-family: Georgia, serif;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}
+
+.span {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 1px black;
+}
+
+.header {
+    color: rgb(120, 190, 60);
+    text-shadow: 1px 1px 2px black;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-component {
+    margin-bottom: 2px;
 }
 
 .button {

@@ -31,4 +31,12 @@ lekarRouter.route('/addNewPregled').post(
     (request, response) => { new LekarController().addNewPregled(request, response); } 
 );
 
+lekarRouter.route('/getAllIzvestaji').get(
+    (request, response) => { new LekarController().getAllIzvestaji(request, response); }
+);
+
+lekarRouter.route('/createNewIzvestaj').post(
+    (request, response) => { new LekarController().createNewIzvestaj(request, response); }
+);
+
 export default lekarRouter;

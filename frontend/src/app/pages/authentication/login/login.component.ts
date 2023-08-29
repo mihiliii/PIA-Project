@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('userType', user.userType);
 
                 if (user.userType == 'pacijent') {
-                    this.router.navigate(['pacijent/profil']);
+                    this.router.navigate(['pacijent/profil', {_id: user._id}]);
                 }
                 else if (user.userType == 'lekar'){
-                    this.router.navigate(['lekar/profil']);
+                    this.router.navigate(['lekar/profil', {_id: user._id}]);
                 }
                 else {
                     this.router.navigate(['menadzer']);

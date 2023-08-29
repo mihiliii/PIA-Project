@@ -6,8 +6,8 @@ main {
     min-height: 100%;
 }
 
-.my-container {
-    width: 780px;
+.izvestaj-container {
+    width: 900px;
     height: 100%;
     background-color: rgb(240, 240, 240);
     padding: 2%;
@@ -15,15 +15,8 @@ main {
     border-color: rgb(69, 69, 75);;
     border-width: 2px;
     border-style: solid;
-}
-
-.form-label {
-    font-size: 24px;
-}
-
-.form {
-    background-color: rgba(0,0,0,0);
-    border: 0px;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .header {
@@ -33,8 +26,15 @@ main {
     justify-content: center;
 }
 
-.button {
-    background-color: rgb(69, 69, 75);
-    color: white;
+.izvestaj-container-inner {
+    background-color: rgb(240, 240, 240);
+    padding: 4%;
+    border-color: rgb(120, 190, 60);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
 }

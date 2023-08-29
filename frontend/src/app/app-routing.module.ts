@@ -11,8 +11,8 @@ import { PacijentPreglediComponent } from './pages/pacijent/pacijent-pregledi/pa
 import { LekarPreglediComponent } from './pages/lekar/lekar-pregledi/lekar-pregledi.component';
 import { RaznoComponent } from './pages/lekar/razno/razno.component';
 import { MenadzerHomepageComponent } from './pages/menadzer/menadzer-homepage/menadzer-homepage.component';
-import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { RouteGuard } from './guards/route.guard';
+import { LekarKartonComponent } from './pages/lekar/lekar-karton/lekar-karton.component';
 
 const routes: Routes = [
     {path: "", title:'Glavna', component: HomepageComponent},
@@ -23,9 +23,10 @@ const routes: Routes = [
     {path: "pacijent/profil", component: PacijentProfilComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
     {path: "pacijent/lekari", component: PacijentLekariComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
     {path: "pacijent/pregledi", component: PacijentPreglediComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
-    {path: "lekar/profil", component:LekarProfilComponent, canActivate: [RouteGuard], data: {roles: ['pacijent', 'lekar']}},
+    {path: "lekar/profil", component:LekarProfilComponent, canActivate: [RouteGuard], data: {roles: ['pacijent', 'lekar']}, },
     {path: "lekar/pregledi", component: LekarPreglediComponent, canActivate: [RouteGuard], data: {roles: ['lekar']}},
     {path: "lekar/razno", component: RaznoComponent, canActivate: [RouteGuard], data: {roles: ['lekar']}},
+    {path: "lekar/karton", component: LekarKartonComponent, canActivate: [RouteGuard], data: {roles: ['lekar']}},
     {path: "**", redirectTo: ""}
 ];
 

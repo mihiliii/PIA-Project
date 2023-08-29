@@ -2,6 +2,7 @@ import express from 'express';
 import lekarDB from '../models/lekar.model';
 import zakazaniPreglediDB from '../models/zakazaniPregled.model';
 import pregledDB from '../models/pregled.model';
+import izvestajDB from '../models/izvestaj.model';
 
 export class LekarController {
 
@@ -124,6 +125,37 @@ export class LekarController {
                 if (error) console.log(error);
                 else response.json({message: 'addNoviPregled success'});
             });
+    }
+
+    getAllIzvestaji(request, response) {
+
+        izvestajDB.find({'lekar': request.body.lekar, 'pacijent': request.body.pacijent}, (err, izvestaji) => {
+            if (err) console.log(err);
+            else response.json(izvestaji);
+        });
+    }
+
+    createNewIzvestaj(request, response) {
+
+        izvestajDB.create({
+            'lekar': request.body.lekar,
+            'pacijent': request.body.pacijent,
+            'datum': request.body.datum,
+            'vreme': request.body.vreme,
+            'razlogDolaska': request.body.razlogDolaska,
+            'dijagnoza': request.body.dijagnoza,
+            'terapija': request.body.terapija,
+            'datumSledecegPregleda': request.body.datumSledecegPregleda
+        }, (err) => {
+            if (err) console.log(err);
+            else {
+
+                zakazaniPreglediDB.findByIdAndDelete(request.body.zakazaniPregledId, (err) => {
+                    if (err) console.log(err);
+                    else response.json({'message': 'success'}); 
+                });
+            }
+        });
     }
 
 }

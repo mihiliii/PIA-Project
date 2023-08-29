@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Lekar from '../../../models/lekar.model';
 import { LekarService } from '../../../services/lekar/lekar.service';
 import { ActivatedRoute } from '@angular/router';
 import Pregled from '../../../models/pregled.model';
 import { Time } from '@angular/common';
+import { UserEditComponent } from 'src/app/components/user-edit/user-edit.component';
+import { PasswordResetComponent } from 'src/app/components/password-reset/password-reset.component';
 
 @Component({
   selector: 'app-lekar-profil',
@@ -13,6 +15,7 @@ import { Time } from '@angular/common';
 export class LekarProfilComponent implements OnInit {
 
     userType: string;
+    userId: string;
     idLekara: string;
     lekar: Lekar;
     preglediIsteSpecijalizacije;
@@ -22,26 +25,31 @@ export class LekarProfilComponent implements OnInit {
         vreme: Time
     };
     zakaziPregledMessage: string;
+    showUserEdit: boolean;
+    showPasswordEdit: boolean;
+    @ViewChild(UserEditComponent) userEditComponent: UserEditComponent;
+    @ViewChild(PasswordResetComponent) passwordResetComponent: PasswordResetComponent;
 
     constructor(private lekarService: LekarService, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.activatedRoute.params.subscribe((routeParams) => {
+            this.populateLekarProfilComponent(null);
+        })
+    }
+
+    populateLekarProfilComponent(event: any) {
+        this.showPasswordEdit = false;
+        this.showUserEdit = false;
         this.lekar = null;
-
         this.userType = localStorage.getItem('userType');
-
-        this.idLekara = this.userType != 'lekar' ? this.activatedRoute.snapshot.paramMap.get('idLekara') : localStorage.getItem('_id');
-            
+        this.userId = localStorage.getItem('_id');
+        this.idLekara = this.activatedRoute.snapshot.paramMap.get('_id');
         this.formInput = {
             pregled: null,
             datum: null,
             vreme: null
         }
-
-        this.populateLekarProfilComponent();
-    }
-
-    populateLekarProfilComponent() {
 
         this.lekarService.getLekarById(this.idLekara).subscribe((lekar: Lekar) => {
             this.lekar = lekar;
@@ -84,6 +92,16 @@ export class LekarProfilComponent implements OnInit {
         this.lekarService.updateLekarPregled(this.lekar._id, this.preglediIsteSpecijalizacije).subscribe(() => {
             
         });
+    }
+
+    openUserEditComponent(userToEdit: Lekar, userTypeToEdit: string) {
+        this.showUserEdit = true;
+        this.userEditComponent.populateUserEditComponent(userToEdit, userTypeToEdit);
+    }
+
+    openPasswordEdit() {
+        this.showPasswordEdit = true;
+        this.passwordResetComponent.populatePasswordResetComponent();
     }
 
 }

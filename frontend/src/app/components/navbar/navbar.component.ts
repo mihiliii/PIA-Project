@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+    _id: string;
     userType: string;
 
     constructor(protected router: Router) { }
 
     ngOnInit(): void {
+        this._id = localStorage.getItem('_id');
         this.userType = localStorage.getItem('userType');
     }
 

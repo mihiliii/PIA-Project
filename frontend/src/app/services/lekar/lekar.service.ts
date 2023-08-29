@@ -62,4 +62,14 @@ export class LekarService {
         return this.httpClient.post('http://localhost:4000/lekar/addNewPregled', formInput);
     }
 
+    getAllIzvestaji(data) {
+        
+        return this.httpClient.get('http://localhost:4000/lekar/getAllIzvestaji', data);
+    }
+
+    createNewIzvestaj(data) {
+
+        return this.httpClient.post('http://localhost:4000/lekar/createNewIzvestaj', data);
+    }
+
 }

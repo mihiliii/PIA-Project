@@ -1,0 +1,42 @@
+.form-label {
+    font-size: 24px;
+}
+
+.my-form {
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 2%;
+}
+
+.image {
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}
+
+.my-alert {
+    margin: 0px;
+    margin-top: 12px;
+    padding: 6px;
+}
+
+.form-image-input {
+    background-color: rgba(240, 240, 240, 0.3);
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-input-file {
+    max-width: 300px;
+}

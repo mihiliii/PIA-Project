@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let lekar of lekarList;" [routerLink]="['/lekar/profil', { idLekara: lekar._id }]">
+        <tr *ngFor="let lekar of lekarList;" [routerLink]="['/lekar/profil', { _id: lekar._id }]">
             <td class="text-center align-middle table-text">{{lekar?.ime}}</td>
             <td class="text-center align-middle table-text">{{lekar?.prezime}}</td>
             <td class="text-center align-middle table-text">{{lekar?.specijalizacija}}</td>

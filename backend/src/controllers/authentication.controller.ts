@@ -30,7 +30,7 @@ export class AuthenticationController {
         }
         else {
 
-            let pacijent = await pacijentDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
+            let pacijent = await pacijentDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka, 'status': 'aktivan'});
             let lekar = await lekarDB.findOne({'korisnickoIme': data.korisnickoIme, 'lozinka': data.lozinka});
 
             if (pacijent) response.json({_id: pacijent._id, korisnickoIme: pacijent.korisnickoIme, userType: 'pacijent'});

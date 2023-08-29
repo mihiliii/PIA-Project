@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import Lekar from 'src/app/models/lekar.model';
 import Pacijent from 'src/app/models/pacijent.model';
 import { MenadzerService } from 'src/app/services/menadzer/menadzer.service';
@@ -20,7 +21,7 @@ export class PasswordResetComponent implements OnInit {
     errorMessage: string;
     @Output() parentNgOnInit: EventEmitter<any> = new EventEmitter();
 
-    constructor(private menadzerService: MenadzerService) { }
+    constructor(private menadzerService: MenadzerService, private router: Router) { }
 
     ngOnInit(): void {
     }
@@ -53,7 +54,7 @@ export class PasswordResetComponent implements OnInit {
         }
 
         let user = {
-            userType: 'pacijent',
+            userType: localStorage.getItem('userType'),
             _id: localStorage.getItem('_id'),
             staraLozinka: this.formInput.oldPass,
             novaLozinka: this.formInput.newPass
@@ -63,6 +64,8 @@ export class PasswordResetComponent implements OnInit {
 
             if (response['message'] == 'success') {
                 this.discardChanges();
+                localStorage.clear();
+                this.router.navigate(['/login']);
             }
             else {
                 console.log(response['message']);

@@ -1,21 +1,23 @@
 <nav class="navbar my-navbar">
-    <div class="container justify-content-end" *ngIf="userType == 'pacijent'">
-        <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/profil'" routerLink="/pacijent/profil"><i class="gg-profile"></i></a>
+    <div class="container d-flex justify-content-end" *ngIf="userType == 'pacijent'">
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/'" routerLink=""><i class="gg-home-alt"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url.split(';')[0] == '/pacijent/profil'" [routerLink]="['/pacijent/profil', { _id: _id }]"><i class="gg-profile"></i></a>
         <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/lekari'" routerLink="/pacijent/lekari"><i class="gg-user-list"></i></a>
         <a class="nav-link navbar-link" [class.active-link]="router.url == '/pacijent/pregledi'" routerLink="/pacijent/pregledi"><i class="gg-calendar"></i></a>
-        <a class="nav-link navbar-link"><i class="gg-bell"></i></a>
+        <!-- <a class="nav-link navbar-link"><i class="gg-bell"></i></a> -->
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
-    <div class="container justify-content-around" *ngIf="userType == 'lekar'">
-        <a class="nav-link navbar-link" routerLink="/lekar/profil">Profil</a>
-        <a class="nav-link navbar-link" routerLink="/lekar/pregledi">Pregledi</a>
-        <a class="nav-link navbar-link" routerLink="/lekar/razno">Razno</a>
+    <div class="container d-flex justify-content-end" *ngIf="userType == 'lekar'">
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/'" routerLink=""><i class="gg-home-alt"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url.split(';')[0] == '/lekar/profil'" [routerLink]="['/lekar/profil', { _id: _id }]"><i class="gg-profile"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/lekar/pregledi'" routerLink="/lekar/pregledi"><i class="gg-calendar"></i></a>
+        <a class="nav-link navbar-link" [class.active-link]="router.url == '/lekar/razno'" routerLink="/lekar/razno"><i class="gg-arrows-exchange-alt"></i></a>
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
     <div *ngIf="userType == 'menadzer'">
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
-    <div class="container" *ngIf="!isLoggedIn()">
+    <div class="container d-flex justify-content-end" *ngIf="!isLoggedIn()">
         <button class="btn btn-light button" (click)="goToLogin()">Prijava</button>
     </div>
 </nav>

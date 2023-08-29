@@ -97,9 +97,19 @@ export class MenadzerController {
             let lekar = await lekarDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
             let pacijent = await pacijentDB.findOne({$or: [{'korisnickoIme': request.body.korisnickoIme}, {'email': request.body.email}]});
 
-            if (pacijent != null || lekar != null) {
-                response.json(this.registerError(pacijent, request.body));
-                return;
+            if (pacijent != null) {
+
+                if (pacijent.korisnickoIme != request.body.oldKorisnickoIme || pacijent.email != request.body.oldEmail) {
+                    response.json(this.registerError(pacijent, request.body));
+                    return;
+                }
+            }
+            if (lekar != null) {
+                
+                if (lekar.korisnickoIme != request.body.oldKorisnickoIme || lekar.email != request.body.oldEmail) {
+                    response.json(this.registerError(lekar, request.body));
+                    return;
+                }
             }
     
             if (request.body.userType == 'pacijent') {
@@ -148,10 +158,8 @@ export class MenadzerController {
                     'prezime': request.body.prezime,
                     'adresa': request.body.adresa,
                     'kontaktTelefon': request.body.kontaktTelefon,
-                    'email': request.body.email,
                     'brojLicence': request.body.brojLicence,
                     'specijalizacija': request.body.specijalizacija,
-                    'ogranakOrdinacije': request.body.ogranakOrdinacije
                 }, (err, oldLekar) => {
                     if (err) console.log(err);
                     else if (oldLekar != null) {
@@ -265,6 +273,30 @@ export class MenadzerController {
                 else response.json({'message': 'Error: stara lozinka se ne podudara.'});
             });
         }
+    }
+
+    acceptPregledi(request, response) {
+
+        for (let pregled of request.body.array) {
+
+            pregledDB.findByIdAndUpdate(pregled._id, {'status': 'aktivan'}, (err) => {
+                if (err) console.log(err);
+            });
+        }
+
+        response.json({'message': 'success'});
+    }
+
+    declinePregledi(request, response) {
+
+        for (let pregled of request.body.array) {
+
+            pregledDB.findByIdAndDelete(pregled._id, (err) => {
+                if (err) console.log(err);
+            });
+        }
+        
+        response.json({'message': 'success'});
     }
     
 

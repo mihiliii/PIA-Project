@@ -4,14 +4,49 @@
     </header>
     <div class="main-component container d-flex flex-column">
         <div class="pregled-container">
-            <h1 class="d-flex justify-content-center header">Zakazani pregledi: </h1>
+            <h1 class="header">Zakazani pregledi: </h1>
             <div class="pregled-container-inner" *ngFor="let zakazaniPregled of zakazaniPreglediList">
-                <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
-                <p>Ime pacijenta: {{zakazaniPregled.pacijent['ime']}}</p>
-                <p>Prezime pacijenta: {{zakazaniPregled.pacijent['prezime']}}</p>
-                <p>Datum: {{zakazaniPregled.datum}}</p>
-                <p>Vreme: {{zakazaniPregled.vreme}}</p>
-                <p>Trajanje: {{zakazaniPregled.trajanje}} minuta</p>
+                <div class="row">
+                    <div class="col">
+                        <p>Naziv: {{zakazaniPregled.pregled['naziv']}}</p>
+                        <p>Ime pacijenta: {{zakazaniPregled.pacijent['ime']}}</p>
+                        <p>Prezime pacijenta: {{zakazaniPregled.pacijent['prezime']}}</p>
+                        <p>Datum: {{zakazaniPregled.datum}}</p>
+                        <p>Vreme: {{zakazaniPregled.vreme}}</p>
+                        <p>Trajanje: {{zakazaniPregled.trajanje}} minuta</p>
+                        <button class="btn button" (click)="otvoriKartonPacijenta(zakazaniPregled.pacijent)">Otvori karton pacijenta</button>
+                        <button class="btn button" (click)="otvoriIzvestaj(zakazaniPregled)">Popuni izvestaj</button>
+                    </div>
+                    <!-- *ngIf="zakazaniPregled['gotovPregled']" -->
+                    <div class="col">
+                        <div class="d-flex justify-content-center">
+                            <img class="image" [src]="'http://localhost:4000/images/' + this.zakazaniPregled.pacijent['image']">
+                        </div>
+                    </div>
+                </div>
+                <div class="pregled-container-inner2" *ngIf="zakazaniPregled['showIzvestaj'] == true">
+                    <h1 class="header">Popuni izvestaj</h1>
+                    <form class="form-control my-form">
+                        <div>
+                            <label class="form-label">Razlog dolaska:</label>
+                            <input class="form-control" type="text" name="razlogDolaska">
+                        </div><br>
+                        <div>
+                            <label class="form-label">Dijagnoza:</label>
+                            <input class="form-control" type="text" name="dijagnoza">
+                        </div><br>
+                        <div>
+                            <label class="form-label">Terapija:</label>
+                            <textarea class="form-control" name="terapija"></textarea>
+                        </div><br>
+                        <div>
+                            <label class="form-label">Preporuceni datum sledeceg pregleda:</label>
+                            <input class="form-control" type="text" name="datumSledecegPregleda">
+                        </div><br>
+                        <button class="btn button" (click)="napraviIzvestaj(zakazaniPregled)">Napravi izvestaj</button>
+                        <button class="btn button" (click)="zatvoriIzvestaj(zakazaniPregled)">Zatvori izvestaj</button>
+                    </form>
+                </div>
             </div>
             <div *ngIf="zakazaniPreglediList?.length == 0">
                 <h4>Nema zakazanih pregleda</h4>

@@ -47,4 +47,14 @@ export class MenadzerService {
 
         return this.httpClient.post('http://localhost:4000/menadzer/updateUserPassword', requestData);
     }
+
+    acceptPregledi(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/acceptPregledi', requestData);
+    } 
+
+    declinePregledi(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/declinePregledi', requestData);
+    }
 }
