@@ -12,20 +12,20 @@ import { LekarPreglediComponent } from './pages/lekar/lekar-pregledi/lekar-pregl
 import { RaznoComponent } from './pages/lekar/razno/razno.component';
 import { MenadzerHomepageComponent } from './pages/menadzer/menadzer-homepage/menadzer-homepage.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { RouteGuard } from './guards/route.guard';
 
 const routes: Routes = [
     {path: "", title:'Glavna', component: HomepageComponent},
-    {path: "login", component: LoginComponent, data: {userType: ''}},
-    {path: "register", component: RegisterComponent},
-    {path: "menadzer", component: MenadzerHomepageComponent},
-    {path: "login/menadzer", component: LoginComponent, data: {userType: 'menadzer'}},
-    {path: "pacijent/profil", component: PacijentProfilComponent},
-    {path: "pacijent/lekari", component: PacijentLekariComponent},
-    {path: "pacijent/pregledi", component: PacijentPreglediComponent},
-    {path: "lekar/profil", component:LekarProfilComponent},
-    {path: "lekar/pregledi", component: LekarPreglediComponent},
-    {path: "lekar/razno", component: RaznoComponent},
-    {path: "user-edit", component: UserEditComponent},
+    {path: "login", component: LoginComponent, canActivate: [RouteGuard], data: {userType: '', roles: []}},
+    {path: "register", component: RegisterComponent, canActivate: [RouteGuard], data: {roles: []}},
+    {path: "menadzer", component: MenadzerHomepageComponent, canActivate: [RouteGuard], data: {roles: ['menadzer']}},
+    {path: "login/menadzer", component: LoginComponent, canActivate: [RouteGuard], data: {userType: 'menadzer', roles: []}},
+    {path: "pacijent/profil", component: PacijentProfilComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
+    {path: "pacijent/lekari", component: PacijentLekariComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
+    {path: "pacijent/pregledi", component: PacijentPreglediComponent, canActivate: [RouteGuard], data: {roles: ['pacijent']}},
+    {path: "lekar/profil", component:LekarProfilComponent, canActivate: [RouteGuard], data: {roles: ['pacijent', 'lekar']}},
+    {path: "lekar/pregledi", component: LekarPreglediComponent, canActivate: [RouteGuard], data: {roles: ['lekar']}},
+    {path: "lekar/razno", component: RaznoComponent, canActivate: [RouteGuard], data: {roles: ['lekar']}},
     {path: "**", redirectTo: ""}
 ];
 
