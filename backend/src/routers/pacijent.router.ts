@@ -19,4 +19,8 @@ pacijentRouter.route('/deleteZakazaniPregled').post(
     (request, response) => { new PacijentController().deleteZakazaniPregled(request, response); }
 );
 
+pacijentRouter.route('/getIzvestajListByPacijentId').post(
+    (request, response) => { new PacijentController().getIzvestajListByPacijentId(request, response); }
+);
+
 export default pacijentRouter;

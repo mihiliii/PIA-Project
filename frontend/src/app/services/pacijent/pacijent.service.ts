@@ -37,4 +37,12 @@ export class PacijentService {
         return this.httpClient.post('http://localhost:4000/pacijent/deleteZakazaniPregled', requestData);
     }
 
+    getIzvestajListByPacijentId(pacijentId) {
+        const requestData = {
+            _id: pacijentId
+        }
+
+        return this.httpClient.post('http://localhost:4000/pacijent/getIzvestajListByPacijentId', requestData);
+    }
+
 }

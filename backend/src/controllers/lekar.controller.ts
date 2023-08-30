@@ -54,7 +54,7 @@ export class LekarController {
 
                 await zakazaniPreglediDB.create(
                     {
-                        'pregled': request.body.pregled._id,
+                        'pregled': request.body.pregled,
                         'lekar': request.body.lekar._id,
                         'pacijent': request.body.pacijent,
                         'datum': request.body.datum,
@@ -103,7 +103,7 @@ export class LekarController {
     async getZakazaniPreglediByLekarId(request: express.Request, response: express.Response) {
         try {
 
-            let termini = await zakazaniPreglediDB.find({lekar: request.body._id}).populate('pregled').populate('pacijent').sort({'datum': 1, 'vreme': 1});
+            let termini = await zakazaniPreglediDB.find({lekar: request.body._id}).populate('pacijent').sort({'datum': 1, 'vreme': 1});
 
             response.json(termini);
         }
@@ -123,7 +123,7 @@ export class LekarController {
             }, 
             (error) => {
                 if (error) console.log(error);
-                else response.json({message: 'addNoviPregled success'});
+                else response.json({message: 'Novi pregled je dodan.'});
             });
     }
 

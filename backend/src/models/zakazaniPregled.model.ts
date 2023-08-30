@@ -1,13 +1,11 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+import { pregledSchema } from './pregled.model';
 
 const Schema = mongoose.Schema;
 
 const zakazaniPregledSchema = new Schema({
-    pregled: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'PregledDB'
-    },
+    pregled: pregledSchema,
     lekar: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'LekarDB'

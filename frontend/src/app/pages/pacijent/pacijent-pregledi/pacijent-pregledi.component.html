@@ -19,6 +19,21 @@
             <div *ngIf="zakazaniPreglediList?.length == 0">
                 <h4>Nema zakazanih pregleda</h4>
             </div>
+            <hr>
+            <h1 class="d-flex justify-content-center header">Izvestaji: </h1>
+            <div class="pregled-container-inner" *ngFor="let izvestaj of izvestajList">
+                <p><span class="span">Ime lekara:</span> {{izvestaj.lekar['ime']}}</p>
+                <p><span class="span">Prezime lekara:</span> {{izvestaj.lekar['prezime']}}</p>
+                <p><span class="span">Datum:</span> {{izvestaj.datum}}</p>
+                <p><span class="span">Vreme:</span> {{izvestaj.vreme}}</p>
+                <p><span class="span">Razlog dolaska:</span> {{izvestaj.razlogDolaska}}</p>
+                <p><span class="span">Dijagnoza:</span>  {{izvestaj.dijagnoza}}</p>
+                <p><span class="span">Terapija:</span> {{izvestaj.terapija}}</p>
+                <p><span class="span">Datum sledeceg pregleda:</span> {{izvestaj.datumSledecegPregleda}}</p>
+            </div>
+            <div *ngIf="izvestajList?.length == 0">
+                <h4>Nema prethodnih izvestaja</h4>
+            </div>
         </div>
     </div>
     <footer>

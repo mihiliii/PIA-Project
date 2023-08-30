@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Izvestaj from 'src/app/models/izvestaj.model';
-import ZakazaniPregled from 'src/app/models/zakazaniPregled.model';
 import { LekarService } from 'src/app/services/lekar/lekar.service';
 
 @Component({

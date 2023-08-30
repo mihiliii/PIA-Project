@@ -1,6 +1,7 @@
 import express from 'express';
 import pacijentDB from '../models/pacijent.model';
 import zakazaniPreglediDB from '../models/zakazaniPregled.model';
+import izvestajDB from '../models/izvestaj.model';
 
 export class PacijentController {
 
@@ -23,7 +24,7 @@ export class PacijentController {
     async getZakazaniPreglediListByPacijentId(request: express.Request, response: express.Response) {
         try {
             
-            let zakazaniPreglediList = await zakazaniPreglediDB.find({pacijent: request.body.pacijent}).populate('pregled').populate('lekar');
+            let zakazaniPreglediList = await zakazaniPreglediDB.find({pacijent: request.body.pacijent}).populate('lekar');
 
             response.json(zakazaniPreglediList);
         }
@@ -38,5 +39,17 @@ export class PacijentController {
             if (err) console.log(err);
             else response.json({message: 'success'});
         });
+    }
+
+    async getIzvestajListByPacijentId(request: express.Request, response: express.Response) {
+        try {
+
+            let izvestajList = await izvestajDB.find({pacijent: request.body._id}).populate('lekar');
+
+            response.json(izvestajList);
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 }

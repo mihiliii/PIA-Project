@@ -10,5 +10,5 @@ export default class Izvestaj {
     razlogDolaska: string;
     dijagnoza: string;
     terapija: string;
-    datumSeledecegPregleda: string;
+    datumSledecegPregleda: string;
 }
