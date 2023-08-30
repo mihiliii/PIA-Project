@@ -18,7 +18,7 @@ export class LekarPreglediComponent implements OnInit {
         terapija: string,
         datumSledecegPregleda: string
     }
-    trenutniDatum: string;
+    trenutniDatum: Date;
     trenutnoVreme: string;
 
     constructor(private lekarService: LekarService, private router: Router) { }
@@ -28,17 +28,16 @@ export class LekarPreglediComponent implements OnInit {
     }
 
     populateLekarPreglediComponent() {
-        this.trenutniDatum = new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear();
+        this.trenutniDatum = new Date(new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
         this.trenutnoVreme = new Date().getHours() + ':' + new Date().getMinutes();
 
         this.lekarService.getZakazaniPreglediByLekarId(localStorage.getItem('_id')).subscribe((zakazaniPregledi: ZakazaniPregled[]) => {
             this.zakazaniPreglediList = zakazaniPregledi.slice(0, 3);
             this.zakazaniPreglediList.map((zakazaniPregled) => {
                 zakazaniPregled['showIzvestaj'] = false;
-                if (zakazaniPregled.datum >= this.trenutniDatum) {
-                    if (zakazaniPregled.vreme >= this.trenutnoVreme) {
-                        zakazaniPregled['gotovPregled'] = true;
-                    }
+                let datumZakazanogPregleda = new Date(zakazaniPregled.datum);
+                if (datumZakazanogPregleda < this.trenutniDatum || (datumZakazanogPregleda == this.trenutniDatum && zakazaniPregled.vreme <= this.trenutnoVreme)) {
+                    zakazaniPregled['gotovPregled'] = true;
                 }
                 else {
                     zakazaniPregled['gotovPregled'] = false;

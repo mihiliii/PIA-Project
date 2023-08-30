@@ -75,6 +75,19 @@ export class LekarProfilComponent implements OnInit {
             return;
         }
 
+        let trenutniDatum = new Date(new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
+        let trenutnoVreme = new Date().getHours() + ':' + new Date().getMinutes();
+
+        let inputDatum = new Date(this.formInput.datum);
+        let inputVreme = this.formInput.vreme.toString();
+
+        console.log(inputDatum, trenutniDatum, trenutnoVreme);
+
+        if (inputDatum < trenutniDatum || (inputDatum == trenutniDatum && inputVreme <= trenutnoVreme)) {
+            this.zakaziPregledMessage = 'Error: datum nije validan!';
+            return;
+        }
+
         const zakazaniPregled = {
             lekar: this.lekar,
             pacijent: localStorage.getItem('_id'),

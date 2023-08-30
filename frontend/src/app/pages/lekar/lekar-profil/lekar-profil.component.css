@@ -23,6 +23,8 @@ main {
 .image {
     width: max-content;
     height: max-content;
+    min-width: 300px;
+    min-height: 300px;
 }
 
 p {
