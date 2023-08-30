@@ -43,4 +43,16 @@ menadzerRouter.route('/declinePregledi').post(
     (request, response) => { new MenadzerController().declinePregledi(request, response); }
 );
 
+menadzerRouter.route('/addNewSpecijalizacija').post(
+    (request, response) => { new MenadzerController().addNewSpecijalizacija(request, response); }
+);
+
+menadzerRouter.route('/getAllSpecijalizacija').get(
+    (request, response) => { new MenadzerController().getAllSpecijalizacija(request, response); }
+);
+
+menadzerRouter.route('/updatePregled').post(
+    (request, response) => { new MenadzerController().updatePregled(request, response); }
+);
+
 export default menadzerRouter;

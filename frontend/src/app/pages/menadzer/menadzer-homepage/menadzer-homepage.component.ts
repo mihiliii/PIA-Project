@@ -7,6 +7,7 @@ import { UserEditComponent } from '../../../components/user-edit/user-edit.compo
 import { LekarService } from '../../../services/lekar/lekar.service';
 import { NewLekarComponent } from '../../../components/new-lekar/new-lekar.component';
 import Pregled from '../../../models/pregled.model';
+import { PregledEditComponent } from 'src/app/components/pregled-edit/pregled-edit.component';
 
 @Component({
   selector: 'app-menadzer-homepage',
@@ -21,10 +22,13 @@ export class MenadzerHomepageComponent implements OnInit {
     pregledList: Pregled[];
     showUserEdit: boolean;
     showNewLekar: boolean;
+    showPregledEdit: boolean;
     imeSpecijalizacijeInput: string;
     errorSpecijalizacija: string;
+    acceptedPregledList: Pregled[];
     @ViewChild(UserEditComponent) userEditComponent: UserEditComponent;
     @ViewChild(NewLekarComponent) newLekarComponent: NewLekarComponent;
+    @ViewChild(PregledEditComponent) pregledEditComponent: PregledEditComponent;
 
     constructor(private menadzerService: MenadzerService, private pacijentService: PacijentService, private lekarService: LekarService) {}
 
@@ -36,6 +40,7 @@ export class MenadzerHomepageComponent implements OnInit {
 
         this.showNewLekar = false;
         this.showUserEdit = false;
+        this.showPregledEdit = false;
         this.imeSpecijalizacijeInput = '';
         this.errorSpecijalizacija = '';
 
@@ -56,6 +61,10 @@ export class MenadzerHomepageComponent implements OnInit {
         });
 
         this.menadzerService.getAllPregledi().subscribe((responseData: Pregled[]) => {
+
+            this.acceptedPregledList = responseData.filter((pregled) => {
+                return pregled.status == 'aktivan';
+            });
             
             responseData = responseData.filter((pregled) => {
                 return pregled.status == 'neaktivan';
@@ -117,13 +126,22 @@ export class MenadzerHomepageComponent implements OnInit {
     openUserEditComponent(userToEdit, userTypeToEdit) {
         this.showUserEdit = true;
         this.showNewLekar = false;
+        this.showPregledEdit = false;
         this.userEditComponent.populateUserEditComponent(userToEdit, userTypeToEdit);
     }
 
     openNewLekarComponent() {
         this.showNewLekar = true;
         this.showUserEdit = false;
+        this.showPregledEdit = false;
         this.newLekarComponent.populateNewLekarComponent();
+    }
+
+    openPregledEditComponent(pregled) {
+        this.showPregledEdit = true;
+        this.showNewLekar = false;
+        this.showUserEdit = false;
+        this.pregledEditComponent.populatePregledEditComponent(pregled);
     }
 
     acceptPregledi() {
@@ -157,9 +175,32 @@ export class MenadzerHomepageComponent implements OnInit {
     }
 
     addNewSpecijalizacija(form) {
-        if (form.invalid) {
+        if (this.imeSpecijalizacijeInput == '') {
             this.errorSpecijalizacija = 'Error: unesite ime specijalizacije';
+            return;
         }
+
+        const data = {
+            naziv: this.imeSpecijalizacijeInput
+        }
+
+        this.menadzerService.addNewSpecijalizacija(data).subscribe((response) => {
+            console.log(response['message']);
+            this.ngOnInit();
+        });
+    }
+
+    deletePregled(pregled) {
+        let array = [pregled];
+
+        const data = {
+            array: array
+        }
+
+        this.menadzerService.declinePregledi(data).subscribe((response) => {
+            console.log(response['message']);
+            this.ngOnInit();
+        });
     }
 
 }

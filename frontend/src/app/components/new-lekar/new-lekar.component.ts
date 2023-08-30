@@ -26,6 +26,7 @@ export class NewLekarComponent implements OnInit {
     selectedImageFormInput: File;
     selectedImageURL: string;
     errorArray: string[];
+    specijalizacijaList;
 
     constructor(private menadzerService: MenadzerService, private authenticationService: AuthenticationService) { }
 
@@ -50,6 +51,9 @@ export class NewLekarComponent implements OnInit {
             ogranakOrdinacije: '',
         }
         this.errorArray = [];
+        this.menadzerService.getAllSpecijalizacija().subscribe((response) => {
+            this.specijalizacijaList = response;
+        })
     }
 
     addNewLekar(form) {

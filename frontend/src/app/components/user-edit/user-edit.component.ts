@@ -32,6 +32,7 @@ export class UserEditComponent implements OnInit {
     @Output() parentNgOnInit: EventEmitter<any> = new EventEmitter();
     selectedImageFormInput: File;
     selectedImageURL: string;
+    specijalizacijaList;
 
     constructor(private menadzerService: MenadzerService, private authenticationService: AuthenticationService, private router: Router) {
     }
@@ -61,6 +62,9 @@ export class UserEditComponent implements OnInit {
         }
         this.selectedImageFormInput = null;
         this.selectedImageURL = '';
+        this.menadzerService.getAllSpecijalizacija().subscribe((response) => {
+            this.specijalizacijaList = response;
+        })
     }
 
     saveChanges(form) {

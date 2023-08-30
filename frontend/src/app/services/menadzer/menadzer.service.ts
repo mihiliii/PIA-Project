@@ -57,4 +57,24 @@ export class MenadzerService {
 
         return this.httpClient.post('http://localhost:4000/menadzer/declinePregledi', requestData);
     }
+
+    addNewSpecijalizacija(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/addNewSpecijalizacija', requestData);
+    }
+
+    getAllSpecijalizacija() {
+
+        return this.httpClient.get('http://localhost:4000/menadzer/getAllSpecijalizacija');
+    }
+
+    updatePregled(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/updatePregled', requestData);
+    }
+
+    deletePregled(requestData) {
+
+        return this.httpClient.post('http://localhost:4000/menadzer/deletePregled', requestData);
+    }
 }

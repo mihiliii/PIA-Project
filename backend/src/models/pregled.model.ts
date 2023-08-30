@@ -7,7 +7,7 @@ const pregledSchema = new Schema({
     // _id: ObjectId,
     naziv: String,
     trajanje: Number,
-    cena: String,
+    cena: Number,
     specijalizacija: String,
     status: String
 });

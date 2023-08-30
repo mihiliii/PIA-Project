@@ -14,7 +14,7 @@
         <a class="nav-link navbar-link" [class.active-link]="router.url == '/lekar/razno'" routerLink="/lekar/razno"><i class="gg-arrows-exchange-alt"></i></a>
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
-    <div *ngIf="userType == 'menadzer'">
+    <div class="container d-flex justify-content-end" *ngIf="userType == 'menadzer'">
         <button class="btn btn-light button" (click)="logout()">Odjava</button>
     </div>
     <div class="container d-flex justify-content-end" *ngIf="!isLoggedIn()">

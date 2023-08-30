@@ -2,6 +2,7 @@ import express from "express";
 import pacijentDB from '../models/pacijent.model';
 import lekarDB from '../models/lekar.model';
 import pregledDB from '../models/pregled.model';
+import specijalizacijaDB from '../models/specijalizacija.model';
 import * as fs from 'node:fs';
 
 export class MenadzerController {
@@ -297,6 +298,35 @@ export class MenadzerController {
         }
         
         response.json({'message': 'success'});
+    }
+
+    addNewSpecijalizacija(request, response) {
+
+        specijalizacijaDB.create({'naziv': request.body.naziv}, (err) => {
+            if (err) console.log(err);
+            else response.json({'message': 'success'});
+        })
+    }
+
+    getAllSpecijalizacija(request, response) {
+
+        specijalizacijaDB.find((err, specijalizacije) => {
+            if (err) console.log(err);
+            else response.json(specijalizacije);
+        })
+    }
+
+    updatePregled(request, response) {
+
+        pregledDB.findByIdAndUpdate(request.body._id, {
+            'naziv': request.body.naziv,
+            'cena': request.body.cena,
+            'trajanje': request.body.trajanje,
+            'specijalizacija': request.body.specijalizacija
+        }, (err) => {
+            if (err) console.log(err);
+            else response.json({'message': 'success'});
+        });
     }
     
 

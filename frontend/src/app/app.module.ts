@@ -22,6 +22,7 @@ import { NewLekarComponent } from './components/new-lekar/new-lekar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { LekarKartonComponent } from './pages/lekar/lekar-karton/lekar-karton.component';
+import { PregledEditComponent } from './components/pregled-edit/pregled-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LekarKartonComponent } from './pages/lekar/lekar-karton/lekar-karton.co
     FooterComponent,
     PasswordResetComponent,
     LekarKartonComponent,
+    PregledEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+.form-label {
+    font-size: 24px;
+}
+
+.form {
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+}
+
+.button {
+    background-color: rgb(69, 69, 75);
+    color: white;
+    margin-top: 20px;
+}
+
+.my-alert {
+    margin: 0px;
+    margin-top: 12px;
+    padding: 6px;
+}

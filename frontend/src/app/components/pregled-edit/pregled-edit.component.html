@@ -1,0 +1,29 @@
+<div *ngIf="showComponent">
+    <h2>Azuriraj pregled:</h2>
+    <form #pregledForm="ngForm" class="my-form row gap-5">
+        <div class="col">
+            <div>
+                <label class="form-label">Naziv:</label>
+                <input class="form-control" type="text" [(ngModel)]="formInput.naziv" name="naziv" required>
+            </div>
+            <div>
+                <label class="form-label">Trajanje:</label>
+                <input class="form-control" type="number" [(ngModel)]="formInput.trajanje" name="trajanje" required>
+            </div>
+            <div>
+                <label class="form-label">Cena:</label>
+                <input class="form-control" type="number" [(ngModel)]="formInput.cena" name="cena" required>
+            </div>
+            <div>
+                <label class="form-label">Specijalizacija:</label>
+                <select class="form-select" [(ngModel)]="formInput.specijalizacija" name="specijalizacija">
+                    <option *ngFor="let specijalizacija of specijalizacijaList" [ngValue]="specijalizacija.naziv">{{specijalizacija.naziv}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="d-flex justify-content-evenly">
+        <button class="btn button" (click)="updatePregled()">Sacuvaj</button>
+        <button class="btn button" (click)="discardChanges()">Odbaci</button>
+    </div>
+</div>

@@ -43,7 +43,9 @@
                 </div>
                 <div class="col">
                     <label class="form-label">Specijalizacija:</label>
-                    <input class="form-control" type="text" [(ngModel)]="formInput.specijalizacija" name="specijalizacija" required>
+                    <select class="form-select" [(ngModel)]="formInput.specijalizacija" name="specijalizacija">
+                        <option *ngFor="let specijalizacija of specijalizacijaList" [ngValue]="specijalizacija.naziv">{{specijalizacija.naziv}}</option>
+                    </select>
                 </div>
             </div>
             <div>
