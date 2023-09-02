@@ -64,7 +64,7 @@ export class LekarService {
 
     getAllIzvestaji(data) {
         
-        return this.httpClient.get('http://localhost:4000/lekar/getAllIzvestaji', data);
+        return this.httpClient.post('http://localhost:4000/lekar/getAllIzvestaji', data);
     }
 
     createNewIzvestaj(data) {

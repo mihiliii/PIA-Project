@@ -6,15 +6,12 @@
         <div class="izvestaj-container">
             <h1 class="d-flex justify-content-center header">Izvestaji: </h1>
             <div class="izvestaj-container-inner" *ngFor="let izvestaj of izvestajList">
-                <!-- <p><span class="span">Naziv:</span> {{zakazaniPregled.pregled['naziv']}}</p>
-                <p><span class="span">Cena:</span> {{zakazaniPregled.pregled['cena']}}</p>
-                <p><span class="span">Datum:</span> {{zakazaniPregled.datum}}</p>
-                <p><span class="span">Vreme:</span> {{zakazaniPregled.vreme}}</p>
-                <p><span class="span">Trajanje:</span> {{zakazaniPregled.trajanje}} minuta</p>
-                <p><span class="span">Lekar:</span> {{zakazaniPregled.lekar['ime']}} {{zakazaniPregled.lekar['prezime']}} </p>
-                <div class="d-flex justify-content-end">
-                    <button class="btn button" (click)="deleteZakazaniPregled(zakazaniPregled._id)">Otkazi pregled</button>
-                </div> -->
+                <p><span class="span">Datum:</span> {{izvestaj.datum}}</p>
+                <p><span class="span">Vreme:</span> {{izvestaj.vreme}}</p>
+                <p><span class="span">Razlog dolaska:</span> {{izvestaj.razlogDolaska}}</p>
+                <p><span class="span">Dijagnoza</span> {{izvestaj.dijagnoza}}</p>
+                <p><span class="span">Terapija:</span> {{izvestaj.terapija}}</p>
+                <p><span class="span">Datum sledeceg pregleda:</span> {{izvestaj.datumSledecegPregleda}}</p>
             </div>
             <div *ngIf="izvestajList?.length == 0">
                 <h4>Nema prethodnih izvestaja za ovog pacijenta</h4>

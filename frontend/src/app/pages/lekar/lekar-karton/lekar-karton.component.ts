@@ -27,7 +27,8 @@ export class LekarKartonComponent implements OnInit {
 
         this.lekarService.getAllIzvestaji(data).subscribe((izvestaji: any) => {
             this.izvestajList = izvestaji;
-        }) 
+        });
+
     }
 
 }

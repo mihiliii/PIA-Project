@@ -36,7 +36,7 @@ export class LekarPreglediComponent implements OnInit {
             this.zakazaniPreglediList.map((zakazaniPregled) => {
                 zakazaniPregled['showIzvestaj'] = false;
                 let datumZakazanogPregleda = new Date(zakazaniPregled.datum);
-                if (datumZakazanogPregleda < this.trenutniDatum || (datumZakazanogPregleda == this.trenutniDatum && zakazaniPregled.vreme <= this.trenutnoVreme)) {
+                if (datumZakazanogPregleda < this.trenutniDatum || (datumZakazanogPregleda.getTime() == this.trenutniDatum.getTime() && zakazaniPregled.vreme <= this.trenutnoVreme)) {
                     zakazaniPregled['gotovPregled'] = true;
                 }
                 else {

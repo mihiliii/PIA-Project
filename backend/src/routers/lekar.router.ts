@@ -31,7 +31,7 @@ lekarRouter.route('/addNewPregled').post(
     (request, response) => { new LekarController().addNewPregled(request, response); } 
 );
 
-lekarRouter.route('/getAllIzvestaji').get(
+lekarRouter.route('/getAllIzvestaji').post(
     (request, response) => { new LekarController().getAllIzvestaji(request, response); }
 );
 

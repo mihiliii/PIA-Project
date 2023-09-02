@@ -15,9 +15,10 @@
                         <p>Vreme: {{zakazaniPregled.vreme}}</p>
                         <p>Trajanje: {{zakazaniPregled.trajanje}} minuta</p>
                         <button class="btn button" (click)="otvoriKartonPacijenta(zakazaniPregled.pacijent)">Otvori karton pacijenta</button>
-                        <button class="btn button" (click)="otvoriIzvestaj(zakazaniPregled)">Popuni izvestaj</button>
+                        <div *ngIf="zakazaniPregled['gotovPregled']">
+                            <button class="btn button" (click)="otvoriIzvestaj(zakazaniPregled)">Popuni izvestaj</button>
+                        </div>
                     </div>
-                    <!-- *ngIf="zakazaniPregled['gotovPregled']" -->
                     <div class="col">
                         <div class="d-flex justify-content-center">
                             <img class="image" [src]="'http://localhost:4000/images/' + this.zakazaniPregled.pacijent['image']">
@@ -29,19 +30,19 @@
                     <form class="form-control my-form">
                         <div>
                             <label class="form-label">Razlog dolaska:</label>
-                            <input class="form-control" type="text" name="razlogDolaska">
+                            <input class="form-control" type="text" name="razlogDolaska" [(ngModel)]="formInput.razlogDolaska">
                         </div><br>
                         <div>
                             <label class="form-label">Dijagnoza:</label>
-                            <input class="form-control" type="text" name="dijagnoza">
+                            <input class="form-control" type="text" name="dijagnoza" [(ngModel)]="formInput.dijagnoza">
                         </div><br>
                         <div>
                             <label class="form-label">Terapija:</label>
-                            <textarea class="form-control" name="terapija"></textarea>
+                            <textarea class="form-control" name="terapija" [(ngModel)]="formInput.terapija"></textarea>
                         </div><br>
                         <div>
                             <label class="form-label">Preporuceni datum sledeceg pregleda:</label>
-                            <input class="form-control" type="text" name="datumSledecegPregleda">
+                            <input class="form-control" type="date" name="datumSledecegPregleda" [(ngModel)]="formInput.datumSledecegPregleda"> 
                         </div><br>
                         <button class="btn button" (click)="napraviIzvestaj(zakazaniPregled)">Napravi izvestaj</button>
                         <button class="btn button" (click)="zatvoriIzvestaj(zakazaniPregled)">Zatvori izvestaj</button>

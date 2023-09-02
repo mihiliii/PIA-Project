@@ -129,9 +129,14 @@ export class LekarController {
 
     getAllIzvestaji(request, response) {
 
+        console.log(request.body);
+
         izvestajDB.find({'lekar': request.body.lekar, 'pacijent': request.body.pacijent}, (err, izvestaji) => {
             if (err) console.log(err);
-            else response.json(izvestaji);
+            else {
+                console.log(izvestaji);
+                response.json(izvestaji);
+            }
         });
     }
 
